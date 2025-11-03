@@ -74,10 +74,6 @@ See `docs/FEATURES_AND_ROADMAP.md` for the complete development roadmap.
 3. ⏳ Configure code signing
 4. ⏳ Start development (Phase 1)
 
-## 🤝 Contributing
-
-This is a personal project. For questions or feedback, see the documentation.
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -89,6 +85,10 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 - Report bugs via [GitHub Issues](https://github.com/vksvicky/PatternSorcerer/issues)
 - Suggest features via [Feature Requests](https://github.com/vksvicky/PatternSorcerer/issues/new?template=feature_request.md)
 - Submit pull requests following our [guidelines](CONTRIBUTING.md)
+
+## 🔒 Security
+
+For security vulnerabilities, please see [SECURITY.md](.github/SECURITY.md)
 
 ## 🔗 Repository
 
