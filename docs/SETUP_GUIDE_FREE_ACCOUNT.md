@@ -86,8 +86,8 @@ Team ID: ABC123XYZ
 **Project Settings:**
 - **Product Name:** `PatternSorcerer`
 - **Team:** Select your Personal Team (from dropdown)
-- **Organization Identifier:** `com.yourname` (e.g., `com.johndoe`)
-- **Bundle Identifier:** Will auto-generate (e.g., `com.johndoe.PatternSorcerer`)
+- **Organization Identifier:** `club.cycleruncode`
+- **Bundle Identifier:** `club.cycleruncode.PatternSorcerer`
 - **Language:** Swift
 - **Interface:** SwiftUI
 - **Storage:** SwiftData (or Core Data)
