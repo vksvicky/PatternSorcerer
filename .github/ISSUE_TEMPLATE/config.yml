@@ -1,0 +1,9 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://github.com/vksvicky/PatternSorcerer/blob/main/docs/README.md
+    about: Check the documentation for answers
+  - name: Discussions
+    url: https://github.com/vksvicky/PatternSorcerer/discussions
+    about: Ask questions and discuss ideas
+
