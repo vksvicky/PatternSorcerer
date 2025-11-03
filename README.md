@@ -2,6 +2,8 @@
 
 A powerful macOS Universal app for working with regular expressions, inspired by RegexWizard.
 
+[![GitHub](https://img.shields.io/badge/GitHub-vksvicky%2FPatternSorcerer-blue)](https://github.com/vksvicky/PatternSorcerer)
+
 ## 🚀 Quick Start
 
 1. **Review Documentation**: See `docs/README.md` for all documentation
@@ -79,6 +81,12 @@ This is a personal project. For questions or feedback, see the documentation.
 ## 📄 License
 
 TBD - To be determined
+
+## 🔗 Repository
+
+- **GitHub**: [https://github.com/vksvicky/PatternSorcerer](https://github.com/vksvicky/PatternSorcerer)
+- **Issues**: Report bugs or request features on GitHub Issues
+- **Contributions**: Pull requests welcome!
 
 ---
 
