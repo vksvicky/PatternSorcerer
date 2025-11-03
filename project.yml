@@ -1,0 +1,106 @@
+name: PatternSorcerer
+options:
+  bundleIdPrefix: club.cycleruncode
+  deploymentTarget:
+    macOS: "14.0"
+  developmentLanguage: en
+  xcodeVersion: "15.0"
+
+packages: {}
+
+targets:
+  PatternSorcerer:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: PatternSorcerer
+        excludes:
+          - "**/*.md"
+          - "**/Info.plist"  # We'll use the generated one or configure it
+    info:
+      path: PatternSorcerer/Info.plist
+      properties:
+        CFBundleIdentifier: club.cycleruncode.PatternSorcerer
+        CFBundleName: PatternSorcerer
+        CFBundleDisplayName: PatternSorcerer
+        CFBundlePackageType: APPL
+        CFBundleShortVersionString: "2025.11"
+        CFBundleVersion: "0002"
+        CFBundleExecutable: $(EXECUTABLE_NAME)
+        CFBundleInfoDictionaryVersion: "6.0"
+        LSMinimumSystemVersion: $(MACOSX_DEPLOYMENT_TARGET)
+        NSHumanReadableCopyright: "Copyright © 2025 CycleRunCode Club. All rights reserved."
+        NSPrincipalClass: NSApplication
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: club.cycleruncode.PatternSorcerer
+      PRODUCT_NAME: PatternSorcerer
+      SWIFT_VERSION: "5.9"
+      MACOSX_DEPLOYMENT_TARGET: "14.0"
+      SWIFT_ACTIVE_COMPILATION_CONDITIONS: "DEBUG $(inherited)"
+      CODE_SIGN_IDENTITY: "Apple Development"
+      CODE_SIGN_STYLE: Automatic
+      # DEVELOPMENT_TEAM will be set automatically by Xcode when you select your team
+      # For free developer account, this will be your Personal Team
+      # To set it manually, uncomment and replace with your team ID:
+      # DEVELOPMENT_TEAM: "YOUR_TEAM_ID_HERE"
+      SWIFT_OBJC_BRIDGING_HEADER: ""
+      ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+      INFOPLIST_KEY_NSHumanReadableCopyright: "Copyright © 2025 CycleRunCode Club. All rights reserved."
+      CURRENT_PROJECT_VERSION: "0002"
+      MARKETING_VERSION: "2025.11"
+      # Enable automatic signing - Xcode will prompt you to select a team
+      ENABLE_HARDENED_RUNTIME: true
+    dependencies: []
+    scheme:
+      testTargets:
+        - PatternSorcererTests
+      buildTargets:
+        - PatternSorcerer
+      runTargets:
+        - PatternSorcerer
+      testPlans: []
+      gatherCoverageData: true
+      commandLineArguments: {}
+      environmentVariables: {}
+      preActions: []
+      postActions: []
+
+  PatternSorcererTests:
+    type: bundle.unit-test
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: Tests
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: club.cycleruncode.PatternSorcererTests
+      PRODUCT_NAME: PatternSorcererTests
+      SWIFT_VERSION: "5.9"
+      MACOSX_DEPLOYMENT_TARGET: "14.0"
+      TEST_HOST: "$(BUILT_PRODUCTS_DIR)/PatternSorcerer.app/Contents/MacOS/PatternSorcerer"
+      BUNDLE_LOADER: $(TEST_HOST)
+    dependencies:
+      - target: PatternSorcerer
+    info:
+      path: Tests/Info.plist
+      properties:
+        CFBundleIdentifier: club.cycleruncode.PatternSorcererTests
+        CFBundleName: $(PRODUCT_NAME)
+        CFBundlePackageType: BNDL
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+
+schemes:
+  PatternSorcerer:
+    build:
+      targets:
+        PatternSorcerer: all
+    test:
+      targets:
+        - PatternSorcererTests
+      gatherCoverageData: true
+    run:
+      config: Debug
+    archive:
+      config: Release
+

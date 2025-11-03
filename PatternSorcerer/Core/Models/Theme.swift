@@ -18,9 +18,9 @@ enum AppTheme: String, CaseIterable, Identifiable {
     case blue = "Blue"
     case green = "Green"
     case purple = "Purple"
-    
+
     var id: String { rawValue }
-    
+
     var colorScheme: ColorScheme? {
         switch self {
         case .system:
@@ -33,7 +33,7 @@ enum AppTheme: String, CaseIterable, Identifiable {
             return nil // These use custom colors
         }
     }
-    
+
     var primaryColor: Color {
         switch self {
         case .system, .light, .dark:
@@ -46,7 +46,7 @@ enum AppTheme: String, CaseIterable, Identifiable {
             return .purple
         }
     }
-    
+
     var accentColor: Color {
         switch self {
         case .system, .light, .dark:
@@ -69,21 +69,22 @@ class ThemeManager: ObservableObject {
             Logger.info("Theme changed to: \(currentTheme.rawValue)")
         }
     }
-    
+
     @Published var accentColor: Color {
         didSet {
             // Save custom accent color if needed
             Logger.debug("Accent color updated")
         }
     }
-    
+
     init() {
         let savedTheme = UserDefaults.standard.string(forKey: "AppTheme") ?? AppTheme.system.rawValue
-        self.currentTheme = AppTheme(rawValue: savedTheme) ?? .system
-        self.accentColor = self.currentTheme.accentColor
-        Logger.info("Theme initialized: \(currentTheme.rawValue)")
+        let theme = AppTheme(rawValue: savedTheme) ?? .system
+        self.currentTheme = theme
+        self.accentColor = theme.accentColor
+        Logger.info("Theme initialized: \(theme.rawValue)")
     }
-    
+
     func applyTheme(_ theme: AppTheme) {
         currentTheme = theme
         accentColor = theme.accentColor

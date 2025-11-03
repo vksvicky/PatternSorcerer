@@ -12,7 +12,7 @@ import SwiftData
 struct PatternSorcererApp: App {
     @StateObject private var appState = AppState()
     @StateObject private var themeManager = ThemeManager()
-    
+
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -26,35 +26,32 @@ struct PatternSorcererApp: App {
             // Replace new document with new pattern
             CommandGroup(replacing: .newItem) {
                 Button("New Pattern") {
-                    NSApp.sendAction(Selector(("newPattern:")), to: nil, from: nil)
+                    // TODO: Implement new pattern action
+                    // For now, this is a placeholder
                 }
                 .keyboardShortcut("n", modifiers: .command)
             }
-            
+
             // Standard Edit menu
+            // Note: Find functionality is handled automatically by NSTextView
+            // The standard Cmd+F and Cmd+Option+F shortcuts work automatically
             CommandGroup(after: .textEditing) {
-                Button("Find...") {
-                    NSApp.sendAction(#selector(NSTextFinderAction.showFindInterface(_:)), to: nil, from: nil)
-                }
-                .keyboardShortcut("f", modifiers: .command)
-                
-                Button("Find and Replace...") {
-                    NSApp.sendAction(#selector(NSTextFinderAction.showFindInterface(_:)), to: nil, from: nil)
-                }
-                .keyboardShortcut("f", modifiers: [.command, .option])
+                // Find functionality is built into NSTextView and works automatically
+                // with standard keyboard shortcuts (Cmd+F, Cmd+Option+F)
             }
-            
+
             // Pattern menu
             PatternSorcererCommands()
-            
+
             // View menu
             CommandGroup(after: .toolbar) {
                 Button("Toggle Sidebar") {
-                    NSApp.sendAction(Selector(("toggleSidebar:")), to: nil, from: nil)
+                    // TODO: Implement sidebar toggle action
+                    // For now, this is a placeholder
                 }
                 .keyboardShortcut("s", modifiers: [.command, .control])
             }
-            
+
             // Window menu
             CommandGroup(after: .windowSize) {
                 Button("Minimize") {
@@ -62,28 +59,28 @@ struct PatternSorcererApp: App {
                 }
                 .keyboardShortcut("m", modifiers: .command)
             }
-            
+
             // Help menu
             CommandGroup(replacing: .help) {
                 Button("PatternSorcerer Help") {
                     NSApp.sendAction(#selector(NSApplication.showHelp(_:)), to: nil, from: nil)
                 }
                 .keyboardShortcut("?")
-                
+
                 Divider()
-                
+
                 Button("Learn Regex") {
                     // TODO: Open tutorials
                 }
-                
+
                 Divider()
-                
+
                 Button("About PatternSorcerer") {
                     NSApp.orderFrontStandardAboutPanel(nil)
                 }
             }
         }
-        
+
         #if os(macOS)
         Settings {
             SettingsView()
@@ -96,7 +93,7 @@ struct PatternSorcererApp: App {
 class AppState: ObservableObject {
     @Published var currentPattern: Pattern?
     @Published var selectedFeature: Feature = .regexTester
-    
+
     enum Feature {
         case regexTester
         case patternBuilder
@@ -115,19 +112,19 @@ struct PatternSorcererCommands: Commands {
                 // TODO: Implement new pattern
             }
             .keyboardShortcut("n", modifiers: .command)
-            
+
             Button("Open Pattern Library") {
                 // TODO: Implement open library
             }
             .keyboardShortcut("o", modifiers: [.command, .shift])
         }
-        
+
         CommandMenu("Tools") {
             Button("Test Regex") {
                 // TODO: Implement test regex
             }
             .keyboardShortcut("t", modifiers: .command)
-            
+
             Button("Export Code") {
                 // TODO: Implement export code
             }

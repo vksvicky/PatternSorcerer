@@ -91,24 +91,36 @@ iOSInjectionProject/
 
 # macOS
 .DS_Store
+.AppleDouble
+.LSOverride
 
-# Distribution
-*.dmg
-*.zip
-*.app
+# Icon must end with two \r
+Icon
 
-# Scripts output
-build/
-export/
+# Thumbnails
+._*
 
-# Secrets (if any)
-*.p12
-*.mobileprovision
-*.certSigningRequest
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 
-# Temporary files
-*.swp
-*~.nib
-*.tmp
-*.temp
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
+# XcodeGen
+# Note: project.yml should be tracked for regeneration
+# *.xcodeproj/ is generated but can be tracked or regenerated
+# *.xcworkspace/ is generated
+
+# PatternSorcerer specific
+.version
+*.log

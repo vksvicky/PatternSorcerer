@@ -15,19 +15,19 @@ struct SettingsView: View {
     @AppStorage("showLineNumbers") private var showLineNumbers = true
     @AppStorage("fontSize") private var fontSize: Double = 13
     @AppStorage("enableNotifications") private var enableNotifications = false
-    
+
     var body: some View {
         TabView {
             GeneralSettingsView(themeManager: themeManager)
                 .tabItem {
                     Label("General", systemImage: "gearshape")
                 }
-            
+
             AppearanceSettingsView(themeManager: themeManager)
                 .tabItem {
                     Label("Appearance", systemImage: "paintbrush")
                 }
-            
+
             EditorSettingsView(
                 autoValidate: $autoValidate,
                 showLineNumbers: $showLineNumbers,
@@ -36,7 +36,7 @@ struct SettingsView: View {
             .tabItem {
                 Label("Editor", systemImage: "textformat")
             }
-            
+
             AdvancedSettingsView(enableNotifications: $enableNotifications)
                 .tabItem {
                     Label("Advanced", systemImage: "slider.horizontal.3")
@@ -49,14 +49,14 @@ struct SettingsView: View {
 // MARK: - General Settings
 struct GeneralSettingsView: View {
     @ObservedObject var themeManager: ThemeManager
-    
+
     var body: some View {
         Form {
             Section("Startup") {
                 Toggle("Open last pattern on launch", isOn: .constant(false))
                 Toggle("Check for updates automatically", isOn: .constant(true))
             }
-            
+
             Section("Patterns") {
                 Picker("Default Pattern Category", selection: .constant(PatternCategory.general)) {
                     ForEach(PatternCategory.allCases, id: \.self) { category in
@@ -64,7 +64,7 @@ struct GeneralSettingsView: View {
                     }
                 }
             }
-            
+
             Section("Notifications") {
                 Toggle("Enable notifications", isOn: .constant(false))
             }
@@ -76,7 +76,7 @@ struct GeneralSettingsView: View {
 // MARK: - Appearance Settings
 struct AppearanceSettingsView: View {
     @ObservedObject var themeManager: ThemeManager
-    
+
     var body: some View {
         Form {
             Section("Theme") {
@@ -92,15 +92,15 @@ struct AppearanceSettingsView: View {
                     }
                 }
                 .pickerStyle(.radioGroup)
-                .onChange(of: themeManager.currentTheme) { newTheme in
+                .onChange(of: themeManager.currentTheme) { oldTheme, newTheme in
                     themeManager.applyTheme(newTheme)
                 }
             }
-            
+
             Section("Colors") {
                 ColorPicker("Accent Color", selection: $themeManager.accentColor)
             }
-            
+
             Section("Preview") {
                 HStack {
                     VStack(alignment: .leading, spacing: 8) {
@@ -125,23 +125,23 @@ struct EditorSettingsView: View {
     @Binding var autoValidate: Bool
     @Binding var showLineNumbers: Bool
     @Binding var fontSize: Double
-    
+
     var body: some View {
         Form {
             Section("Validation") {
                 Toggle("Auto-validate patterns", isOn: $autoValidate)
                 Toggle("Show validation errors inline", isOn: .constant(true))
             }
-            
+
             Section("Display") {
                 Toggle("Show line numbers", isOn: $showLineNumbers)
-                
+
                 VStack(alignment: .leading) {
                     Text("Font Size: \(Int(fontSize))")
                     Slider(value: $fontSize, in: 10...20, step: 1)
                 }
             }
-            
+
             Section("Behavior") {
                 Picker("Tab Size", selection: .constant(4)) {
                     Text("2 spaces").tag(2)
@@ -157,28 +157,28 @@ struct EditorSettingsView: View {
 // MARK: - Advanced Settings
 struct AdvancedSettingsView: View {
     @Binding var enableNotifications: Bool
-    
+
     var body: some View {
         Form {
             Section("Performance") {
                 Toggle("Enable performance analytics", isOn: .constant(false))
                 Toggle("Cache compiled patterns", isOn: .constant(true))
             }
-            
+
             Section("Data") {
                 Button("Export All Patterns") {
                     // TODO: Implement export
                 }
-                
+
                 Button("Import Patterns") {
                     // TODO: Implement import
                 }
-                
+
                 Button("Clear Cache") {
                     // TODO: Implement clear cache
                 }
             }
-            
+
             Section("Debug") {
                 Toggle("Enable debug logging", isOn: .constant(false))
                 Button("Show Logs") {

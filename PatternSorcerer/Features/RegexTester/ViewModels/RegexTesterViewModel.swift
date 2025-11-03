@@ -17,25 +17,29 @@ class RegexTesterViewModel: ObservableObject {
     @Published var validationError: String?
     @Published var isPatternValid: Bool = true
     @Published var regexOptions: RegexOptions = RegexOptions()
-    
+
     // MARK: - Unique Features
     @Published var complexityScore: ComplexityScore?
     @Published var patternExplanation: PatternExplanation?
     @Published var backtrackingAnalysis: BacktrackingAnalysis?
-    
+
+    // MARK: - Highlighting
+    @Published var highlightedText: HighlightedText?
+
     // MARK: - Dependencies
-    private let regexEngine: RegexEngine
+    private let regexEngine: RegexEngineProtocol
     private let complexityAnalyzer = PatternComplexityAnalyzer()
     private let explanationGenerator = PatternExplanationGenerator()
     private let backtrackingVisualizer = BacktrackingVisualizer()
+    private let matchHighlighter = MatchHighlighter()
     private var cancellables = Set<AnyCancellable>()
-    
+
     // MARK: - Initialization
-    init(regexEngine: RegexEngine = RegexEngine()) {
+    init(regexEngine: RegexEngineProtocol = RegexEngine()) {
         self.regexEngine = regexEngine
         setupObservers()
     }
-    
+
     // MARK: - Setup
     private func setupObservers() {
         // Validate pattern when it changes
@@ -45,7 +49,7 @@ class RegexTesterViewModel: ObservableObject {
                 self?.validatePattern(pattern)
             }
             .store(in: &cancellables)
-        
+
         // Test pattern when pattern or test text changes
         Publishers.CombineLatest($pattern, $testText)
             .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
@@ -58,11 +62,11 @@ class RegexTesterViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     // MARK: - Validation
     func validatePattern(_ pattern: String? = nil) {
         let patternToValidate = pattern ?? self.pattern
-        
+
         if patternToValidate.isEmpty {
             isPatternValid = true
             validationError = nil
@@ -71,11 +75,11 @@ class RegexTesterViewModel: ObservableObject {
             backtrackingAnalysis = nil
             return
         }
-        
+
         let result = regexEngine.validatePattern(patternToValidate)
         isPatternValid = result.isValid
         validationError = result.error
-        
+
         // Update unique features if pattern is valid
         if result.isValid && !patternToValidate.isEmpty {
             updateUniqueFeatures(pattern: patternToValidate)
@@ -85,61 +89,83 @@ class RegexTesterViewModel: ObservableObject {
             backtrackingAnalysis = nil
         }
     }
-    
+
     // MARK: - Unique Features
     private func updateUniqueFeatures(pattern: String) {
         // Complexity analysis
         complexityScore = complexityAnalyzer.calculateComplexity(pattern)
-        
+
         // Pattern explanation
         patternExplanation = explanationGenerator.explain(pattern)
-        
+
         // Backtracking analysis (if test text is available)
         if !testText.isEmpty {
             backtrackingAnalysis = backtrackingVisualizer.analyzeBacktracking(pattern: pattern, text: testText)
         }
     }
-    
+
+    // MARK: - Testing
+    // MARK: - Highlighting
+    private func updateHighlighting() {
+        guard !testText.isEmpty else {
+            highlightedText = nil
+            return
+        }
+
+        highlightedText = matchHighlighter.highlight(
+            text: testText,
+            matches: matches,
+            highlightMatches: true,
+            highlightCaptureGroups: true
+        )
+    }
+
     // MARK: - Testing
     func testPattern() {
         guard !pattern.isEmpty, !testText.isEmpty else {
             matches = []
+            highlightedText = nil
             // Update backtracking analysis even if no test text
             if !pattern.isEmpty && isPatternValid {
                 updateUniqueFeatures(pattern: pattern)
             }
             return
         }
-        
+
         guard isPatternValid else {
             matches = []
+            highlightedText = nil
             return
         }
-        
+
         do {
             let options = regexOptions.toNSRegularExpressionOptions()
             matches = try regexEngine.match(pattern: pattern, in: testText, options: options)
-            
+
+            // Update highlighting
+            updateHighlighting()
+
             // Update backtracking analysis with test text
             updateUniqueFeatures(pattern: pattern)
         } catch {
             validationError = error.localizedDescription
             matches = []
+            highlightedText = nil
         }
     }
-    
+
     // MARK: - Actions
     func clearPattern() {
         pattern = ""
         matches = []
         validationError = nil
     }
-    
+
     func clearTestText() {
         testText = ""
         matches = []
     }
-    
+
     func clearAll() {
         clearPattern()
         clearTestText()
@@ -155,10 +181,10 @@ struct RegexOptions {
     var anchorsMatchLines: Bool = false
     var useUnixLineSeparators: Bool = false
     var useUnicodeWordBoundaries: Bool = false
-    
+
     func toNSRegularExpressionOptions() -> NSRegularExpression.Options {
         var options: NSRegularExpression.Options = []
-        
+
         if caseInsensitive {
             options.insert(.caseInsensitive)
         }
@@ -180,7 +206,7 @@ struct RegexOptions {
         if useUnicodeWordBoundaries {
             options.insert(.useUnicodeWordBoundaries)
         }
-        
+
         return options
     }
 }

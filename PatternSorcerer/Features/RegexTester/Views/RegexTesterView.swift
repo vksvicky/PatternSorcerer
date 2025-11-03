@@ -10,13 +10,13 @@ import SwiftUI
 struct RegexTesterView: View {
     @StateObject private var viewModel = RegexTesterViewModel()
     @State private var selectedTab: ResultsTab = .matches
-    
+
     enum ResultsTab: String, CaseIterable {
         case matches
         case explanation
         case complexity
         case backtracking
-        
+
         var localizedTitle: String {
             switch self {
             case .matches: return LocalizedString.tabsMatches
@@ -26,21 +26,21 @@ struct RegexTesterView: View {
             }
         }
     }
-    
+
     var body: some View {
         HSplitView {
             // Left side: Pattern and Test Text
             VStack(spacing: 0) {
                 PatternInputView(viewModel: viewModel)
-                
+
                 Divider()
-                
+
                 TestTextView(viewModel: viewModel)
             }
             .frame(minWidth: 400)
-            
+
             Divider()
-            
+
             // Right side: Results with Tabs
             VStack(spacing: 0) {
                 // Tab selector
@@ -51,9 +51,9 @@ struct RegexTesterView: View {
                 }
                 .pickerStyle(.segmented)
                 .padding()
-                
+
                 Divider()
-                
+
                 // Tab content
                 Group {
                     switch selectedTab {
@@ -78,15 +78,15 @@ struct RegexTesterView: View {
 // MARK: - Pattern Input View
 struct PatternInputView: View {
     @ObservedObject var viewModel: RegexTesterViewModel
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(LocalizedString.regexTesterPattern)
                     .font(.headline)
-                
+
                 Spacer()
-                
+
                 // Complexity indicator
                 if let score = viewModel.complexityScore, viewModel.isPatternValid {
                     HStack(spacing: 4) {
@@ -97,7 +97,7 @@ struct PatternInputView: View {
                             .foregroundColor(score.level.color)
                     }
                 }
-                
+
                 if !viewModel.isPatternValid {
                     Label(LocalizedString.regexTesterInvalid, systemImage: "exclamationmark.triangle.fill")
                         .foregroundColor(.red)
@@ -108,7 +108,7 @@ struct PatternInputView: View {
                         .font(.caption)
                 }
             }
-            
+
             TextField(LocalizedString.regexTesterEnterPattern, text: $viewModel.pattern)
                 .font(.system(.body, design: .monospaced))
                 .textFieldStyle(.roundedBorder)
@@ -116,13 +116,13 @@ struct PatternInputView: View {
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(viewModel.isPatternValid ? Color.clear : Color.red, lineWidth: 1)
                 )
-            
+
             if let error = viewModel.validationError {
                 Text(error)
                     .font(.caption)
                     .foregroundColor(.red)
             }
-            
+
             // Options
             RegexOptionsView(options: $viewModel.regexOptions)
         }
@@ -133,30 +133,44 @@ struct PatternInputView: View {
 // MARK: - Test Text View
 struct TestTextView: View {
     @ObservedObject var viewModel: RegexTesterViewModel
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(LocalizedString.regexTesterTestText)
                     .font(.headline)
-                
+
                 Spacer()
-                
+
                 Button(LocalizedString.regexTesterClear) {
                     viewModel.clearTestText()
                 }
                 .buttonStyle(.borderless)
             }
-            
-            LineNumberTextView(
-                text: $viewModel.testText,
-                showLineNumbers: .constant(true),
-                fontSize: 13
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 5)
-                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
-            )
+
+            // Use HighlightedTextView if we have highlights, otherwise use LineNumberTextView
+            if let highlightedText = viewModel.highlightedText {
+                HighlightedTextView(
+                    text: $viewModel.testText,
+                    highlightedText: highlightedText,
+                    showLineNumbers: true,
+                    fontSize: 13
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                )
+            } else {
+                LineNumberTextView(
+                    text: $viewModel.testText,
+                    showLineNumbers: .constant(true),
+                    fontSize: 13
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                )
+            }
         }
         .padding()
     }
@@ -165,20 +179,20 @@ struct TestTextView: View {
 // MARK: - Results View
 struct ResultsView: View {
     @ObservedObject var viewModel: RegexTesterViewModel
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(LocalizedString.regexTesterResults)
                     .font(.headline)
-                
+
                 Spacer()
-                
+
                 Text("\(viewModel.matches.count) \(viewModel.matches.count == 1 ? LocalizedString.regexTesterMatch : LocalizedString.regexTesterMatches)")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
-            
+
             if viewModel.matches.isEmpty {
                 VStack {
                     Spacer()
@@ -201,38 +215,38 @@ struct ResultsView: View {
 // MARK: - Match Row View
 struct MatchRowView: View {
     let match: MatchResult
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
                 Text("Match #\(match.matchNumber)")
                     .font(.headline)
-                
+
                 Spacer()
-                
+
                 Text(LocalizedString.regexTesterPosition(match.range.location))
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
-            
+
             Text(match.matchedText)
                 .font(.system(.body, design: .monospaced))
                 .padding(8)
                 .background(Color.blue.opacity(0.1))
                 .cornerRadius(4)
-            
+
             if !match.captureGroups.isEmpty {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(LocalizedString.regexTesterCaptureGroups)
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    
+
                     ForEach(match.captureGroups) { group in
                         HStack {
                             Text(LocalizedString.regexTesterGroup(group.index))
                                 .font(.caption)
                                 .foregroundColor(.secondary)
-                            
+
                             Text(group.text)
                                 .font(.system(.caption, design: .monospaced))
                         }
@@ -248,7 +262,7 @@ struct MatchRowView: View {
 // MARK: - Regex Options View
 struct RegexOptionsView: View {
     @Binding var options: RegexOptions
-    
+
     var body: some View {
         DisclosureGroup(LocalizedString.optionsTitle) {
             Toggle(LocalizedString.optionsCaseInsensitive, isOn: $options.caseInsensitive)
@@ -263,7 +277,7 @@ struct RegexOptionsView: View {
 // MARK: - Explanation View
 struct ExplanationView: View {
     @ObservedObject var viewModel: RegexTesterViewModel
-    
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -279,14 +293,14 @@ struct ExplanationView: View {
                     .padding()
                     .background(Color(NSColor.controlBackgroundColor))
                     .cornerRadius(8)
-                    
+
                     Divider()
-                    
+
                     // Detailed explanation
                     VStack(alignment: .leading, spacing: 12) {
                         Text("Pattern Breakdown")
                             .font(.headline)
-                        
+
                         ForEach(Array(explanation.parts.enumerated()), id: \.offset) { index, part in
                             HStack(alignment: .top, spacing: 12) {
                                 Text(part.text)
@@ -296,11 +310,11 @@ struct ExplanationView: View {
                                     .background(Color.blue.opacity(0.1))
                                     .cornerRadius(4)
                                     .frame(minWidth: 60)
-                                
+
                                 Text(part.explanation)
                                     .font(.body)
                                     .foregroundColor(.secondary)
-                                
+
                                 Spacer()
                             }
                             .padding(.vertical, 4)
@@ -328,7 +342,11 @@ struct ExplanationView: View {
 // MARK: - Complexity View
 struct ComplexityView: View {
     @ObservedObject var viewModel: RegexTesterViewModel
-    
+
+    init(viewModel: RegexTesterViewModel) {
+        self.viewModel = viewModel
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -337,18 +355,18 @@ struct ComplexityView: View {
                     VStack(alignment: .leading, spacing: 12) {
                         Text("Complexity Score")
                             .font(.headline)
-                        
+
                         HStack {
                             Text("\(score.score)/100")
                                 .font(.system(size: 32, weight: .bold))
-                            
+
                             Spacer()
-                            
+
                             Label(score.level.rawValue, systemImage: "gauge")
                                 .foregroundColor(score.level.color)
                                 .font(.title3)
                         }
-                        
+
                         // Progress bar
                         GeometryReader { geometry in
                             ZStack(alignment: .leading) {
@@ -356,7 +374,7 @@ struct ComplexityView: View {
                                     .fill(Color.gray.opacity(0.2))
                                     .frame(height: 8)
                                     .cornerRadius(4)
-                                
+
                                 Rectangle()
                                     .fill(score.level.color)
                                     .frame(width: geometry.size.width * CGFloat(score.score) / 100, height: 8)
@@ -368,13 +386,13 @@ struct ComplexityView: View {
                     .padding()
                     .background(Color(NSColor.controlBackgroundColor))
                     .cornerRadius(8)
-                    
+
                     // Complexity Factors
                     if !score.factors.isEmpty {
                         VStack(alignment: .leading, spacing: 12) {
                             Text("Complexity Factors")
                                 .font(.headline)
-                            
+
                             ForEach(score.factors, id: \.self) { factor in
                                 HStack {
                                     Image(systemName: "exclamationmark.triangle.fill")
@@ -390,14 +408,14 @@ struct ComplexityView: View {
                         .background(Color(NSColor.controlBackgroundColor))
                         .cornerRadius(8)
                     }
-                    
+
                     // Optimization Suggestions
                     let suggestions = complexityAnalyzer.getOptimizationSuggestions(viewModel.pattern)
                     if !suggestions.isEmpty {
                         VStack(alignment: .leading, spacing: 12) {
                             Text("Optimization Suggestions")
                                 .font(.headline)
-                            
+
                             ForEach(Array(suggestions.enumerated()), id: \.offset) { index, suggestion in
                                 HStack(alignment: .top, spacing: 8) {
                                     Image(systemName: "lightbulb.fill")
@@ -429,14 +447,14 @@ struct ComplexityView: View {
             .padding()
         }
     }
-    
+
     private var complexityAnalyzer = PatternComplexityAnalyzer()
 }
 
 // MARK: - Backtracking View
 struct BacktrackingView: View {
     @ObservedObject var viewModel: RegexTesterViewModel
-    
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -445,25 +463,25 @@ struct BacktrackingView: View {
                     VStack(alignment: .leading, spacing: 12) {
                         Text("Backtracking Risk")
                             .font(.headline)
-                        
+
                         HStack {
                             Label(analysis.riskLevel.description, systemImage: "shield.fill")
                                 .foregroundColor(analysis.riskLevel.color)
                                 .font(.title3)
-                            
+
                             Spacer()
                         }
                     }
                     .padding()
                     .background(Color(NSColor.controlBackgroundColor))
                     .cornerRadius(8)
-                    
+
                     // Warnings
                     if !analysis.warnings.isEmpty {
                         VStack(alignment: .leading, spacing: 12) {
                             Text("Warnings")
                                 .font(.headline)
-                            
+
                             ForEach(analysis.warnings, id: \.self) { warning in
                                 HStack(alignment: .top, spacing: 8) {
                                     Image(systemName: "exclamationmark.triangle.fill")
@@ -479,13 +497,13 @@ struct BacktrackingView: View {
                         .background(Color(NSColor.controlBackgroundColor))
                         .cornerRadius(8)
                     }
-                    
+
                     // Suggestions
                     if !analysis.suggestions.isEmpty {
                         VStack(alignment: .leading, spacing: 12) {
                             Text("Suggestions")
                                 .font(.headline)
-                            
+
                             ForEach(Array(analysis.suggestions.enumerated()), id: \.offset) { index, suggestion in
                                 HStack(alignment: .top, spacing: 8) {
                                     Image(systemName: "arrow.right.circle.fill")

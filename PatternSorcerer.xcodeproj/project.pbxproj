@@ -1,0 +1,686 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 63;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2494C5CBBCBE7594FC143205 /* RegexTesterBDDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C68BF4A21E662FD612B2BB /* RegexTesterBDDTests.swift */; };
+		2EE0EBB1B5AB3BFC4EA66738 /* MatchHighlightingBDDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB7D51197B6354DFF97228E /* MatchHighlightingBDDTests.swift */; };
+		2FB2373C46ED159D55B557E9 /* PatternModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D85359E0BB581F7E8F2520 /* PatternModelTests.swift */; };
+		340C257A0ED9FC3C1D26A023 /* RegexEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85991B65E6A6C5D5B6371A37 /* RegexEngine.swift */; };
+		35B49FD125F65D0ED0BEA047 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C816413423EEEF53D14C00 /* ContentView.swift */; };
+		3C52CD69BECC080E1DF4352F /* RegexTesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156B8D63B45265BB5473FBD1 /* RegexTesterView.swift */; };
+		53CCDCFC6AA39AEF7F741932 /* RegexTesterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B10491E955CE65236F568A /* RegexTesterViewModel.swift */; };
+		55C5605775211B6B3DB9775A /* MatchHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293159FCFE29A7AD3A298773 /* MatchHighlighter.swift */; };
+		69D5269607D96A475B9CD943 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198171E36820977AA9852D36 /* Theme.swift */; };
+		7C5238F9C522A6A4D626A7AC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9474A1C93F58A91CC6A2A33E /* Logger.swift */; };
+		7DC085C1F2153580AE256C45 /* PatternSorcererApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B066D002285E55DB607D4 /* PatternSorcererApp.swift */; };
+		7E37CE5B036FDFA55A46F63D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E76490203E1E01B3189296B0 /* Localizable.strings */; };
+		94F27ED2A2FCAB3661F23D0A /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9097A25AB99E749BD5F0C6A /* Pattern.swift */; };
+		94F72C9A0BA6AFC3F6EC1DB4 /* RegexEngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9A4CD2B07E91FFFDFBF1F7 /* RegexEngineProtocol.swift */; };
+		9AD91684E091C4F66CC674B5 /* PatternExplanationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580BDBDA185F98866DF0A1D /* PatternExplanationGenerator.swift */; };
+		9D77748C2F93364A48C80C4C /* RegexTesterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E8911BEAE5C90065D37859 /* RegexTesterViewModelTests.swift */; };
+		9E23E9197898FA22F21BBB8E /* MatchHighlighterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B39C16465EA92F0AC1773 /* MatchHighlighterTests.swift */; };
+		B3CA022A7A4EC3ABC72F7817 /* CodeLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FB3A9B472B869A92C29464 /* CodeLanguage.swift */; };
+		C3009688CD69DBFE99FEE028 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B8FED03DCA3A438325F919 /* LocalizedString.swift */; };
+		CA91551A6945B32AAEB64F0F /* LineNumberTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AC382EF67F7AE73340A6D3 /* LineNumberTextView.swift */; };
+		CB5481EB0C4431C04E1C7945 /* PatternComplexityAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3BF88EB719F090E89E10FE /* PatternComplexityAnalyzer.swift */; };
+		D0A6541734A3C9A2641886DC /* PatternComplexityAnalyzerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B5E4FF44092B329C444BD9 /* PatternComplexityAnalyzerTests.swift */; };
+		D67A6A8BADA5FD2566C34B10 /* RegexEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7036E33DAE3736940EC3ADEC /* RegexEngineTests.swift */; };
+		DBC10C9CC498BE31C006826A /* BacktrackingVisualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0AB044C681621451FFAE7D /* BacktrackingVisualizer.swift */; };
+		E2B7054819D5C20DEFDDA327 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC965B66F6D57DD0BC0CE62B /* SettingsView.swift */; };
+		E2C8871094D6A7754F1F6E73 /* HighlightedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4BB57D7FBBB8D840109AD1 /* HighlightedTextView.swift */; };
+		EC978465FCB2BF8B1EEC75EE /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962033486CBEF8B72548C684 /* PersistenceController.swift */; };
+		F29024D9004703A2641A6240 /* MockRegexEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4276794D6FD6D0EC64CDA111 /* MockRegexEngine.swift */; };
+		F7108DAE1A0FAE690A344245 /* MatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49032A5BD5271DD5EA59AC /* MatchResult.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		36F424D866F64715F1F39BF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83E019C5060683C981E68473 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1741C3C21CFF9CA96687BBC0;
+			remoteInfo = PatternSorcerer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04D85359E0BB581F7E8F2520 /* PatternModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternModelTests.swift; sourceTree = "<group>"; };
+		0580BDBDA185F98866DF0A1D /* PatternExplanationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternExplanationGenerator.swift; sourceTree = "<group>"; };
+		09937B695715E541B4DD86C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		156B8D63B45265BB5473FBD1 /* RegexTesterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexTesterView.swift; sourceTree = "<group>"; };
+		198171E36820977AA9852D36 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		1A3BF88EB719F090E89E10FE /* PatternComplexityAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternComplexityAnalyzer.swift; sourceTree = "<group>"; };
+		1C9A4CD2B07E91FFFDFBF1F7 /* RegexEngineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexEngineProtocol.swift; sourceTree = "<group>"; };
+		28FB3A9B472B869A92C29464 /* CodeLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeLanguage.swift; sourceTree = "<group>"; };
+		293159FCFE29A7AD3A298773 /* MatchHighlighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHighlighter.swift; sourceTree = "<group>"; };
+		30C68BF4A21E662FD612B2BB /* RegexTesterBDDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexTesterBDDTests.swift; sourceTree = "<group>"; };
+		31AC382EF67F7AE73340A6D3 /* LineNumberTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineNumberTextView.swift; sourceTree = "<group>"; };
+		4276794D6FD6D0EC64CDA111 /* MockRegexEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRegexEngine.swift; sourceTree = "<group>"; };
+		42837BF4434F05216FA94303 /* PatternSorcererTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PatternSorcererTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		45B8FED03DCA3A438325F919 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+		49B10491E955CE65236F568A /* RegexTesterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexTesterViewModel.swift; sourceTree = "<group>"; };
+		50CB8D6EEEFD6AACC8860ECC /* PatternSorcerer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PatternSorcerer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E0AB044C681621451FFAE7D /* BacktrackingVisualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BacktrackingVisualizer.swift; sourceTree = "<group>"; };
+		7036E33DAE3736940EC3ADEC /* RegexEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexEngineTests.swift; sourceTree = "<group>"; };
+		80C816413423EEEF53D14C00 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		85991B65E6A6C5D5B6371A37 /* RegexEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexEngine.swift; sourceTree = "<group>"; };
+		8C49032A5BD5271DD5EA59AC /* MatchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResult.swift; sourceTree = "<group>"; };
+		92E8911BEAE5C90065D37859 /* RegexTesterViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexTesterViewModelTests.swift; sourceTree = "<group>"; };
+		9474A1C93F58A91CC6A2A33E /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		962033486CBEF8B72548C684 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		A43B39C16465EA92F0AC1773 /* MatchHighlighterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHighlighterTests.swift; sourceTree = "<group>"; };
+		CCB7D51197B6354DFF97228E /* MatchHighlightingBDDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHighlightingBDDTests.swift; sourceTree = "<group>"; };
+		D9097A25AB99E749BD5F0C6A /* Pattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pattern.swift; sourceTree = "<group>"; };
+		DC965B66F6D57DD0BC0CE62B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E51B066D002285E55DB607D4 /* PatternSorcererApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternSorcererApp.swift; sourceTree = "<group>"; };
+		E76490203E1E01B3189296B0 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		F6B5E4FF44092B329C444BD9 /* PatternComplexityAnalyzerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternComplexityAnalyzerTests.swift; sourceTree = "<group>"; };
+		FC4BB57D7FBBB8D840109AD1 /* HighlightedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedTextView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		06C4DCDDD0626C9EF9B81349 /* RegexTester */ = {
+			isa = PBXGroup;
+			children = (
+				5933D0F8AC2AF58B9A815160 /* Components */,
+				8EF2F66297567FE06203BAF5 /* Services */,
+				9C27A1F817D1A647FD39CE0E /* ViewModels */,
+				8159BB897884FC209A6267B7 /* Views */,
+			);
+			path = RegexTester;
+			sourceTree = "<group>";
+		};
+		07B86E8BE14358D0EA55BF17 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4276794D6FD6D0EC64CDA111 /* MockRegexEngine.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		1152411E4A666F576C79D987 /* RegexEngine */ = {
+			isa = PBXGroup;
+			children = (
+				85991B65E6A6C5D5B6371A37 /* RegexEngine.swift */,
+				1C9A4CD2B07E91FFFDFBF1F7 /* RegexEngineProtocol.swift */,
+			);
+			path = RegexEngine;
+			sourceTree = "<group>";
+		};
+		12AABD1E168F4F610E7FECA7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BBB04C5AF210910B2DB6DA78 /* Localizable */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		19A22A51580FAB22E90E3A20 /* BDDTests */ = {
+			isa = PBXGroup;
+			children = (
+				CCB7D51197B6354DFF97228E /* MatchHighlightingBDDTests.swift */,
+				30C68BF4A21E662FD612B2BB /* RegexTesterBDDTests.swift */,
+			);
+			path = BDDTests;
+			sourceTree = "<group>";
+		};
+		1C29E68749C3D3D4EF96F243 /* PatternSorcerer */ = {
+			isa = PBXGroup;
+			children = (
+				3A0CF5CB6BBAABA13D4B83F0 /* App */,
+				D11AFC36DF4B5ED4618437F2 /* Core */,
+				9BD0F165EC42FC52DED18EC1 /* Features */,
+				12AABD1E168F4F610E7FECA7 /* Resources */,
+			);
+			path = PatternSorcerer;
+			sourceTree = "<group>";
+		};
+		1D4074DBE39FF37A9F373DDC /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				45B8FED03DCA3A438325F919 /* LocalizedString.swift */,
+				9474A1C93F58A91CC6A2A33E /* Logger.swift */,
+				962033486CBEF8B72548C684 /* PersistenceController.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		1F16189BF32A8D95E54AA46D /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				A43B39C16465EA92F0AC1773 /* MatchHighlighterTests.swift */,
+				F6B5E4FF44092B329C444BD9 /* PatternComplexityAnalyzerTests.swift */,
+				04D85359E0BB581F7E8F2520 /* PatternModelTests.swift */,
+				7036E33DAE3736940EC3ADEC /* RegexEngineTests.swift */,
+				92E8911BEAE5C90065D37859 /* RegexTesterViewModelTests.swift */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		358B52FEC4981FEDD23AA248 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DC965B66F6D57DD0BC0CE62B /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3A0CF5CB6BBAABA13D4B83F0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				80C816413423EEEF53D14C00 /* ContentView.swift */,
+				E51B066D002285E55DB607D4 /* PatternSorcererApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		5933D0F8AC2AF58B9A815160 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FC4BB57D7FBBB8D840109AD1 /* HighlightedTextView.swift */,
+				31AC382EF67F7AE73340A6D3 /* LineNumberTextView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		69F95E30E75B407CEF3D5C5A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1152411E4A666F576C79D987 /* RegexEngine */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8159BB897884FC209A6267B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				156B8D63B45265BB5473FBD1 /* RegexTesterView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8EF2F66297567FE06203BAF5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6E0AB044C681621451FFAE7D /* BacktrackingVisualizer.swift */,
+				293159FCFE29A7AD3A298773 /* MatchHighlighter.swift */,
+				1A3BF88EB719F090E89E10FE /* PatternComplexityAnalyzer.swift */,
+				0580BDBDA185F98866DF0A1D /* PatternExplanationGenerator.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9A0C051A967083B0D35B2C1A = {
+			isa = PBXGroup;
+			children = (
+				1C29E68749C3D3D4EF96F243 /* PatternSorcerer */,
+				C8DD121DD5533376EA7C990A /* Tests */,
+				B5008339369180F877E99EBA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9BD0F165EC42FC52DED18EC1 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				06C4DCDDD0626C9EF9B81349 /* RegexTester */,
+				9D1ADD10BFC3254A760AD10C /* Settings */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		9C27A1F817D1A647FD39CE0E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				49B10491E955CE65236F568A /* RegexTesterViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		9D1ADD10BFC3254A760AD10C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				358B52FEC4981FEDD23AA248 /* Views */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B5008339369180F877E99EBA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50CB8D6EEEFD6AACC8860ECC /* PatternSorcerer.app */,
+				42837BF4434F05216FA94303 /* PatternSorcererTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BBB04C5AF210910B2DB6DA78 /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				E76490203E1E01B3189296B0 /* Localizable.strings */,
+			);
+			path = Localizable;
+			sourceTree = "<group>";
+		};
+		C8DD121DD5533376EA7C990A /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				09937B695715E541B4DD86C4 /* Info.plist */,
+				19A22A51580FAB22E90E3A20 /* BDDTests */,
+				07B86E8BE14358D0EA55BF17 /* Mocks */,
+				1F16189BF32A8D95E54AA46D /* UnitTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		D11AFC36DF4B5ED4618437F2 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				DFA7E77A2EFA64EEF2625BFA /* Models */,
+				69F95E30E75B407CEF3D5C5A /* Services */,
+				1D4074DBE39FF37A9F373DDC /* Utilities */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		DFA7E77A2EFA64EEF2625BFA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				28FB3A9B472B869A92C29464 /* CodeLanguage.swift */,
+				8C49032A5BD5271DD5EA59AC /* MatchResult.swift */,
+				D9097A25AB99E749BD5F0C6A /* Pattern.swift */,
+				198171E36820977AA9852D36 /* Theme.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1741C3C21CFF9CA96687BBC0 /* PatternSorcerer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C161FB7C38D321DE0262FF6 /* Build configuration list for PBXNativeTarget "PatternSorcerer" */;
+			buildPhases = (
+				A99AB8274031C3D9D63F37EB /* Sources */,
+				280B8E2F7ABF433AF93BFC44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PatternSorcerer;
+			packageProductDependencies = (
+			);
+			productName = PatternSorcerer;
+			productReference = 50CB8D6EEEFD6AACC8860ECC /* PatternSorcerer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C2FE41A24C45AA68B4145711 /* PatternSorcererTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC5456FFC764DC67518E1617 /* Build configuration list for PBXNativeTarget "PatternSorcererTests" */;
+			buildPhases = (
+				24C51181885EBDB466E02A65 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A044C6CA17E4A01CC2A143E7 /* PBXTargetDependency */,
+			);
+			name = PatternSorcererTests;
+			packageProductDependencies = (
+			);
+			productName = PatternSorcererTests;
+			productReference = 42837BF4434F05216FA94303 /* PatternSorcererTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83E019C5060683C981E68473 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					1741C3C21CFF9CA96687BBC0 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 305AC0667DEEFE7560ABF6F2 /* Build configuration list for PBXProject "PatternSorcerer" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 9A0C051A967083B0D35B2C1A;
+			minimizedProjectReferenceProxies = 1;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1741C3C21CFF9CA96687BBC0 /* PatternSorcerer */,
+				C2FE41A24C45AA68B4145711 /* PatternSorcererTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		280B8E2F7ABF433AF93BFC44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E37CE5B036FDFA55A46F63D /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		24C51181885EBDB466E02A65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E23E9197898FA22F21BBB8E /* MatchHighlighterTests.swift in Sources */,
+				2EE0EBB1B5AB3BFC4EA66738 /* MatchHighlightingBDDTests.swift in Sources */,
+				F29024D9004703A2641A6240 /* MockRegexEngine.swift in Sources */,
+				D0A6541734A3C9A2641886DC /* PatternComplexityAnalyzerTests.swift in Sources */,
+				2FB2373C46ED159D55B557E9 /* PatternModelTests.swift in Sources */,
+				D67A6A8BADA5FD2566C34B10 /* RegexEngineTests.swift in Sources */,
+				2494C5CBBCBE7594FC143205 /* RegexTesterBDDTests.swift in Sources */,
+				9D77748C2F93364A48C80C4C /* RegexTesterViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A99AB8274031C3D9D63F37EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBC10C9CC498BE31C006826A /* BacktrackingVisualizer.swift in Sources */,
+				B3CA022A7A4EC3ABC72F7817 /* CodeLanguage.swift in Sources */,
+				35B49FD125F65D0ED0BEA047 /* ContentView.swift in Sources */,
+				E2C8871094D6A7754F1F6E73 /* HighlightedTextView.swift in Sources */,
+				CA91551A6945B32AAEB64F0F /* LineNumberTextView.swift in Sources */,
+				C3009688CD69DBFE99FEE028 /* LocalizedString.swift in Sources */,
+				7C5238F9C522A6A4D626A7AC /* Logger.swift in Sources */,
+				55C5605775211B6B3DB9775A /* MatchHighlighter.swift in Sources */,
+				F7108DAE1A0FAE690A344245 /* MatchResult.swift in Sources */,
+				94F27ED2A2FCAB3661F23D0A /* Pattern.swift in Sources */,
+				CB5481EB0C4431C04E1C7945 /* PatternComplexityAnalyzer.swift in Sources */,
+				9AD91684E091C4F66CC674B5 /* PatternExplanationGenerator.swift in Sources */,
+				7DC085C1F2153580AE256C45 /* PatternSorcererApp.swift in Sources */,
+				EC978465FCB2BF8B1EEC75EE /* PersistenceController.swift in Sources */,
+				340C257A0ED9FC3C1D26A023 /* RegexEngine.swift in Sources */,
+				94F72C9A0BA6AFC3F6EC1DB4 /* RegexEngineProtocol.swift in Sources */,
+				3C52CD69BECC080E1DF4352F /* RegexTesterView.swift in Sources */,
+				53CCDCFC6AA39AEF7F741932 /* RegexTesterViewModel.swift in Sources */,
+				E2B7054819D5C20DEFDDA327 /* SettingsView.swift in Sources */,
+				69D5269607D96A475B9CD943 /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A044C6CA17E4A01CC2A143E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1741C3C21CFF9CA96687BBC0 /* PatternSorcerer */;
+			targetProxy = 36F424D866F64715F1F39BF7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		182EC5C0221F02876FDF3860 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		2BB71DE0220B8C54DA253789 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8415190DFE9E68A772BE55E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 0002;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = PatternSorcerer/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 CycleRunCode Club. All rights reserved.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 2025.11;
+				PRODUCT_BUNDLE_IDENTIFIER = club.cycleruncode.PatternSorcerer;
+				PRODUCT_NAME = PatternSorcerer;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		B43D1E66B4EF70CC2AAB8DB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = club.cycleruncode.PatternSorcererTests;
+				PRODUCT_NAME = PatternSorcererTests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PatternSorcerer.app/Contents/MacOS/PatternSorcerer";
+			};
+			name = Debug;
+		};
+		BB17E368A5A9A32511662164 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 0002;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = PatternSorcerer/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 CycleRunCode Club. All rights reserved.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 2025.11;
+				PRODUCT_BUNDLE_IDENTIFIER = club.cycleruncode.PatternSorcerer;
+				PRODUCT_NAME = PatternSorcerer;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		D4E2476F918B00278DDC6CE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = club.cycleruncode.PatternSorcererTests;
+				PRODUCT_NAME = PatternSorcererTests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PatternSorcerer.app/Contents/MacOS/PatternSorcerer";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		305AC0667DEEFE7560ABF6F2 /* Build configuration list for PBXProject "PatternSorcerer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BB71DE0220B8C54DA253789 /* Debug */,
+				182EC5C0221F02876FDF3860 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3C161FB7C38D321DE0262FF6 /* Build configuration list for PBXNativeTarget "PatternSorcerer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8415190DFE9E68A772BE55E5 /* Debug */,
+				BB17E368A5A9A32511662164 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FC5456FFC764DC67518E1617 /* Build configuration list for PBXNativeTarget "PatternSorcererTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B43D1E66B4EF70CC2AAB8DB8 /* Debug */,
+				D4E2476F918B00278DDC6CE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83E019C5060683C981E68473 /* Project object */;
+}

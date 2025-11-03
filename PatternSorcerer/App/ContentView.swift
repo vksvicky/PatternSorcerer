@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var appState: AppState
-    
+
     var body: some View {
         NavigationSplitView {
             SidebarView()
@@ -23,33 +23,33 @@ struct ContentView: View {
 // MARK: - Sidebar
 struct SidebarView: View {
     @EnvironmentObject var appState: AppState
-    
+
     var body: some View {
         List(selection: $appState.selectedFeature) {
             Section("Main") {
                 NavigationLink(value: AppState.Feature.regexTester) {
                     Label("Regex Tester", systemImage: "magnifyingglass")
                 }
-                
+
                 NavigationLink(value: AppState.Feature.patternBuilder) {
                     Label("Pattern Builder", systemImage: "slider.horizontal.3")
                 }
-                
+
                 NavigationLink(value: AppState.Feature.patternLibrary) {
                     Label("Pattern Library", systemImage: "book")
                 }
             }
-            
+
             Section("Tools") {
                 NavigationLink(value: AppState.Feature.codeExport) {
                     Label("Code Export", systemImage: "doc.text")
                 }
-                
+
                 NavigationLink(value: AppState.Feature.performance) {
                     Label("Performance", systemImage: "speedometer")
                 }
             }
-            
+
             Section("Learn") {
                 NavigationLink(value: AppState.Feature.tutorials) {
                     Label("Tutorials", systemImage: "graduationcap")
@@ -63,7 +63,7 @@ struct SidebarView: View {
 // MARK: - Main Content
 struct MainContentView: View {
     @EnvironmentObject var appState: AppState
-    
+
     var body: some View {
         Group {
             switch appState.selectedFeature {
@@ -126,17 +126,8 @@ struct PerformanceView: View {
     }
 }
 
-struct SettingsView: View {
-    var body: some View {
-        Text("Settings")
-            .font(.largeTitle)
-            .foregroundColor(.secondary)
-    }
-}
-
 #Preview {
     ContentView()
         .environmentObject(AppState())
 }
-
 

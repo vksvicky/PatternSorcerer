@@ -15,9 +15,13 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-# Configuration
-INFO_PLIST="${1:-PatternSorcerer/Info.plist}"
-VERSION_FILE="${2:-.version}"
+# Get script directory and project root
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Configuration - resolve paths relative to project root
+INFO_PLIST="$PROJECT_ROOT/PatternSorcerer/Info.plist"
+VERSION_FILE="$PROJECT_ROOT/.version"
 
 # Get current date components
 YEAR=$(date +%Y)
