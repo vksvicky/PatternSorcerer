@@ -151,7 +151,7 @@ This document outlines the unique features that differentiate PatternSorcerer fr
 
 ### Implementation
 - `scripts/version.sh`
-- Version format: 2024.123.5 (year.day.build)
+- Version format: 2025.123.5 (year.day.build)
 - Automatic increment on build
 
 ---

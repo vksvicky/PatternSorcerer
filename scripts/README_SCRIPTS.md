@@ -92,11 +92,11 @@ Manages version numbers in format: `yyyy.dd.build`
 ./scripts/version.sh show
 
 # Set version manually
-./scripts/version.sh set 2024.123.5
+./scripts/version.sh set 2025.123.5
 ```
 
 **Version Format:**
-- `yyyy` - Year (e.g., 2024)
+- `yyyy` - Year (e.g., 2025)
 - `dd` - Day of year (1-366)
 - `build` - Build number (increments daily)
 
@@ -106,17 +106,17 @@ Manages version numbers in format: `yyyy.dd.build`
 
 **Examples:**
 ```bash
-# Today is day 123 of 2024, first build today
+# Today is day 123 of 2025, first build today
 ./scripts/version.sh increment
-# Result: 2024.123.1
+# Result: 2025.123.1
 
 # Second build today
 ./scripts/version.sh increment
-# Result: 2024.123.2
+# Result: 2025.123.2
 
 # Next day (day 124)
 ./scripts/version.sh increment
-# Result: 2024.124.1
+# Result: 2025.124.1
 ```
 
 ---
@@ -248,7 +248,7 @@ chmod +x scripts/*.sh
 ```
 
 ### Version script can't find Info.plist
-- Check path: `./scripts/version.sh set 2024.123.1 PatternSorcerer/Info.plist`
+- Check path: `./scripts/version.sh set 2025.123.1 PatternSorcerer/Info.plist`
 
 ### Test script can't find scheme
 - Verify scheme name is `PatternSorcerer`

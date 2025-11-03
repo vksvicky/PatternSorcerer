@@ -63,7 +63,7 @@ parse_version() {
 increment_build() {
     local current_version=$(get_current_version)
     parse_version "$current_version"
-    
+
     # If same day, increment build
     if [ "$VERSION_YEAR" = "$YEAR" ] && [ "$VERSION_DAY" = "$DAY_OF_YEAR" ]; then
         VERSION_BUILD=$((VERSION_BUILD + 1))
@@ -71,7 +71,7 @@ increment_build() {
         # New day, reset build to 1
         VERSION_BUILD=1
     fi
-    
+
     NEW_VERSION="${YEAR}.${DAY_OF_YEAR}.${VERSION_BUILD}"
 }
 
@@ -79,20 +79,20 @@ increment_build() {
 update_info_plist() {
     local version=$1
     local build=$2
-    
+
     if [ ! -f "$INFO_PLIST" ]; then
         print_error "Info.plist not found at: $INFO_PLIST"
         return 1
     fi
-    
+
     # Update CFBundleShortVersionString (version)
     /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $version" "$INFO_PLIST" 2>/dev/null || \
     /usr/libexec/PlistBuddy -c "Add :CFBundleShortVersionString string $version" "$INFO_PLIST"
-    
+
     # Update CFBundleVersion (build)
     /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $build" "$INFO_PLIST" 2>/dev/null || \
     /usr/libexec/PlistBuddy -c "Add :CFBundleVersion string $build" "$INFO_PLIST"
-    
+
     print_success "Updated Info.plist: Version=$version, Build=$build"
 }
 
@@ -107,7 +107,7 @@ save_version() {
 show_version() {
     local version=$(get_current_version)
     parse_version "$version"
-    
+
     print_header "Current Version"
     echo "Version: $VERSION_YEAR.$VERSION_DAY.$VERSION_BUILD"
     echo "Year: $VERSION_YEAR"
@@ -119,16 +119,16 @@ show_version() {
 # Main functions
 cmd_increment() {
     print_header "Incrementing Version"
-    
+
     increment_build
     echo "Current: $(get_current_version)"
     echo "New: $NEW_VERSION"
     echo ""
-    
+
     parse_version "$NEW_VERSION"
     update_info_plist "$VERSION_YEAR.$VERSION_DAY" "$VERSION_BUILD"
     save_version "$NEW_VERSION"
-    
+
     print_success "Version incremented to: $NEW_VERSION"
 }
 
@@ -142,13 +142,13 @@ cmd_set() {
         print_error "Please provide a version number (format: yyyy.dd.build)"
         exit 1
     fi
-    
+
     print_header "Setting Version"
-    
+
     parse_version "$version"
     update_info_plist "$VERSION_YEAR.$VERSION_DAY" "$VERSION_BUILD"
     save_version "$version"
-    
+
     print_success "Version set to: $version"
 }
 
@@ -174,7 +174,7 @@ case "${1:-increment}" in
         echo "Examples:"
         echo "  $0 increment       # Increment build"
         echo "  $0 show            # Show current version"
-        echo "  $0 set 2024.123.5  # Set version to 2024.123.5"
+        echo "  $0 set 2025.123.5  # Set version to 2025.123.5"
         exit 1
         ;;
 esac
