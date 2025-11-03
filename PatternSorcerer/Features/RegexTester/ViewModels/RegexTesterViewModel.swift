@@ -1,0 +1,188 @@
+//
+//  RegexTesterViewModel.swift
+//  PatternSorcerer
+//
+//  Created on $(date)
+//
+
+import Foundation
+import Combine
+
+@MainActor
+class RegexTesterViewModel: ObservableObject {
+    // MARK: - Published Properties
+    @Published var pattern: String = ""
+    @Published var testText: String = ""
+    @Published var matches: [MatchResult] = []
+    @Published var validationError: String?
+    @Published var isPatternValid: Bool = true
+    @Published var regexOptions: RegexOptions = RegexOptions()
+    
+    // MARK: - Unique Features
+    @Published var complexityScore: ComplexityScore?
+    @Published var patternExplanation: PatternExplanation?
+    @Published var backtrackingAnalysis: BacktrackingAnalysis?
+    
+    // MARK: - Dependencies
+    private let regexEngine: RegexEngine
+    private let complexityAnalyzer = PatternComplexityAnalyzer()
+    private let explanationGenerator = PatternExplanationGenerator()
+    private let backtrackingVisualizer = BacktrackingVisualizer()
+    private var cancellables = Set<AnyCancellable>()
+    
+    // MARK: - Initialization
+    init(regexEngine: RegexEngine = RegexEngine()) {
+        self.regexEngine = regexEngine
+        setupObservers()
+    }
+    
+    // MARK: - Setup
+    private func setupObservers() {
+        // Validate pattern when it changes
+        $pattern
+            .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
+            .sink { [weak self] pattern in
+                self?.validatePattern(pattern)
+            }
+            .store(in: &cancellables)
+        
+        // Test pattern when pattern or test text changes
+        Publishers.CombineLatest($pattern, $testText)
+            .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
+            .sink { [weak self] pattern, text in
+                self?.testPattern()
+                // Update backtracking analysis when test text changes
+                if let self = self, !pattern.isEmpty && self.isPatternValid {
+                    self.updateUniqueFeatures(pattern: pattern)
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    // MARK: - Validation
+    func validatePattern(_ pattern: String? = nil) {
+        let patternToValidate = pattern ?? self.pattern
+        
+        if patternToValidate.isEmpty {
+            isPatternValid = true
+            validationError = nil
+            complexityScore = nil
+            patternExplanation = nil
+            backtrackingAnalysis = nil
+            return
+        }
+        
+        let result = regexEngine.validatePattern(patternToValidate)
+        isPatternValid = result.isValid
+        validationError = result.error
+        
+        // Update unique features if pattern is valid
+        if result.isValid && !patternToValidate.isEmpty {
+            updateUniqueFeatures(pattern: patternToValidate)
+        } else {
+            complexityScore = nil
+            patternExplanation = nil
+            backtrackingAnalysis = nil
+        }
+    }
+    
+    // MARK: - Unique Features
+    private func updateUniqueFeatures(pattern: String) {
+        // Complexity analysis
+        complexityScore = complexityAnalyzer.calculateComplexity(pattern)
+        
+        // Pattern explanation
+        patternExplanation = explanationGenerator.explain(pattern)
+        
+        // Backtracking analysis (if test text is available)
+        if !testText.isEmpty {
+            backtrackingAnalysis = backtrackingVisualizer.analyzeBacktracking(pattern: pattern, text: testText)
+        }
+    }
+    
+    // MARK: - Testing
+    func testPattern() {
+        guard !pattern.isEmpty, !testText.isEmpty else {
+            matches = []
+            // Update backtracking analysis even if no test text
+            if !pattern.isEmpty && isPatternValid {
+                updateUniqueFeatures(pattern: pattern)
+            }
+            return
+        }
+        
+        guard isPatternValid else {
+            matches = []
+            return
+        }
+        
+        do {
+            let options = regexOptions.toNSRegularExpressionOptions()
+            matches = try regexEngine.match(pattern: pattern, in: testText, options: options)
+            
+            // Update backtracking analysis with test text
+            updateUniqueFeatures(pattern: pattern)
+        } catch {
+            validationError = error.localizedDescription
+            matches = []
+        }
+    }
+    
+    // MARK: - Actions
+    func clearPattern() {
+        pattern = ""
+        matches = []
+        validationError = nil
+    }
+    
+    func clearTestText() {
+        testText = ""
+        matches = []
+    }
+    
+    func clearAll() {
+        clearPattern()
+        clearTestText()
+    }
+}
+
+// MARK: - Regex Options
+struct RegexOptions {
+    var caseInsensitive: Bool = false
+    var allowCommentsAndWhitespace: Bool = false
+    var ignoreMetacharacters: Bool = false
+    var dotMatchesLineSeparators: Bool = false
+    var anchorsMatchLines: Bool = false
+    var useUnixLineSeparators: Bool = false
+    var useUnicodeWordBoundaries: Bool = false
+    
+    func toNSRegularExpressionOptions() -> NSRegularExpression.Options {
+        var options: NSRegularExpression.Options = []
+        
+        if caseInsensitive {
+            options.insert(.caseInsensitive)
+        }
+        if allowCommentsAndWhitespace {
+            options.insert(.allowCommentsAndWhitespace)
+        }
+        if ignoreMetacharacters {
+            options.insert(.ignoreMetacharacters)
+        }
+        if dotMatchesLineSeparators {
+            options.insert(.dotMatchesLineSeparators)
+        }
+        if anchorsMatchLines {
+            options.insert(.anchorsMatchLines)
+        }
+        if useUnixLineSeparators {
+            options.insert(.useUnixLineSeparators)
+        }
+        if useUnicodeWordBoundaries {
+            options.insert(.useUnicodeWordBoundaries)
+        }
+        
+        return options
+    }
+}
+
+

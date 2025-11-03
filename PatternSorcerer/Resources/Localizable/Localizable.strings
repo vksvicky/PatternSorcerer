@@ -1,0 +1,158 @@
+/* 
+  Localizable.strings
+  PatternSorcerer
+  
+  English (Base) Localization
+*/
+
+// MARK: - App
+"app.name" = "PatternSorcerer";
+"app.version" = "Version %@";
+"app.copyright" = "Copyright © %@. All rights reserved.";
+
+// MARK: - Menu
+"menu.file" = "File";
+"menu.new_pattern" = "New Pattern";
+"menu.open_pattern" = "Open Pattern Library";
+"menu.edit" = "Edit";
+"menu.find" = "Find...";
+"menu.find_replace" = "Find and Replace...";
+"menu.pattern" = "Pattern";
+"menu.tools" = "Tools";
+"menu.test_regex" = "Test Regex";
+"menu.export_code" = "Export Code";
+"menu.view" = "View";
+"menu.toggle_sidebar" = "Toggle Sidebar";
+"menu.window" = "Window";
+"menu.minimize" = "Minimize";
+"menu.help" = "Help";
+"menu.help_patternsorcerer" = "PatternSorcerer Help";
+"menu.learn_regex" = "Learn Regex";
+"menu.about" = "About PatternSorcerer";
+
+// MARK: - Regex Tester
+"regex_tester.title" = "Regex Tester";
+"regex_tester.pattern" = "Pattern";
+"regex_tester.test_text" = "Test Text";
+"regex_tester.results" = "Results";
+"regex_tester.matches" = "Matches";
+"regex_tester.match" = "Match";
+"regex_tester.no_matches" = "No matches found";
+"regex_tester.enter_pattern" = "Enter regex pattern";
+"regex_tester.valid" = "Valid";
+"regex_tester.invalid" = "Invalid";
+"regex_tester.clear" = "Clear";
+"regex_tester.position" = "Position: %d";
+"regex_tester.capture_groups" = "Capture Groups:";
+"regex_tester.group" = "Group %d:";
+
+// MARK: - Tabs
+"tabs.matches" = "Matches";
+"tabs.explanation" = "Explanation";
+"tabs.complexity" = "Complexity";
+"tabs.backtracking" = "Backtracking";
+
+// MARK: - Explanation
+"explanation.title" = "Pattern Explanation";
+"explanation.summary" = "Summary";
+"explanation.breakdown" = "Pattern Breakdown";
+"explanation.enter_pattern" = "Enter a valid pattern to see explanation";
+
+// MARK: - Complexity
+"complexity.title" = "Complexity Analysis";
+"complexity.score" = "Complexity Score";
+"complexity.factors" = "Complexity Factors";
+"complexity.suggestions" = "Optimization Suggestions";
+"complexity.enter_pattern" = "Enter a valid pattern to analyze complexity";
+"complexity.simple" = "Simple";
+"complexity.moderate" = "Moderate";
+"complexity.complex" = "Complex";
+"complexity.very_complex" = "Very Complex";
+
+// MARK: - Backtracking
+"backtracking.title" = "Backtracking Analysis";
+"backtracking.risk" = "Backtracking Risk";
+"backtracking.warnings" = "Warnings";
+"backtracking.suggestions" = "Suggestions";
+"backtracking.enter_pattern_text" = "Enter pattern and test text to analyze backtracking";
+"backtracking.risk_low" = "Low Risk";
+"backtracking.risk_medium" = "Medium Risk";
+"backtracking.risk_high" = "High Risk";
+
+// MARK: - Options
+"options.title" = "Options";
+"options.case_insensitive" = "Case Insensitive";
+"options.allow_comments" = "Allow Comments";
+"options.ignore_metacharacters" = "Ignore Metacharacters";
+"options.dot_matches_lines" = "Dot Matches Line Separators";
+
+// MARK: - Settings
+"settings.title" = "Settings";
+"settings.general" = "General";
+"settings.appearance" = "Appearance";
+"settings.editor" = "Editor";
+"settings.advanced" = "Advanced";
+"settings.startup" = "Startup";
+"settings.open_last_pattern" = "Open last pattern on launch";
+"settings.check_updates" = "Check for updates automatically";
+"settings.patterns" = "Patterns";
+"settings.default_category" = "Default Pattern Category";
+"settings.notifications" = "Notifications";
+"settings.enable_notifications" = "Enable notifications";
+"settings.theme" = "Theme";
+"settings.app_theme" = "App Theme";
+"settings.colors" = "Colors";
+"settings.accent_color" = "Accent Color";
+"settings.preview" = "Preview";
+"settings.theme_preview" = "Theme Preview";
+"settings.this_is_how" = "This is how your app will look";
+"settings.validation" = "Validation";
+"settings.auto_validate" = "Auto-validate patterns";
+"settings.show_errors_inline" = "Show validation errors inline";
+"settings.display" = "Display";
+"settings.show_line_numbers" = "Show line numbers";
+"settings.font_size" = "Font Size: %d";
+"settings.behavior" = "Behavior";
+"settings.tab_size" = "Tab Size";
+"settings.tab_size_2" = "2 spaces";
+"settings.tab_size_4" = "4 spaces";
+"settings.tab_size_tab" = "Tab";
+"settings.performance" = "Performance";
+"settings.enable_analytics" = "Enable performance analytics";
+"settings.cache_patterns" = "Cache compiled patterns";
+"settings.data" = "Data";
+"settings.export_patterns" = "Export All Patterns";
+"settings.import_patterns" = "Import Patterns";
+"settings.clear_cache" = "Clear Cache";
+"settings.debug" = "Debug";
+"settings.enable_logging" = "Enable debug logging";
+"settings.show_logs" = "Show Logs";
+
+// MARK: - Sidebar
+"sidebar.title" = "PatternSorcerer";
+"sidebar.main" = "Main";
+"sidebar.regex_tester" = "Regex Tester";
+"sidebar.pattern_builder" = "Pattern Builder";
+"sidebar.pattern_library" = "Pattern Library";
+"sidebar.tools" = "Tools";
+"sidebar.code_export" = "Code Export";
+"sidebar.performance" = "Performance";
+"sidebar.learn" = "Learn";
+"sidebar.tutorials" = "Tutorials";
+
+// MARK: - Placeholders
+"placeholder.pattern_builder" = "Pattern Builder";
+"placeholder.pattern_library" = "Pattern Library";
+"placeholder.code_export" = "Code Export";
+"placeholder.tutorials" = "Tutorials";
+"placeholder.performance" = "Performance Analytics";
+"placeholder.settings" = "Settings";
+
+// MARK: - Themes
+"theme.system" = "System";
+"theme.light" = "Light";
+"theme.dark" = "Dark";
+"theme.blue" = "Blue";
+"theme.green" = "Green";
+"theme.purple" = "Purple";
+
