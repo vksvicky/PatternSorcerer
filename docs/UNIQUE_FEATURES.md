@@ -137,7 +137,7 @@ This document outlines the unique features that differentiate PatternSorcerer fr
 
 ---
 
-## 8. Version Management (yyyy.dd.build)
+## 8. Version Management (yyyy.mm.build)
 
 ### What It Does
 - Unique version numbering system
@@ -146,12 +146,15 @@ This document outlines the unique features that differentiate PatternSorcerer fr
 
 ### Why It's Unique
 - More informative than standard versioning
-- Shows when code was built
+- Shows when code was built (year and month)
 - Automatic increment script
 
 ### Implementation
 - `scripts/version.sh`
-- Version format: 2025.123.5 (year.day.build)
+- Version format: 2025.11.0001 (year.month.build)
+  - Year: 2025
+  - Month: 01-12 (zero-padded)
+  - Build: 0001-9999 (zero-padded to 4 digits)
 - Automatic increment on build
 
 ---

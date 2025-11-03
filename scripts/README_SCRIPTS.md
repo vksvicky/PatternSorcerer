@@ -82,7 +82,7 @@ Builds and runs the app.
 
 ### version.sh
 
-Manages version numbers in format: `yyyy.dd.build`
+Manages version numbers in format: `yyyy.mm.build`
 
 ```bash
 # Increment build number (default)
@@ -92,31 +92,36 @@ Manages version numbers in format: `yyyy.dd.build`
 ./scripts/version.sh show
 
 # Set version manually
-./scripts/version.sh set 2025.123.5
+./scripts/version.sh set 2025.11.0001
 ```
 
 **Version Format:**
 - `yyyy` - Year (e.g., 2025)
-- `dd` - Day of year (1-366)
-- `build` - Build number (increments daily)
+- `mm` - Month (01-12, zero-padded)
+- `build` - Build number (0001-9999, zero-padded to 4 digits)
 
 **Behavior:**
-- Same day: Increments build number
-- New day: Resets build to 1
+- Same month: Increments build number
+- New month: Resets build to 0001
+- Build number format: Always 4 digits (0001-9999)
 
 **Examples:**
 ```bash
-# Today is day 123 of 2025, first build today
+# Current: November 2025, first build
 ./scripts/version.sh increment
-# Result: 2025.123.1
+# Result: 2025.11.0001
 
-# Second build today
+# Second build in same month
 ./scripts/version.sh increment
-# Result: 2025.123.2
+# Result: 2025.11.0002
 
-# Next day (day 124)
+# Next month (December)
 ./scripts/version.sh increment
-# Result: 2025.124.1
+# Result: 2025.12.0001
+
+# Build 100 in November
+./scripts/version.sh set 2025.11.0100
+# Result: 2025.11.0100
 ```
 
 ---
@@ -248,7 +253,7 @@ chmod +x scripts/*.sh
 ```
 
 ### Version script can't find Info.plist
-- Check path: `./scripts/version.sh set 2025.123.1 PatternSorcerer/Info.plist`
+- Check path: `./scripts/version.sh set 2025.11.0001 PatternSorcerer/Info.plist`
 
 ### Test script can't find scheme
 - Verify scheme name is `PatternSorcerer`
