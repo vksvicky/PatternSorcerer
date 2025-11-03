@@ -110,7 +110,7 @@ Team ID: ABC123XYZ
 ```
 ✓ Automatically manage signing
 Team: Your Name (Personal Team)
-Bundle Identifier: com.yourname.PatternSorcerer
+Bundle Identifier: club.cycleruncode.PatternSorcerer
 ```
 
 ---
