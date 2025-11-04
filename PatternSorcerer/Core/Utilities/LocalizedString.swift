@@ -250,6 +250,10 @@ extension LocalizedString {
     static var optionsDotMatchesLines: String {
         NSLocalizedString("options.dot_matches_lines", comment: "Dot Matches Line Separators")
     }
+
+    static var optionsMultiline: String {
+        NSLocalizedString("options.multiline", comment: "Multiline")
+    }
 }
 
 // MARK: - Settings General & Appearance
@@ -442,6 +446,14 @@ extension LocalizedString {
         NSLocalizedString("sidebar.code_export", comment: "Code Export")
     }
 
+    static var sidebarTestSuite: String {
+        NSLocalizedString("sidebar.test_suite", comment: "Test Suite")
+    }
+
+    static var sidebarProfessionalTools: String {
+        NSLocalizedString("sidebar.professional_tools", comment: "Professional Tools")
+    }
+
     static var sidebarPerformance: String {
         NSLocalizedString("sidebar.performance", comment: "Performance")
     }
@@ -500,5 +512,126 @@ extension LocalizedString {
     // MARK: - Common
     static var commonClose: String {
         NSLocalizedString("common.close", comment: "Close")
+    }
+
+    // MARK: - Test Suite
+    static var testSuiteTitle: String {
+        NSLocalizedString("test_suite.title", comment: "Test Suite Manager")
+    }
+
+    static var testSuiteTestCases: String {
+        NSLocalizedString("test_suite.test_cases", comment: "Test Cases")
+    }
+
+    static var testSuiteResults: String {
+        NSLocalizedString("test_suite.results", comment: "Results")
+    }
+
+    static var testSuiteAddTestCase: String {
+        NSLocalizedString("test_suite.add_test_case", comment: "Add Test Case")
+    }
+
+    static var testSuiteTemplates: String {
+        NSLocalizedString("test_suite.templates", comment: "Templates")
+    }
+
+    static var testSuiteImport: String {
+        NSLocalizedString("test_suite.import", comment: "Import")
+    }
+
+    static var testSuiteExport: String {
+        NSLocalizedString("test_suite.export", comment: "Export")
+    }
+
+    static var testSuiteRunAll: String {
+        NSLocalizedString("test_suite.run_all", comment: "Run All Tests")
+    }
+
+    static var testSuiteSave: String {
+        NSLocalizedString("test_suite.save", comment: "Save")
+    }
+
+    static var testSuiteName: String {
+        NSLocalizedString("test_suite.name", comment: "Name")
+    }
+
+    static var testSuiteTestText: String {
+        NSLocalizedString("test_suite.test_text", comment: "Test Text")
+    }
+
+    static var testSuiteExpectedResults: String {
+        NSLocalizedString("test_suite.expected_results", comment: "Expected Results")
+    }
+
+    static var testSuiteExpectedMatches: String {
+        NSLocalizedString("test_suite.expected_matches", comment: "Expected Matches")
+    }
+
+    static var testSuiteShouldMatch: String {
+        NSLocalizedString("test_suite.should_match", comment: "Should Match")
+    }
+
+    static var testSuiteShouldNotMatch: String {
+        NSLocalizedString("test_suite.should_not_match", comment: "Should Not Match")
+    }
+
+    static var testSuiteDelete: String {
+        NSLocalizedString("test_suite.delete", comment: "Delete")
+    }
+
+    static var testSuiteSelectTestCase: String {
+        NSLocalizedString("test_suite.select_test_case", comment: "Select a test case to view details")
+    }
+
+    static var testSuiteNoTestCases: String {
+        NSLocalizedString("test_suite.no_test_cases", comment: "No test cases")
+    }
+
+    static var testSuiteAddFirstTestCase: String {
+        NSLocalizedString("test_suite.add_first_test_case", comment: "Add your first test case to get started")
+    }
+
+    static var testSuiteNoPattern: String {
+        NSLocalizedString("test_suite.no_pattern", comment: "No pattern selected")
+    }
+
+    static var testSuitePassed: String {
+        NSLocalizedString("test_suite.passed", comment: "Passed")
+    }
+
+    static var testSuiteFailed: String {
+        NSLocalizedString("test_suite.failed", comment: "Failed")
+    }
+
+    static var testSuiteNoResults: String {
+        NSLocalizedString("test_suite.no_results", comment: "No test results")
+    }
+
+    static var testSuiteRunTestsFirst: String {
+        NSLocalizedString("test_suite.run_tests_first", comment: "Run tests to see results")
+    }
+
+    static var testSuiteComparison: String {
+        NSLocalizedString("test_suite.comparison", comment: "Comparison")
+    }
+
+    static var testSuiteExpected: String {
+        NSLocalizedString("test_suite.expected", comment: "Expected")
+    }
+
+    static var testSuiteActual: String {
+        NSLocalizedString("test_suite.actual", comment: "Actual")
+    }
+
+    static var testSuiteMatches: String {
+        NSLocalizedString("test_suite.matches", comment: "Matches")
+    }
+
+    static var testSuiteSelectResult: String {
+        NSLocalizedString("test_suite.select_result", comment: "Select a test result to view details")
+    }
+
+    static var testSuiteAdd: String {
+        NSLocalizedString("test_suite.add", comment: "Add")
     }
 }

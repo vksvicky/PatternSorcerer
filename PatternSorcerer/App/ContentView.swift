@@ -52,6 +52,14 @@ struct SidebarView: View {
                     Label(LocalizedString.sidebarCodeExport, systemImage: "doc.text")
                 }
 
+                NavigationLink(value: AppState.Feature.testSuite) {
+                    Label(LocalizedString.sidebarTestSuite, systemImage: "checkmark.circle.badge")
+                }
+
+                NavigationLink(value: AppState.Feature.professionalTools) {
+                    Label(LocalizedString.sidebarProfessionalTools, systemImage: "wrench.and.screwdriver")
+                }
+
                 NavigationLink(value: AppState.Feature.performance) {
                     Label(LocalizedString.sidebarPerformance, systemImage: "speedometer")
                 }
@@ -82,6 +90,10 @@ struct MainContentView: View {
                 PatternLibraryView()
             case .codeExport:
                 CodeExportView()
+            case .testSuite:
+                TestSuiteManagerView()
+            case .professionalTools:
+                ProfessionalToolsView()
             case .tutorials:
                 TutorialView()
             case .performance:

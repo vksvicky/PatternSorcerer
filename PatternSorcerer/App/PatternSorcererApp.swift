@@ -99,6 +99,8 @@ class AppState: ObservableObject {
         case patternBuilder
         case patternLibrary
         case codeExport
+        case testSuite
+        case professionalTools
         case tutorials
         case performance
     }
@@ -119,6 +121,14 @@ class AppState: ObservableObject {
 
     func navigateToPatternLibrary() {
         selectedFeature = .patternLibrary
+    }
+
+    func navigateToTestSuite() {
+        selectedFeature = .testSuite
+    }
+
+    func navigateToProfessionalTools() {
+        selectedFeature = .professionalTools
     }
 
     func createNewPattern() {

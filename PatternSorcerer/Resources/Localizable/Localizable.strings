@@ -1,7 +1,7 @@
-/* 
+/*
   Localizable.strings
   PatternSorcerer
-  
+
   English (Base) Localization
 */
 
@@ -85,6 +85,7 @@
 "options.allow_comments" = "Allow Comments";
 "options.ignore_metacharacters" = "Ignore Metacharacters";
 "options.dot_matches_lines" = "Dot Matches Line Separators";
+"options.multiline" = "Multiline";
 
 // MARK: - Settings
 "settings.title" = "Settings";
@@ -136,6 +137,8 @@
 "sidebar.pattern_library" = "Pattern Library";
 "sidebar.tools" = "Tools";
 "sidebar.code_export" = "Code Export";
+"sidebar.test_suite" = "Test Suite";
+"sidebar.professional_tools" = "Professional Tools";
 "sidebar.performance" = "Performance";
 "sidebar.learn" = "Learn";
 "sidebar.tutorials" = "Tutorials";
@@ -155,4 +158,79 @@
 "theme.blue" = "Blue";
 "theme.green" = "Green";
 "theme.purple" = "Purple";
+
+// MARK: - Test Suite
+"test_suite.title" = "Test Suite Manager";
+"test_suite.test_cases" = "Test Cases";
+"test_suite.results" = "Results";
+"test_suite.add_test_case" = "Add Test Case";
+"test_suite.templates" = "Templates";
+"test_suite.import" = "Import";
+"test_suite.export" = "Export";
+"test_suite.run_all" = "Run All Tests";
+"test_suite.save" = "Save";
+"test_suite.name" = "Name";
+"test_suite.test_text" = "Test Text";
+"test_suite.expected_results" = "Expected Results";
+"test_suite.expected_matches" = "Expected Matches";
+"test_suite.should_match" = "Should Match";
+"test_suite.should_not_match" = "Should Not Match";
+"test_suite.delete" = "Delete";
+"test_suite.select_test_case" = "Select a test case to view details";
+"test_suite.no_test_cases" = "No test cases";
+"test_suite.add_first_test_case" = "Add your first test case to get started";
+"test_suite.no_pattern" = "No pattern selected";
+"test_suite.passed" = "Passed";
+"test_suite.failed" = "Failed";
+"test_suite.no_results" = "No test results";
+"test_suite.run_tests_first" = "Run tests to see results";
+"test_suite.comparison" = "Comparison";
+"test_suite.expected" = "Expected";
+"test_suite.actual" = "Actual";
+"test_suite.matches" = "Matches";
+"test_suite.select_result" = "Select a test result to view details";
+"test_suite.add" = "Add";
+
+// MARK: - Professional Tools - Replace
+"replace_tool.title" = "Replace Tool";
+"replace_tool.description" = "Find and replace text using regular expressions";
+"replace_tool.pattern" = "Pattern";
+"replace_tool.pattern_placeholder" = "Enter regex pattern";
+"replace_tool.input_text" = "Input Text";
+"replace_tool.replacement" = "Replacement";
+"replace_tool.replacement_placeholder" = "Enter replacement text (use $1, $2 for capture groups)";
+"replace_tool.options" = "Options";
+"replace_tool.replace" = "Replace";
+"replace_tool.copy" = "Copy Result";
+"replace_tool.clear" = "Clear";
+"replace_tool.output" = "Output";
+
+// MARK: - Professional Tools - Split
+"split_tool.title" = "Split Tool";
+"split_tool.description" = "Split text using regular expression delimiters";
+"split_tool.pattern" = "Pattern";
+"split_tool.pattern_placeholder" = "Enter regex pattern (delimiter)";
+"split_tool.input_text" = "Input Text";
+"split_tool.options" = "Options";
+"split_tool.split" = "Split";
+"split_tool.copy" = "Copy Result";
+"split_tool.clear" = "Clear";
+"split_tool.output" = "Output";
+"split_tool.no_output" = "No output - perform split to see results";
+
+// MARK: - Professional Tools - Extract
+"extract_tool.title" = "Extract Tool";
+"extract_tool.description" = "Extract specific capture groups from matches";
+"extract_tool.pattern" = "Pattern";
+"extract_tool.pattern_placeholder" = "Enter regex pattern with capture groups";
+"extract_tool.input_text" = "Input Text";
+"extract_tool.group_selection" = "Group Selection";
+"extract_tool.group_index" = "Group Index";
+"extract_tool.all_groups" = "All Groups";
+"extract_tool.options" = "Options";
+"extract_tool.extract" = "Extract";
+"extract_tool.copy" = "Copy Result";
+"extract_tool.clear" = "Clear";
+"extract_tool.output" = "Output";
+"extract_tool.no_output" = "No output - perform extract to see results";
 
