@@ -4,11 +4,11 @@
 //
 //  BDD-style tests using Gherkin-like structure
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
-import XCTest
 @testable import PatternSorcerer
+import XCTest
 
 @MainActor
 final class RegexTesterBDDTests: XCTestCase {
@@ -133,7 +133,10 @@ final class RegexTesterBDDTests: XCTestCase {
 
         // Then: capture groups should be extracted
         XCTAssertEqual(sut.matches.count, 1, "Should find one match")
-        let resultMatch = sut.matches.first!
+        guard let resultMatch = sut.matches.first else {
+            XCTFail("Expected one match")
+            return
+        }
         XCTAssertEqual(resultMatch.captureGroups.count, 2, "Should have two capture groups")
         XCTAssertEqual(resultMatch.captureGroups[0].text, "123", "First group should be '123'")
         XCTAssertEqual(resultMatch.captureGroups[1].text, "456", "Second group should be '456'")
@@ -167,4 +170,3 @@ final class RegexTesterBDDTests: XCTestCase {
         XCTAssertNil(sut.validationError, "Error should be nil")
     }
 }
-

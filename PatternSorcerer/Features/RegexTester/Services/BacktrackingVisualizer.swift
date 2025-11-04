@@ -4,7 +4,7 @@
 //
 //  Unique feature: Visualizes regex backtracking behavior
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
 import Foundation
@@ -161,4 +161,3 @@ enum BacktrackingWarning: Hashable {
 }
 
 // Color reference is in the enum definition above
-

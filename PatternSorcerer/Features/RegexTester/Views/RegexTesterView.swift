@@ -2,7 +2,7 @@
 //  RegexTesterView.swift
 //  PatternSorcerer
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
 import SwiftUI
@@ -188,7 +188,10 @@ struct ResultsView: View {
 
                 Spacer()
 
-                Text("\(viewModel.matches.count) \(viewModel.matches.count == 1 ? LocalizedString.regexTesterMatch : LocalizedString.regexTesterMatches)")
+                let matchText = viewModel.matches.count == 1
+                    ? LocalizedString.regexTesterMatch
+                    : LocalizedString.regexTesterMatches
+                Text("\(viewModel.matches.count) \(matchText)")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -301,7 +304,7 @@ struct ExplanationView: View {
                         Text("Pattern Breakdown")
                             .font(.headline)
 
-                        ForEach(Array(explanation.parts.enumerated()), id: \.offset) { index, part in
+                        ForEach(Array(explanation.parts.enumerated()), id: \.offset) { _, part in
                             HStack(alignment: .top, spacing: 12) {
                                 Text(part.text)
                                     .font(.system(.body, design: .monospaced))
@@ -417,7 +420,7 @@ struct ComplexityView: View {
                             Text("Optimization Suggestions")
                                 .font(.headline)
 
-                            ForEach(Array(suggestions.enumerated()), id: \.offset) { index, suggestion in
+                            ForEach(Array(suggestions.enumerated()), id: \.offset) { _, suggestion in
                                 HStack(alignment: .top, spacing: 8) {
                                     Image(systemName: "lightbulb.fill")
                                         .foregroundColor(.yellow)
@@ -513,7 +516,7 @@ struct BacktrackingView: View {
                             Text("Suggestions")
                                 .font(.headline)
 
-                            ForEach(Array(analysis.suggestions.enumerated()), id: \.offset) { index, suggestion in
+                            ForEach(Array(analysis.suggestions.enumerated()), id: \.offset) { _, suggestion in
                                 HStack(alignment: .top, spacing: 8) {
                                     Image(systemName: "arrow.right.circle.fill")
                                         .foregroundColor(.blue)
@@ -551,5 +554,3 @@ struct BacktrackingView: View {
     RegexTesterView()
         .frame(width: 1200, height: 800)
 }
-
-

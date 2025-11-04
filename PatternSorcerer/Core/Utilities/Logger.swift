@@ -4,7 +4,7 @@
 //
 //  Centralized logging utility using NSLog
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
 import Foundation
@@ -14,11 +14,11 @@ import os.log
 enum Logger {
     private static let subsystem = Bundle.main.bundleIdentifier ?? "com.patternsorcerer"
     private static let category = "PatternSorcerer"
-    
+
     private static let log = OSLog(subsystem: subsystem, category: category)
-    
+
     // MARK: - Log Levels
-    
+
     /// Log debug information
     static func debug(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
         let fileName = (file as NSString).lastPathComponent
@@ -26,7 +26,7 @@ enum Logger {
         NSLog("%@", logMessage)
         os_log("%{public}@", log: log, type: .debug, logMessage)
     }
-    
+
     /// Log informational messages
     static func info(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
         let fileName = (file as NSString).lastPathComponent
@@ -34,7 +34,7 @@ enum Logger {
         NSLog("%@", logMessage)
         os_log("%{public}@", log: log, type: .info, logMessage)
     }
-    
+
     /// Log warning messages
     static func warning(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
         let fileName = (file as NSString).lastPathComponent
@@ -42,7 +42,7 @@ enum Logger {
         NSLog("%@", logMessage)
         os_log("%{public}@", log: log, type: .default, logMessage)
     }
-    
+
     /// Log error messages
     static func error(_ message: String, error: Error? = nil, file: String = #file, function: String = #function, line: Int = #line) {
         let fileName = (file as NSString).lastPathComponent
@@ -54,4 +54,3 @@ enum Logger {
         os_log("%{public}@", log: log, type: .error, logMessage)
     }
 }
-

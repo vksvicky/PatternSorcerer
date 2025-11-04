@@ -4,7 +4,7 @@
 //
 //  Theme model for app appearance
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
 import Foundation
@@ -90,4 +90,3 @@ class ThemeManager: ObservableObject {
         accentColor = theme.accentColor
     }
 }
-

@@ -2,7 +2,7 @@
 //  RegexEngine.swift
 //  PatternSorcerer
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
 import Foundation
@@ -100,5 +100,3 @@ class RegexEngine: RegexEngineProtocol {
         }
     }
 }
-
-

@@ -4,11 +4,11 @@
 //
 //  TDD Tests for Pattern Complexity Analyzer
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
-import XCTest
 @testable import PatternSorcerer
+import XCTest
 
 final class PatternComplexityAnalyzerTests: XCTestCase {
     var sut: PatternComplexityAnalyzer!
@@ -47,8 +47,10 @@ final class PatternComplexityAnalyzerTests: XCTestCase {
         // Then - Adjusted expectations based on actual calculation
         // This pattern has: length ~50, 4 lookaheads, multiple groups, character classes
         XCTAssertGreaterThan(score.score, 50, "Complex pattern should have high complexity (score: \(score.score))")
-        XCTAssertTrue(score.level == .complex || score.level == .veryComplex || score.level == .moderate,
-                     "Complexity level should be moderate or higher (got: \(score.level))")
+        XCTAssertTrue(
+            score.level == .complex || score.level == .veryComplex || score.level == .moderate,
+            "Complexity level should be moderate or higher (got: \(score.level))"
+        )
     }
 
     func testCalculateComplexity_WithLookaround_DetectsLookaroundFactor() {
@@ -141,4 +143,3 @@ final class PatternComplexityAnalyzerTests: XCTestCase {
         XCTAssertTrue(suggestions.contains(.breakIntoMultiplePatterns), "Should suggest breaking into multiple patterns")
     }
 }
-

@@ -4,9 +4,11 @@
 //
 //  Unit tests for BacktrackingVisualizer
 //
+//  Created on 2025-11-04
+//
 
-import XCTest
 @testable import PatternSorcerer
+import XCTest
 
 final class BacktrackingVisualizerTests: XCTestCase {
     var sut: BacktrackingVisualizer!
@@ -32,8 +34,10 @@ final class BacktrackingVisualizerTests: XCTestCase {
         let analysis = sut.analyzeBacktracking(pattern: pattern, text: text)
 
         // Then
-        XCTAssertTrue(analysis.warnings.contains(.catastrophicBacktracking),
-                     "Should detect catastrophic backtracking")
+        XCTAssertTrue(
+            analysis.warnings.contains(.catastrophicBacktracking),
+            "Should detect catastrophic backtracking"
+        )
         XCTAssertEqual(analysis.riskLevel, .high, "Should have high risk level")
     }
 
@@ -46,8 +50,10 @@ final class BacktrackingVisualizerTests: XCTestCase {
         let analysis = sut.analyzeBacktracking(pattern: pattern, text: text)
 
         // Then
-        XCTAssertTrue(analysis.warnings.contains(.catastrophicBacktracking),
-                     "Should detect catastrophic backtracking")
+        XCTAssertTrue(
+            analysis.warnings.contains(.catastrophicBacktracking),
+            "Should detect catastrophic backtracking"
+        )
     }
 
     // MARK: - Nested Quantifier Tests
@@ -61,8 +67,10 @@ final class BacktrackingVisualizerTests: XCTestCase {
         let analysis = sut.analyzeBacktracking(pattern: pattern, text: text)
 
         // Then
-        XCTAssertTrue(analysis.warnings.contains(.nestedQuantifiers),
-                     "Should detect nested quantifiers")
+        XCTAssertTrue(
+            analysis.warnings.contains(.nestedQuantifiers),
+            "Should detect nested quantifiers"
+        )
         XCTAssertEqual(analysis.riskLevel, .medium, "Should have medium risk level")
     }
 
@@ -75,8 +83,10 @@ final class BacktrackingVisualizerTests: XCTestCase {
         let analysis = sut.analyzeBacktracking(pattern: pattern, text: text)
 
         // Then
-        XCTAssertTrue(analysis.warnings.contains(.nestedQuantifiers),
-                     "Should detect nested quantifiers")
+        XCTAssertTrue(
+            analysis.warnings.contains(.nestedQuantifiers),
+            "Should detect nested quantifiers"
+        )
     }
 
     // MARK: - Quantified Alternation Tests
@@ -90,8 +100,10 @@ final class BacktrackingVisualizerTests: XCTestCase {
         let analysis = sut.analyzeBacktracking(pattern: pattern, text: text)
 
         // Then
-        XCTAssertTrue(analysis.warnings.contains(.quantifiedAlternation),
-                     "Should detect quantified alternation")
+        XCTAssertTrue(
+            analysis.warnings.contains(.quantifiedAlternation),
+            "Should detect quantified alternation"
+        )
     }
 
     // MARK: - Inefficient Pattern Tests
@@ -105,8 +117,10 @@ final class BacktrackingVisualizerTests: XCTestCase {
         let analysis = sut.analyzeBacktracking(pattern: pattern, text: text)
 
         // Then
-        XCTAssertTrue(analysis.warnings.contains(.inefficientPattern),
-                     "Should detect inefficient pattern")
+        XCTAssertTrue(
+            analysis.warnings.contains(.inefficientPattern),
+            "Should detect inefficient pattern"
+        )
     }
 
     // MARK: - Risk Level Tests
@@ -160,8 +174,10 @@ final class BacktrackingVisualizerTests: XCTestCase {
 
         // Then
         XCTAssertFalse(analysis.suggestions.isEmpty, "Should provide suggestions")
-        XCTAssertTrue(analysis.suggestions.contains { $0.contains("possessive") || $0.contains("atomic") },
-                     "Should suggest possessive quantifiers or atomic groups")
+        XCTAssertTrue(
+            analysis.suggestions.contains { $0.contains("possessive") || $0.contains("atomic") },
+            "Should suggest possessive quantifiers or atomic groups"
+        )
     }
 
     func testAnalyzeBacktracking_NestedQuantifiers_ProvidesSuggestions() {
@@ -176,4 +192,3 @@ final class BacktrackingVisualizerTests: XCTestCase {
         XCTAssertFalse(analysis.suggestions.isEmpty, "Should provide suggestions")
     }
 }
-

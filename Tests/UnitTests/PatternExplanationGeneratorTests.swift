@@ -4,9 +4,11 @@
 //
 //  Unit tests for PatternExplanationGenerator
 //
+//  Created on 2025-11-04
+//
 
-import XCTest
 @testable import PatternSorcerer
+import XCTest
 
 final class PatternExplanationGeneratorTests: XCTestCase {
     var sut: PatternExplanationGenerator!
@@ -210,8 +212,10 @@ final class PatternExplanationGeneratorTests: XCTestCase {
         let explanation = sut.explain(pattern)
 
         // Then
-        XCTAssertTrue(explanation.summary.contains("capture") || explanation.summary.contains("group"),
-                     "Summary should mention capture groups")
+        XCTAssertTrue(
+            explanation.summary.contains("capture") || explanation.summary.contains("group"),
+            "Summary should mention capture groups"
+        )
     }
 
     // MARK: - Complex Pattern Tests
@@ -228,4 +232,3 @@ final class PatternExplanationGeneratorTests: XCTestCase {
         XCTAssertFalse(explanation.summary.isEmpty)
     }
 }
-

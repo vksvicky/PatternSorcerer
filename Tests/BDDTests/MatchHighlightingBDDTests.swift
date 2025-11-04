@@ -4,10 +4,12 @@
 //
 //  BDD-style tests for match highlighting feature
 //
+//  Created on 2025-11-04
+//
 
-import XCTest
-import SwiftUI
 @testable import PatternSorcerer
+import SwiftUI
+import XCTest
 
 @MainActor
 final class MatchHighlightingBDDTests: XCTestCase {
@@ -178,4 +180,3 @@ final class MatchHighlightingBDDTests: XCTestCase {
         XCTAssertNil(sut.highlightedText, "Should not highlight empty text")
     }
 }
-

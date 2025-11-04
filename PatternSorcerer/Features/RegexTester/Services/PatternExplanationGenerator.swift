@@ -4,7 +4,7 @@
 //
 //  Unique feature: Generates human-readable explanations of regex patterns
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
 import Foundation
@@ -19,117 +19,17 @@ class PatternExplanationGenerator {
 
         while currentIndex < pattern.endIndex {
             let char = pattern[currentIndex]
+            let result = processCharacter(char, at: currentIndex, in: pattern)
 
-            switch char {
-            case "^":
-                parts.append(ExplanationPart(
-                    text: "^",
-                    explanation: "start of line anchor"
-                ))
-
-            case "$":
-                parts.append(ExplanationPart(
-                    text: "$",
-                    explanation: "end of line anchor"
-                ))
-
-            case ".":
-                parts.append(ExplanationPart(
-                    text: ".",
-                    explanation: "Matches any character except newline"
-                ))
-
-            case "*":
-                parts.append(ExplanationPart(
-                    text: "*",
-                    explanation: "Matches zero or more of the preceding element"
-                ))
-
-            case "+":
-                parts.append(ExplanationPart(
-                    text: "+",
-                    explanation: "Matches one or more of the preceding element"
-                ))
-
-            case "?":
-                parts.append(ExplanationPart(
-                    text: "?",
-                    explanation: "Matches zero or one of the preceding element"
-                ))
-
-            case "|":
-                parts.append(ExplanationPart(
-                    text: "|",
-                    explanation: "Alternation: matches either the expression before or after"
-                ))
-
-            case "(":
-                if let nextChar = pattern.index(after: currentIndex, limitedBy: pattern.endIndex),
-                   pattern[nextChar] == "?" {
-                    // Lookahead/lookbehind
-                    let lookahead = pattern.dropFirst(pattern.distance(from: pattern.startIndex, to: currentIndex) + 2)
-                    if lookahead.hasPrefix("=") {
-                        parts.append(ExplanationPart(
-                            text: "(?=",
-                            explanation: "Positive lookahead: matches if followed by..."
-                        ))
-                    } else if lookahead.hasPrefix("<=") {
-                        parts.append(ExplanationPart(
-                            text: "(?<=",
-                            explanation: "Positive lookbehind: matches if preceded by..."
-                        ))
-                    }
-                } else {
-                    parts.append(ExplanationPart(
-                        text: "(",
-                        explanation: "Start of capture group"
-                    ))
-                }
-
-            case ")":
-                parts.append(ExplanationPart(
-                    text: ")",
-                    explanation: "End of capture group"
-                ))
-
-            case "[":
-                if let endIndex = pattern.range(of: "]", range: currentIndex..<pattern.endIndex)?.upperBound {
-                    let charClass = String(pattern[currentIndex..<endIndex])
-                    parts.append(ExplanationPart(
-                        text: charClass,
-                        explanation: explainCharacterClass(charClass)
-                    ))
-                    currentIndex = pattern.index(before: endIndex)
-                }
-
-            case "\\":
-                if let nextIndex = pattern.index(after: currentIndex, limitedBy: pattern.endIndex) {
-                    let escaped = pattern[nextIndex]
-                    parts.append(ExplanationPart(
-                        text: "\\\(escaped)",
-                        explanation: explainEscapedCharacter(escaped)
-                    ))
-                    currentIndex = nextIndex
-                }
-
-            case "{":
-                if let endIndex = pattern.range(of: "}", range: currentIndex..<pattern.endIndex)?.upperBound {
-                    let quantifier = String(pattern[currentIndex..<endIndex])
-                    parts.append(ExplanationPart(
-                        text: quantifier,
-                        explanation: explainQuantifier(quantifier)
-                    ))
-                    currentIndex = pattern.index(before: endIndex)
-                }
-
-            default:
-                parts.append(ExplanationPart(
-                    text: String(char),
-                    explanation: "Literal character"
-                ))
+            if let part = result.part {
+                parts.append(part)
             }
 
-            currentIndex = pattern.index(after: currentIndex)
+            if let newIndex = result.nextIndex {
+                currentIndex = newIndex
+            } else {
+                currentIndex = pattern.index(after: currentIndex)
+            }
         }
 
         return PatternExplanation(
@@ -138,6 +38,112 @@ class PatternExplanationGenerator {
             summary: generateSummary(parts)
         )
     }
+
+    // MARK: - Character Processing
+
+    private struct ProcessingResult {
+        let part: ExplanationPart?
+        let nextIndex: String.Index?
+    }
+
+    private func processCharacter(_ char: Character, at index: String.Index, in pattern: String) -> ProcessingResult {
+        switch char {
+        case "^", "$", ".", "*", "+", "?", "|", ")":
+            return processSimpleCharacter(char, at: index)
+        case "(":
+            return processParenthesis(at: index, in: pattern)
+        case "[":
+            return processCharacterClass(at: index, in: pattern)
+        case "\\":
+            return processEscapedCharacter(at: index, in: pattern)
+        case "{":
+            return processQuantifier(at: index, in: pattern)
+        default:
+            return ProcessingResult(
+                part: ExplanationPart(text: String(char), explanation: "Literal character"),
+                nextIndex: nil
+            )
+        }
+    }
+
+    private func processSimpleCharacter(_ char: Character, at index: String.Index) -> ProcessingResult {
+        let explanations: [Character: String] = [
+            "^": "start of line anchor",
+            "$": "end of line anchor",
+            ".": "Matches any character except newline",
+            "*": "Matches zero or more of the preceding element",
+            "+": "Matches one or more of the preceding element",
+            "?": "Matches zero or one of the preceding element",
+            "|": "Alternation: matches either the expression before or after",
+            ")": "End of capture group"
+        ]
+        return ProcessingResult(
+            part: ExplanationPart(text: String(char), explanation: explanations[char] ?? ""),
+            nextIndex: nil
+        )
+    }
+
+    private func processParenthesis(at index: String.Index, in pattern: String) -> ProcessingResult {
+        if let nextChar = pattern.index(after: index, limitedBy: pattern.endIndex),
+           pattern[nextChar] == "?" {
+            // Lookahead/lookbehind
+            let offset = pattern.distance(from: pattern.startIndex, to: index) + 2
+            let lookahead = pattern.dropFirst(offset)
+            if lookahead.hasPrefix("=") {
+                return ProcessingResult(
+                    part: ExplanationPart(text: "(?=", explanation: "Positive lookahead: matches if followed by..."),
+                    nextIndex: nil
+                )
+            } else if lookahead.hasPrefix("<=") {
+                return ProcessingResult(
+                    part: ExplanationPart(text: "(?<=", explanation: "Positive lookbehind: matches if preceded by..."),
+                    nextIndex: nil
+                )
+            }
+        }
+        return ProcessingResult(
+            part: ExplanationPart(text: "(", explanation: "Start of capture group"),
+            nextIndex: nil
+        )
+    }
+
+    private func processCharacterClass(at index: String.Index, in pattern: String) -> ProcessingResult {
+        guard let endIndex = pattern.range(of: "]", range: index..<pattern.endIndex)?.upperBound else {
+            return ProcessingResult(part: nil, nextIndex: nil)
+        }
+        let charClass = String(pattern[index..<endIndex])
+        return ProcessingResult(
+            part: ExplanationPart(text: charClass, explanation: explainCharacterClass(charClass)),
+            nextIndex: pattern.index(before: endIndex)
+        )
+    }
+
+    private func processEscapedCharacter(at index: String.Index, in pattern: String) -> ProcessingResult {
+        guard let nextIndex = pattern.index(after: index, limitedBy: pattern.endIndex) else {
+            return ProcessingResult(part: nil, nextIndex: nil)
+        }
+        let escaped = pattern[nextIndex]
+        return ProcessingResult(
+            part: ExplanationPart(
+                text: "\\\(escaped)",
+                explanation: explainEscapedCharacter(escaped)
+            ),
+            nextIndex: nextIndex
+        )
+    }
+
+    private func processQuantifier(at index: String.Index, in pattern: String) -> ProcessingResult {
+        guard let endIndex = pattern.range(of: "}", range: index..<pattern.endIndex)?.upperBound else {
+            return ProcessingResult(part: nil, nextIndex: nil)
+        }
+        let quantifier = String(pattern[index..<endIndex])
+        return ProcessingResult(
+            part: ExplanationPart(text: quantifier, explanation: explainQuantifier(quantifier)),
+            nextIndex: pattern.index(before: endIndex)
+        )
+    }
+
+    // MARK: - Explanation Helpers
 
     private func explainCharacterClass(_ charClass: String) -> String {
         if charClass == "[0-9]" || charClass == "\\d" {
@@ -224,4 +230,3 @@ extension String {
         return next < limit ? next : nil
     }
 }
-

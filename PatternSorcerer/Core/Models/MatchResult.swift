@@ -2,7 +2,7 @@
 //  MatchResult.swift
 //  PatternSorcerer
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
 import Foundation
@@ -14,7 +14,7 @@ struct MatchResult: Identifiable, Hashable {
     let matchedText: String
     let captureGroups: [CaptureGroup]
     let matchNumber: Int
-    
+
     init(
         id: UUID = UUID(),
         range: NSRange,
@@ -36,7 +36,7 @@ struct CaptureGroup: Identifiable, Hashable {
     let index: Int
     let range: NSRange
     let text: String
-    
+
     init(
         id: UUID = UUID(),
         index: Int,
@@ -49,5 +49,3 @@ struct CaptureGroup: Identifiable, Hashable {
         self.text = text
     }
 }
-
-

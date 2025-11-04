@@ -4,7 +4,7 @@
 //
 //  Helper for localized strings
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
 import Foundation
@@ -216,7 +216,10 @@ enum LocalizedString {
     }
 
     static var backtrackingEnterPatternText: String {
-        NSLocalizedString("backtracking.enter_pattern_text", comment: "Enter pattern and test text to analyze backtracking")
+        NSLocalizedString(
+            "backtracking.enter_pattern_text",
+            comment: "Enter pattern and test text to analyze backtracking"
+        )
     }
 
     // MARK: - Options
@@ -468,4 +471,3 @@ enum LocalizedString {
         NSLocalizedString("theme.\(theme.lowercased())", comment: "Theme name")
     }
 }
-

@@ -4,7 +4,7 @@
 //
 //  Settings view with theme customization
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
 import SwiftUI
@@ -92,7 +92,7 @@ struct AppearanceSettingsView: View {
                     }
                 }
                 .pickerStyle(.radioGroup)
-                .onChange(of: themeManager.currentTheme) { oldTheme, newTheme in
+                .onChange(of: themeManager.currentTheme) { _, newTheme in
                     themeManager.applyTheme(newTheme)
                 }
             }
@@ -193,4 +193,3 @@ struct AdvancedSettingsView: View {
 #Preview {
     SettingsView()
 }
-

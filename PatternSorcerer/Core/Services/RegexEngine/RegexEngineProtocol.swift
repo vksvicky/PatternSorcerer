@@ -4,6 +4,8 @@
 //
 //  Protocol for regex engine to enable mocking in tests
 //
+//  Created on 2025-11-04
+//
 
 import Foundation
 
@@ -26,4 +28,3 @@ protocol RegexEngineProtocol {
     /// Validate pattern syntax
     func validatePattern(_ pattern: String) -> (isValid: Bool, error: String?)
 }
-

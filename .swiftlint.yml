@@ -1,0 +1,282 @@
+# SwiftLint Configuration for PatternSorcerer
+# Based on Clean Code principles and Swift best practices
+
+# MARK: - File and Code Organization
+
+# File length limits (Clean Code: Keep files focused and manageable)
+file_length:
+  warning: 500
+  error: 1000
+  ignore_comment_only_lines: true
+
+# Type body length (Clean Code: Keep types focused)
+type_body_length:
+  warning: 300
+  error: 500
+
+# Function body length (Clean Code: Functions should do one thing)
+function_body_length:
+  warning: 50
+  error: 100
+  ignore_comment_only_lines: true
+
+# Function parameter count (Clean Code: Functions should have few parameters)
+function_parameter_count:
+  warning: 5
+  error: 8
+
+# MARK: - Naming Conventions (Clean Code: Meaningful names)
+
+# Type name should start with uppercase
+type_name:
+  min_length: 3
+  max_length: 60
+
+# Function name should start with lowercase
+function_name:
+  min_length: 3
+  max_length: 60
+
+# Identifier name rules (replaces variable_name)
+identifier_name:
+  min_length: 1
+  max_length: 60
+  excluded:
+    - id
+    - x
+    - y
+    - z
+    - i
+    - j
+    - k
+    - n
+    - m
+    - p
+    - q
+    - go  # Language name
+
+# MARK: - Code Quality & Safety
+
+# Force unwrapping (Clean Code: Avoid force unwrapping)
+force_unwrapping:
+  severity: error
+
+# Force casting (Clean Code: Use safe casting)
+force_cast:
+  severity: error
+
+# Force try (Clean Code: Handle errors properly)
+force_try:
+  severity: error
+
+# Implicitly unwrapped optionals (Clean Code: Prefer explicit optionals)
+implicitly_unwrapped_optional:
+  severity: warning
+
+# MARK: - Complexity (Clean Code: Keep complexity low)
+
+# Cyclomatic complexity (Clean Code: Keep functions simple)
+cyclomatic_complexity:
+  warning: 10
+  error: 20
+  ignores_case_statements: true
+
+# Nesting depth (Clean Code: Avoid deep nesting)
+nesting:
+  type_level: 2
+  function_level: 3
+  warning: 3
+  error: 5
+
+# Statement position (Clean Code: Keep code readable)
+statement_position:
+  severity: warning
+
+# MARK: - Code Style
+
+# Trailing whitespace (Clean Code: Clean code has no trailing whitespace)
+trailing_whitespace:
+  severity: warning
+  ignores_empty_lines: false
+  ignores_comments: false
+
+# Trailing newline (Clean Code: Files should end with newline)
+trailing_newline:
+  severity: warning
+
+# Leading whitespace
+leading_whitespace:
+  severity: warning
+
+# Vertical whitespace (Clean Code: Use whitespace to separate concepts)
+vertical_whitespace:
+  severity: warning
+  max_empty_lines: 2
+
+# MARK: - Code Organization
+
+# MARK comment (Clean Code: Organize code with MARK comments)
+mark:
+  severity: warning
+
+# TODO comments (Clean Code: Track TODOs)
+todo:
+  severity: warning
+
+# MARK: - Best Practices
+
+# Unused code (Clean Code: Remove unused code)
+unused_import:
+  severity: warning
+
+unused_closure_parameter:
+  severity: warning
+
+# Discarded notification center observer
+discarded_notification_center_observer:
+  severity: warning
+
+# Weak delegate (Clean Code: Avoid retain cycles)
+weak_delegate:
+  severity: warning
+
+# Unused optional binding (Clean Code: Use optionals properly)
+unused_optional_binding:
+  severity: warning
+
+# Empty count (Clean Code: Use isEmpty instead of count == 0)
+empty_count:
+  severity: warning
+
+# MARK: - Memory Management
+
+# Retain cycle (Clean Code: Avoid retain cycles)
+weak_self:
+  severity: warning
+
+# MARK: - Error Handling
+
+# Return arrow whitespace (Clean Code: Consistent formatting)
+return_arrow_whitespace:
+  severity: warning
+
+# MARK: - Code Clarity
+
+# Colon spacing (Clean Code: Consistent formatting)
+colon:
+  severity: warning
+  flexible_right_spacing: false
+
+# Comma spacing (Clean Code: Consistent formatting)
+comma:
+  severity: warning
+
+# Operator usage (Clean Code: Use clear operators)
+operator_usage_whitespace:
+  severity: warning
+
+# MARK: - Swift-Specific Best Practices
+
+# Explicit type (Clean Code: Prefer explicit types when unclear)
+explicit_type_interface:
+  severity: warning
+
+# Implicit return (Clean Code: Explicit is better than implicit)
+implicit_return:
+  severity: warning
+
+# Closure spacing (Clean Code: Consistent closure formatting)
+closure_spacing:
+  severity: warning
+
+# Closure end indentation
+closure_end_indentation:
+  severity: warning
+
+# Opening brace (Clean Code: Consistent brace style)
+opening_brace:
+  severity: warning
+
+# Closing brace spacing
+closing_brace:
+  severity: warning
+
+# Empty parentheses trailing closure
+empty_parentheses_with_trailing_closure:
+  severity: warning
+
+# Trailing closure (Clean Code: Prefer trailing closures)
+trailing_closure:
+  severity: warning
+
+# MARK: - Code Smells
+
+# Large tuple (Clean Code: Avoid large tuples)
+large_tuple:
+  warning: 3
+  error: 4
+
+# Long line (Clean Code: Keep lines readable)
+line_length:
+  warning: 120
+  error: 150
+  ignores_urls: true
+  ignores_function_declarations: true
+  ignores_comments: false
+
+# Number separator (Clean Code: Use number separators for readability)
+number_separator:
+  severity: warning
+
+# MARK: - Excluded Files/Directories
+
+excluded:
+  - Pods
+  - .build
+  - DerivedData
+  - PatternSorcerer.xcodeproj
+  - PatternSorcerer.xcworkspace
+  - Carthage
+  - vendor
+
+# MARK: - Opt-in Rules (Best Practices)
+
+opt_in_rules:
+  # Organization
+  - mark
+
+  # Code Quality
+  - empty_count
+  - empty_string
+  - first_where
+  - last_where
+  - sorted_first_last
+  - sorted_imports
+  - unneeded_parentheses_in_closure_argument
+  - vertical_parameter_alignment_on_call
+
+  # Performance
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - contains_over_range_nil_comparison
+  - filter_usage
+  - reduce_boolean
+  - reduce_into
+
+  # Safety
+  - discouraged_optional_boolean
+  - discouraged_optional_collection
+  - fatal_error_message
+  - no_space_in_method_call
+  - overridden_super_call
+  - prohibited_super_call
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - single_test_class
+  - unneeded_break_in_switch
+  - vertical_parameter_alignment_on_call
+  - yoda_condition
+
+# MARK: - Reporter
+
+reporter: "xcode"

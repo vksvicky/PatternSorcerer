@@ -2,11 +2,11 @@
 //  RegexTesterViewModel.swift
 //  PatternSorcerer
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
-import Foundation
 import Combine
+import Foundation
 
 @MainActor
 class RegexTesterViewModel: ObservableObject {
@@ -16,7 +16,7 @@ class RegexTesterViewModel: ObservableObject {
     @Published var matches: [MatchResult] = []
     @Published var validationError: String?
     @Published var isPatternValid: Bool = true
-    @Published var regexOptions: RegexOptions = RegexOptions()
+    @Published var regexOptions = RegexOptions()
 
     // MARK: - Unique Features
     @Published var complexityScore: ComplexityScore?
@@ -53,7 +53,7 @@ class RegexTesterViewModel: ObservableObject {
         // Test pattern when pattern or test text changes
         Publishers.CombineLatest($pattern, $testText)
             .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
-            .sink { [weak self] pattern, text in
+            .sink { [weak self] _, _ in
                 self?.testPattern()
                 // Update backtracking analysis when test text changes
                 if let self = self, !pattern.isEmpty && self.isPatternValid {
@@ -235,5 +235,3 @@ struct RegexOptions {
         return options
     }
 }
-
-

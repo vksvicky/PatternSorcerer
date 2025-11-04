@@ -4,10 +4,12 @@
 //
 //  Unit tests for MatchHighlighter service
 //
+//  Created on 2025-11-04
+//
 
-import XCTest
-import SwiftUI
 @testable import PatternSorcerer
+import SwiftUI
+import XCTest
 
 final class MatchHighlighterTests: XCTestCase {
     var sut: MatchHighlighter!
@@ -215,4 +217,3 @@ final class MatchHighlighterTests: XCTestCase {
         XCTAssertEqual(result.highlights[1].range.location, 12)
     }
 }
-

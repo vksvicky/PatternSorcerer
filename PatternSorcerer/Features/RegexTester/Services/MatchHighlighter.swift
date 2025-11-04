@@ -4,6 +4,8 @@
 //
 //  Service for highlighting matches and capture groups in text
 //
+//  Created on 2025-11-04
+//
 
 import Foundation
 import SwiftUI
@@ -100,4 +102,3 @@ class MatchHighlighter {
         return colors[(groupIndex - 1) % colors.count].opacity(0.6)
     }
 }
-

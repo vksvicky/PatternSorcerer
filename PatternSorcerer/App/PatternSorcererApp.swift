@@ -2,11 +2,12 @@
 //  PatternSorcererApp.swift
 //  PatternSorcerer
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
-import SwiftUI
+import Foundation
 import SwiftData
+import SwiftUI
 
 @main
 struct PatternSorcererApp: App {
@@ -132,5 +133,3 @@ struct PatternSorcererCommands: Commands {
         }
     }
 }
-
-

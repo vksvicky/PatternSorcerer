@@ -4,11 +4,11 @@
 //
 //  Text editor with line numbers
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
-import SwiftUI
 import AppKit
+import SwiftUI
 
 struct LineNumberTextView: NSViewRepresentable {
     @Binding var text: String
@@ -68,7 +68,9 @@ struct LineNumberTextView: NSViewRepresentable {
     private func setupLineNumberView(for scrollView: NSScrollView) {
         // Create line number view with scrollView for proper orientation
         // NSRulerView.Orientation uses raw values: 0 = vertical, 1 = horizontal
-        let orientation = NSRulerView.Orientation(rawValue: 0)!
+        guard let orientation = NSRulerView.Orientation(rawValue: 0) else {
+            return // Should never happen, but safe to guard
+        }
         let lineNumberView = LineNumberRulerView(scrollView: scrollView, orientation: orientation)
         lineNumberView.font = NSFont.monospacedSystemFont(ofSize: fontSize, weight: .regular)
         lineNumberView.backgroundColor = NSColor.controlBackgroundColor
@@ -114,7 +116,7 @@ struct LineNumberTextView: NSViewRepresentable {
 // MARK: - Line Number Ruler View
 
 class LineNumberRulerView: NSRulerView {
-    var font: NSFont = NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
+    var font = NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
     var textColor: NSColor = .secondaryLabelColor
     var backgroundColor: NSColor = .controlBackgroundColor
 
@@ -213,4 +215,3 @@ extension NSString {
         return lineNumber
     }
 }
-

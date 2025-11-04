@@ -4,6 +4,8 @@
 //
 //  Mock implementation of RegexEngineProtocol for testing
 //
+//  Created on 2025-11-04
+//
 
 import Foundation
 @testable import PatternSorcerer
@@ -39,4 +41,3 @@ class MockRegexEngine: RegexEngineProtocol {
         return validationResult
     }
 }
-

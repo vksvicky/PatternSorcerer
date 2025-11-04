@@ -4,9 +4,11 @@
 //
 //  SwiftUI view for displaying text with regex match highlights
 //
+//  Created on 2025-11-04
+//
 
-import SwiftUI
 import AppKit
+import SwiftUI
 
 /// View that displays text with highlighted matches and capture groups
 struct HighlightedTextView: NSViewRepresentable {
@@ -60,7 +62,7 @@ struct HighlightedTextView: NSViewRepresentable {
     }
 
     private func applyHighlighting(to textView: NSTextView, highlightedText: HighlightedText) {
-        let textStorage = textView.textStorage!
+        guard let textStorage = textView.textStorage else { return }
         let fullRange = NSRange(location: 0, length: textStorage.length)
 
         // Remove existing highlighting
@@ -81,7 +83,7 @@ struct HighlightedTextView: NSViewRepresentable {
     }
 
     private func clearHighlighting(in textView: NSTextView) {
-        let textStorage = textView.textStorage!
+        guard let textStorage = textView.textStorage else { return }
         let fullRange = NSRange(location: 0, length: textStorage.length)
         textStorage.removeAttribute(.backgroundColor, range: fullRange)
     }
@@ -149,7 +151,12 @@ extension NSColor {
             nsColor = .systemBlue
         }
 
-        self.init(cgColor: nsColor.cgColor)!
+        // Initialize NSColor with the determined color's components
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        nsColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 }
-

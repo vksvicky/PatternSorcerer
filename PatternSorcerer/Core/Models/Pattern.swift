@@ -2,7 +2,7 @@
 //  Pattern.swift
 //  PatternSorcerer
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
 import Foundation
@@ -20,7 +20,7 @@ final class Pattern {
     var createdAt: Date
     var updatedAt: Date
     var testCases: [TestCase]
-    
+
     init(
         id: UUID = UUID(),
         name: String,
@@ -65,7 +65,7 @@ final class TestCase {
     var expectedMatches: Int
     var shouldMatch: Bool
     var createdAt: Date
-    
+
     init(
         id: UUID = UUID(),
         name: String,
@@ -82,5 +82,3 @@ final class TestCase {
         self.createdAt = createdAt
     }
 }
-
-

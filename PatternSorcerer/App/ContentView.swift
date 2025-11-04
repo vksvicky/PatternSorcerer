@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  PatternSorcerer
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
 import SwiftUI
@@ -102,13 +102,7 @@ struct PatternLibraryView: View {
     }
 }
 
-struct CodeExportView: View {
-    var body: some View {
-        Text(LocalizedString.placeholderCodeExport)
-            .font(.largeTitle)
-            .foregroundColor(.secondary)
-    }
-}
+// CodeExportView is now in PatternSorcerer/Features/CodeExport/Views/CodeExportView.swift
 
 struct TutorialView: View {
     var body: some View {
@@ -130,4 +124,3 @@ struct PerformanceView: View {
     ContentView()
         .environmentObject(AppState())
 }
-

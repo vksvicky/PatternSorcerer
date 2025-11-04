@@ -2,7 +2,7 @@
 //  CodeLanguage.swift
 //  PatternSorcerer
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
 import Foundation
@@ -18,9 +18,9 @@ enum CodeLanguage: String, CaseIterable, Identifiable {
     case csharp = "C#"
     case ruby = "Ruby"
     case php = "PHP"
-    
+
     var id: String { rawValue }
-    
+
     var fileExtension: String {
         switch self {
         case .swift: return "swift"
@@ -34,7 +34,7 @@ enum CodeLanguage: String, CaseIterable, Identifiable {
         case .php: return "php"
         }
     }
-    
+
     var commentPrefix: String {
         switch self {
         case .swift, .javascript, .java, .csharp, .go, .rust: return "//"
@@ -43,5 +43,3 @@ enum CodeLanguage: String, CaseIterable, Identifiable {
         }
     }
 }
-
-

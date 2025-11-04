@@ -2,12 +2,12 @@
 //  RegexTesterViewModelTests.swift
 //  PatternSorcererTests
 //
-//  Created on $(date)
+//  Created on 2025-11-04
 //
 
-import XCTest
 import Combine
 @testable import PatternSorcerer
+import XCTest
 
 @MainActor
 final class RegexTesterViewModelTests: XCTestCase {
@@ -120,4 +120,3 @@ final class RegexTesterViewModelTests: XCTestCase {
 }
 
 // Note: MockRegexEngine is now in Tests/Mocks/MockRegexEngine.swift
-
