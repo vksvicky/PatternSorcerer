@@ -9,14 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var appState: AppState
+    @State private var columnVisibility = NavigationSplitViewVisibility.automatic
 
     var body: some View {
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: $columnVisibility) {
             SidebarView()
         } detail: {
             MainContentView()
         }
         .frame(minWidth: 1000, minHeight: 600)
+        .onChange(of: appState.isSidebarVisible) { _, isVisible in
+            columnVisibility = isVisible ? .automatic : .detailOnly
+        }
+        .onAppear {
+            columnVisibility = appState.isSidebarVisible ? .automatic : .detailOnly
+        }
     }
 }
 

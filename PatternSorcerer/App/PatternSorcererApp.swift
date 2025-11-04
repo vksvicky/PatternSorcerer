@@ -27,8 +27,7 @@ struct PatternSorcererApp: App {
             // Replace new document with new pattern
             CommandGroup(replacing: .newItem) {
                 Button(LocalizedString.menuNewPattern) {
-                    // TODO: Implement new pattern action
-                    // For now, this is a placeholder
+                    appState.createNewPattern()
                 }
                 .keyboardShortcut("n", modifiers: .command)
             }
@@ -42,13 +41,12 @@ struct PatternSorcererApp: App {
             }
 
             // Pattern menu
-            PatternSorcererCommands()
+            PatternSorcererCommands(appState: appState)
 
             // View menu
             CommandGroup(after: .toolbar) {
                 Button(LocalizedString.menuToggleSidebar) {
-                    // TODO: Implement sidebar toggle action
-                    // For now, this is a placeholder
+                    appState.toggleSidebar()
                 }
                 .keyboardShortcut("s", modifiers: [.command, .control])
             }
@@ -71,7 +69,7 @@ struct PatternSorcererApp: App {
                 Divider()
 
                 Button(LocalizedString.menuLearnRegex) {
-                    // TODO: Open tutorials
+                    appState.navigateToTutorials()
                 }
 
                 Divider()
@@ -94,6 +92,7 @@ struct PatternSorcererApp: App {
 class AppState: ObservableObject {
     @Published var currentPattern: Pattern?
     @Published var selectedFeature: Feature = .regexTester
+    @Published var isSidebarVisible: Bool = true
 
     enum Feature {
         case regexTester
@@ -103,31 +102,65 @@ class AppState: ObservableObject {
         case tutorials
         case performance
     }
+
+    // MARK: - Navigation Methods
+
+    func navigateToTutorials() {
+        selectedFeature = .tutorials
+    }
+
+    func navigateToRegexTester() {
+        selectedFeature = .regexTester
+    }
+
+    func navigateToCodeExport() {
+        selectedFeature = .codeExport
+    }
+
+    func navigateToPatternLibrary() {
+        selectedFeature = .patternLibrary
+    }
+
+    func createNewPattern() {
+        // Create a new empty pattern and navigate to regex tester
+        currentPattern = Pattern(name: "", pattern: "", patternDescription: "")
+        selectedFeature = .regexTester
+    }
+
+    func toggleSidebar() {
+        isSidebarVisible.toggle()
+    }
 }
 
 // MARK: - Commands
 struct PatternSorcererCommands: Commands {
+    @ObservedObject var appState: AppState
+
+    init(appState: AppState) {
+        self.appState = appState
+    }
+
     var body: some Commands {
         CommandMenu(LocalizedString.menuPattern) {
             Button(LocalizedString.menuNewPattern) {
-                // TODO: Implement new pattern
+                appState.createNewPattern()
             }
             .keyboardShortcut("n", modifiers: .command)
 
             Button(LocalizedString.menuOpenPattern) {
-                // TODO: Implement open library
+                appState.navigateToPatternLibrary()
             }
             .keyboardShortcut("o", modifiers: [.command, .shift])
         }
 
         CommandMenu(LocalizedString.menuTools) {
             Button(LocalizedString.menuTestRegex) {
-                // TODO: Implement test regex
+                appState.navigateToRegexTester()
             }
             .keyboardShortcut("t", modifiers: .command)
 
             Button(LocalizedString.menuExportCode) {
-                // TODO: Implement export code
+                appState.navigateToCodeExport()
             }
             .keyboardShortcut("e", modifiers: [.command, .shift])
         }

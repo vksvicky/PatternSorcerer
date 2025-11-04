@@ -7,10 +7,14 @@
 //  Created on 2025-11-04
 //
 
+import SwiftData
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.modelContext) private var modelContext
     @StateObject private var themeManager = ThemeManager()
+    @State private var viewModel: SettingsViewModel?
+    @State private var showLogViewer = false
     @AppStorage("autoValidatePattern") private var autoValidate = true
     @AppStorage("showLineNumbers") private var showLineNumbers = true
     @AppStorage("fontSize") private var fontSize: Double = 13
@@ -37,12 +41,26 @@ struct SettingsView: View {
                 Label(LocalizedString.settingsEditor, systemImage: "textformat")
             }
 
-            AdvancedSettingsView(enableNotifications: $enableNotifications)
+            if let viewModel = viewModel {
+                AdvancedSettingsView(
+                    enableNotifications: $enableNotifications,
+                    viewModel: viewModel,
+                    showLogViewer: $showLogViewer
+                )
                 .tabItem {
                     Label(LocalizedString.settingsAdvanced, systemImage: "slider.horizontal.3")
                 }
+            }
         }
         .frame(width: 600, height: 400)
+        .onAppear {
+            if viewModel == nil {
+                viewModel = SettingsViewModel(modelContext: modelContext)
+            }
+        }
+        .sheet(isPresented: $showLogViewer) {
+            LogViewerView()
+        }
     }
 }
 
@@ -157,6 +175,8 @@ struct EditorSettingsView: View {
 // MARK: - Advanced Settings
 struct AdvancedSettingsView: View {
     @Binding var enableNotifications: Bool
+    @ObservedObject var viewModel: SettingsViewModel
+    @Binding var showLogViewer: Bool
 
     var body: some View {
         Form {
@@ -167,23 +187,41 @@ struct AdvancedSettingsView: View {
 
             Section(LocalizedString.settingsData) {
                 Button(LocalizedString.settingsExportPatterns) {
-                    // TODO: Implement export
+                    viewModel.exportPatterns()
                 }
 
                 Button(LocalizedString.settingsImportPatterns) {
-                    // TODO: Implement import
+                    viewModel.importPatterns()
                 }
 
                 Button(LocalizedString.settingsClearCache) {
-                    // TODO: Implement clear cache
+                    viewModel.clearCache()
                 }
             }
 
             Section(LocalizedString.settingsDebug) {
                 Toggle(LocalizedString.settingsEnableLogging, isOn: .constant(false))
                 Button(LocalizedString.settingsShowLogs) {
-                    // TODO: Show log viewer
+                    showLogViewer = true
                 }
+            }
+
+            if let error = viewModel.exportError {
+                Text("Export error: \(error.localizedDescription)")
+                    .foregroundColor(.red)
+                    .font(.caption)
+            }
+
+            if let error = viewModel.importError {
+                Text("Import error: \(error.localizedDescription)")
+                    .foregroundColor(.red)
+                    .font(.caption)
+            }
+
+            if let error = viewModel.clearCacheError {
+                Text("Clear cache error: \(error.localizedDescription)")
+                    .foregroundColor(.red)
+                    .font(.caption)
             }
         }
         .padding()

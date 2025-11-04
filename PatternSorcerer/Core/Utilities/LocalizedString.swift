@@ -10,8 +10,10 @@
 import Foundation
 
 /// Helper for accessing localized strings
-enum LocalizedString {
+enum LocalizedString {}
 
+// MARK: - App & Menu
+extension LocalizedString {
     // MARK: - App
     static var appName: String {
         NSLocalizedString("app.name", comment: "App name")
@@ -97,7 +99,10 @@ enum LocalizedString {
     static var menuAbout: String {
         NSLocalizedString("menu.about", comment: "About PatternSorcerer")
     }
+}
 
+// MARK: - Regex Tester & Tabs
+extension LocalizedString {
     // MARK: - Regex Tester
     static var regexTesterTitle: String {
         NSLocalizedString("regex_tester.title", comment: "Regex Tester")
@@ -171,7 +176,10 @@ enum LocalizedString {
     static var tabsBacktracking: String {
         NSLocalizedString("tabs.backtracking", comment: "Backtracking")
     }
+}
 
+// MARK: - Explanation, Complexity, Backtracking, Options
+extension LocalizedString {
     // MARK: - Explanation
     static var explanationSummary: String {
         NSLocalizedString("explanation.summary", comment: "Summary")
@@ -242,7 +250,10 @@ enum LocalizedString {
     static var optionsDotMatchesLines: String {
         NSLocalizedString("options.dot_matches_lines", comment: "Dot Matches Line Separators")
     }
+}
 
+// MARK: - Settings General & Appearance
+extension LocalizedString {
     // MARK: - Settings
     static var settingsTitle: String {
         NSLocalizedString("settings.title", comment: "Settings")
@@ -319,7 +330,10 @@ enum LocalizedString {
     static var settingsThisIsHow: String {
         NSLocalizedString("settings.this_is_how", comment: "This is how your app will look")
     }
+}
 
+// MARK: - Settings Editor & Advanced
+extension LocalizedString {
     static var settingsValidation: String {
         NSLocalizedString("settings.validation", comment: "Validation")
     }
@@ -403,7 +417,10 @@ enum LocalizedString {
     static var settingsShowLogs: String {
         NSLocalizedString("settings.show_logs", comment: "Show Logs")
     }
+}
 
+// MARK: - Sidebar, Placeholders, Themes, Logs, Common
+extension LocalizedString {
     // MARK: - Sidebar
     static var sidebarTitle: String {
         NSLocalizedString("sidebar.title", comment: "PatternSorcerer")
@@ -469,5 +486,19 @@ enum LocalizedString {
     // MARK: - Themes
     static func themeName(_ theme: String) -> String {
         NSLocalizedString("theme.\(theme.lowercased())", comment: "Theme name")
+    }
+
+    // MARK: - Logs
+    static var logsEmpty: String {
+        NSLocalizedString("logs.empty", comment: "No logs available")
+    }
+
+    static var logsClear: String {
+        NSLocalizedString("logs.clear", comment: "Clear")
+    }
+
+    // MARK: - Common
+    static var commonClose: String {
+        NSLocalizedString("common.close", comment: "Close")
     }
 }
