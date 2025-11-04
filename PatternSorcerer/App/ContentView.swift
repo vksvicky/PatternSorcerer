@@ -113,13 +113,7 @@ struct PatternBuilderView: View {
     }
 }
 
-struct PatternLibraryView: View {
-    var body: some View {
-        Text(LocalizedString.placeholderPatternLibrary)
-            .font(.largeTitle)
-            .foregroundColor(.secondary)
-    }
-}
+// PatternLibraryView is now in PatternSorcerer/Features/PatternLibrary/Views/PatternLibraryView.swift
 
 // CodeExportView is now in PatternSorcerer/Features/CodeExport/Views/CodeExportView.swift
 

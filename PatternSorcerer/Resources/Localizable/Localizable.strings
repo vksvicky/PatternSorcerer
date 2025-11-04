@@ -234,3 +234,35 @@
 "extract_tool.output" = "Output";
 "extract_tool.no_output" = "No output - perform extract to see results";
 
+// MARK: - Pattern Library
+"pattern_library.title" = "Pattern Library";
+"pattern_library.search" = "Search patterns...";
+"pattern_library.filter_by_category" = "Filter by Category";
+"pattern_library.all_categories" = "All Categories";
+"pattern_library.select_pattern" = "Select a pattern to view details";
+"pattern_library.no_patterns" = "No patterns found";
+"pattern_library.copy_pattern" = "Copy Pattern";
+"pattern_library.use_pattern" = "Use Pattern";
+"pattern_library.description" = "Description";
+"pattern_library.category" = "Category";
+"pattern_library.tags" = "Tags";
+"pattern_library.character_class_reference" = "Character Class Reference";
+"pattern_library.quantifier_cheat_sheet" = "Quantifier Cheat Sheet";
+"pattern_library.common_patterns" = "Common Patterns";
+"pattern_library.reference_guides" = "Reference Guides";
+
+// MARK: - Regex Flavor
+"regex_flavor.title" = "Regex Flavor";
+"regex_flavor.select" = "Select Flavor";
+"regex_flavor.ecmascript" = "ECMAScript";
+"regex_flavor.pcre" = "PCRE";
+"regex_flavor.python" = "Python";
+"regex_flavor.dotnet" = ".NET";
+"regex_flavor.java" = "Java";
+"regex_flavor.info" = "Flavor Information";
+"regex_flavor.features" = "Supported Features";
+"regex_flavor.use_cases" = "Common Use Cases";
+"regex_flavor.limitations" = "Limitations";
+"regex_flavor.differences" = "Flavor Differences";
+"regex_flavor.compare" = "Compare Flavors";
+

@@ -117,7 +117,7 @@ class TestSuiteManagerViewModel: ObservableObject {
         }
 
         do {
-            let data = try testSuiteService.exportTestCases(testCases)
+            _ = try testSuiteService.exportTestCases(testCases)
             // In a real implementation, this would show a save panel
             Logger.info("Exported \(testCases.count) test cases")
             error = nil

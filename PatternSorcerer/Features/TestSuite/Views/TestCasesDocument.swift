@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 
 // MARK: - Document Types
 
-struct TestCasesDocument: FileDocument {
+struct TestCasesDocument: FileDocument, @unchecked Sendable {
     static var readableContentTypes: [UTType] { [.json] }
 
     var testCases: [TestCase]

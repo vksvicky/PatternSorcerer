@@ -78,6 +78,8 @@ struct RegexTesterView: View {
 // MARK: - Pattern Input View
 struct PatternInputView: View {
     @ObservedObject var viewModel: RegexTesterViewModel
+    @StateObject private var flavorViewModel = RegexFlavorViewModel()
+    @State private var showFlavorInfo = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -109,13 +111,21 @@ struct PatternInputView: View {
                 }
             }
 
-            TextField(LocalizedString.regexTesterEnterPattern, text: $viewModel.pattern)
-                .font(.system(.body, design: .monospaced))
-                .textFieldStyle(.roundedBorder)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(viewModel.isPatternValid ? Color.clear : Color.red, lineWidth: 1)
-                )
+            VStack(alignment: .leading, spacing: 4) {
+                TextField(LocalizedString.regexTesterEnterPattern, text: $viewModel.pattern)
+                    .font(.system(.body, design: .monospaced))
+                    .textFieldStyle(.roundedBorder)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(viewModel.isPatternValid ? Color.clear : Color.red, lineWidth: 1)
+                    )
+
+                // Syntax highlighting preview
+                if !viewModel.pattern.isEmpty && viewModel.isPatternValid {
+                    SyntaxHighlightedPatternView(pattern: viewModel.pattern)
+                        .frame(height: 20)
+                }
+            }
 
             if let error = viewModel.validationError {
                 Text(error)
@@ -123,10 +133,18 @@ struct PatternInputView: View {
                     .foregroundColor(.red)
             }
 
+            // Regex Flavor Selector
+            RegexFlavorSelectorView(viewModel: flavorViewModel)
+
             // Options
             RegexOptionsView(options: $viewModel.regexOptions)
         }
         .padding()
+        .sheet(isPresented: $showFlavorInfo) {
+            if let info = flavorViewModel.flavorInfo {
+                FlavorInfoSheet(flavorInfo: info, isPresented: $showFlavorInfo)
+            }
+        }
     }
 }
 
