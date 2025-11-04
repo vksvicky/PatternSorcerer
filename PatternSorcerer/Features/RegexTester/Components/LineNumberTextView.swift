@@ -17,7 +17,9 @@ struct LineNumberTextView: NSViewRepresentable {
 
     func makeNSView(context: Context) -> NSScrollView {
         let scrollView = NSTextView.scrollableTextView()
-        let textView = scrollView.documentView as! NSTextView
+        guard let textView = scrollView.documentView as? NSTextView else {
+            fatalError("Failed to get NSTextView from scrollableTextView")
+        }
 
         // Configure text view
         textView.font = NSFont.monospacedSystemFont(ofSize: fontSize, weight: .regular)
@@ -94,7 +96,17 @@ struct LineNumberTextView: NSViewRepresentable {
 
         func textDidChange(_ notification: Notification) {
             guard let textView = notification.object as? NSTextView else { return }
-            text = textView.string
+            let newText = textView.string
+            let currentText = text
+
+            // Only update if text actually changed to avoid unnecessary updates
+            guard newText != currentText else { return }
+
+            // Defer binding update outside the current view update cycle
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.text = newText
+            }
         }
     }
 }
@@ -156,10 +168,10 @@ class LineNumberRulerView: NSRulerView {
 
             let lineNumberString = "\(lineNumber)"
             let stringSize = lineNumberString.size(withAttributes: attributes)
-            let x = ruleThickness - stringSize.width - 5
-            let y = rect.origin.y + (rect.height - stringSize.height) / 2
+            let xPosition = ruleThickness - stringSize.width - 5
+            let yPosition = rect.origin.y + (rect.height - stringSize.height) / 2
 
-            lineNumberString.draw(at: NSPoint(x: x, y: y), withAttributes: attributes)
+            lineNumberString.draw(at: NSPoint(x: xPosition, y: yPosition), withAttributes: attributes)
 
             glyphIndex = NSMaxRange(glyphRange)
             lineNumber += 1

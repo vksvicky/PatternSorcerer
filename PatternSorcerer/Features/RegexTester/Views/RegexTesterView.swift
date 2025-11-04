@@ -342,6 +342,8 @@ struct ExplanationView: View {
 // MARK: - Complexity View
 struct ComplexityView: View {
     @ObservedObject var viewModel: RegexTesterViewModel
+    @State private var suggestions: [OptimizationSuggestion] = []
+    private let complexityAnalyzer = PatternComplexityAnalyzer()
 
     init(viewModel: RegexTesterViewModel) {
         self.viewModel = viewModel
@@ -410,7 +412,6 @@ struct ComplexityView: View {
                     }
 
                     // Optimization Suggestions
-                    let suggestions = complexityAnalyzer.getOptimizationSuggestions(viewModel.pattern)
                     if !suggestions.isEmpty {
                         VStack(alignment: .leading, spacing: 12) {
                             Text("Optimization Suggestions")
@@ -446,9 +447,17 @@ struct ComplexityView: View {
             }
             .padding()
         }
+        .onChange(of: viewModel.pattern) { _, newPattern in
+            // Update suggestions when pattern changes, deferred outside view update
+            DispatchQueue.main.async {
+                suggestions = complexityAnalyzer.getOptimizationSuggestions(newPattern)
+            }
+        }
+        .task {
+            // Load initial suggestions
+            suggestions = complexityAnalyzer.getOptimizationSuggestions(viewModel.pattern)
+        }
     }
-
-    private var complexityAnalyzer = PatternComplexityAnalyzer()
 }
 
 // MARK: - Backtracking View

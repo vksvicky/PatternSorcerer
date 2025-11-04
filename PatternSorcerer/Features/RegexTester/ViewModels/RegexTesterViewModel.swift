@@ -78,10 +78,16 @@ class RegexTesterViewModel: ObservableObject {
 
         let result = regexEngine.validatePattern(patternToValidate)
         isPatternValid = result.isValid
-        validationError = result.error
 
-        // Update unique features if pattern is valid
-        if result.isValid && !patternToValidate.isEmpty {
+        // Format error message for better user experience
+        if let error = result.error {
+            validationError = ErrorFormatter.format(RegexError.invalidPattern(error))
+        } else {
+            validationError = nil
+        }
+
+        // Update unique features when pattern is valid
+        if isPatternValid {
             updateUniqueFeatures(pattern: patternToValidate)
         } else {
             complexityScore = nil
@@ -122,11 +128,20 @@ class RegexTesterViewModel: ObservableObject {
 
     // MARK: - Testing
     func testPattern() {
-        guard !pattern.isEmpty, !testText.isEmpty else {
+        // Validate inputs
+        guard !pattern.isEmpty else {
             matches = []
             highlightedText = nil
-            // Update backtracking analysis even if no test text
-            if !pattern.isEmpty && isPatternValid {
+            validationError = ErrorFormatter.format(RegexError.emptyPattern)
+            return
+        }
+
+        guard !testText.isEmpty else {
+            matches = []
+            highlightedText = nil
+            validationError = ErrorFormatter.format(RegexError.emptyTestText)
+            // Still update unique features even without test text
+            if isPatternValid {
                 updateUniqueFeatures(pattern: pattern)
             }
             return
@@ -135,6 +150,7 @@ class RegexTesterViewModel: ObservableObject {
         guard isPatternValid else {
             matches = []
             highlightedText = nil
+            // Error message already set during validation
             return
         }
 
@@ -142,15 +158,24 @@ class RegexTesterViewModel: ObservableObject {
             let options = regexOptions.toNSRegularExpressionOptions()
             matches = try regexEngine.match(pattern: pattern, in: testText, options: options)
 
+            // Clear any previous errors on successful match
+            validationError = nil
+
             // Update highlighting
             updateHighlighting()
 
             // Update backtracking analysis with test text
             updateUniqueFeatures(pattern: pattern)
         } catch {
-            validationError = error.localizedDescription
+            // Format error for better user experience
+            if let nsError = error as NSError? {
+                validationError = ErrorFormatter.format(RegexError.fromNSError(nsError, pattern: pattern))
+            } else {
+                validationError = ErrorFormatter.format(RegexError.matchError(error.localizedDescription))
+            }
             matches = []
             highlightedText = nil
+            Logger.error("Pattern matching failed: \(error.localizedDescription)")
         }
     }
 

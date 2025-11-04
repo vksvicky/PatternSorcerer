@@ -100,7 +100,16 @@ struct HighlightedTextView: NSViewRepresentable {
 
         @objc func textDidChange(_ notification: Notification) {
             guard let textView = textView else { return }
-            parent.text = textView.string
+            let newText = textView.string
+
+            // Only update if text actually changed to avoid unnecessary updates
+            guard newText != parent.text else { return }
+
+            // Defer binding update outside the current view update cycle
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.parent.text = newText
+            }
         }
     }
 }

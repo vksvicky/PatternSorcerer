@@ -25,7 +25,7 @@ struct PatternSorcererApp: App {
         .commands {
             // Replace new document with new pattern
             CommandGroup(replacing: .newItem) {
-                Button("New Pattern") {
+                Button(LocalizedString.menuNewPattern) {
                     // TODO: Implement new pattern action
                     // For now, this is a placeholder
                 }
@@ -45,7 +45,7 @@ struct PatternSorcererApp: App {
 
             // View menu
             CommandGroup(after: .toolbar) {
-                Button("Toggle Sidebar") {
+                Button(LocalizedString.menuToggleSidebar) {
                     // TODO: Implement sidebar toggle action
                     // For now, this is a placeholder
                 }
@@ -54,7 +54,7 @@ struct PatternSorcererApp: App {
 
             // Window menu
             CommandGroup(after: .windowSize) {
-                Button("Minimize") {
+                Button(LocalizedString.menuMinimize) {
                     NSApp.keyWindow?.miniaturize(nil)
                 }
                 .keyboardShortcut("m", modifiers: .command)
@@ -62,20 +62,20 @@ struct PatternSorcererApp: App {
 
             // Help menu
             CommandGroup(replacing: .help) {
-                Button("PatternSorcerer Help") {
+                Button(LocalizedString.menuHelpPatternSorcerer) {
                     NSApp.sendAction(#selector(NSApplication.showHelp(_:)), to: nil, from: nil)
                 }
                 .keyboardShortcut("?")
 
                 Divider()
 
-                Button("Learn Regex") {
+                Button(LocalizedString.menuLearnRegex) {
                     // TODO: Open tutorials
                 }
 
                 Divider()
 
-                Button("About PatternSorcerer") {
+                Button(LocalizedString.menuAbout) {
                     NSApp.orderFrontStandardAboutPanel(nil)
                 }
             }
@@ -107,25 +107,25 @@ class AppState: ObservableObject {
 // MARK: - Commands
 struct PatternSorcererCommands: Commands {
     var body: some Commands {
-        CommandMenu("Pattern") {
-            Button("New Pattern") {
+        CommandMenu(LocalizedString.menuPattern) {
+            Button(LocalizedString.menuNewPattern) {
                 // TODO: Implement new pattern
             }
             .keyboardShortcut("n", modifiers: .command)
 
-            Button("Open Pattern Library") {
+            Button(LocalizedString.menuOpenPattern) {
                 // TODO: Implement open library
             }
             .keyboardShortcut("o", modifiers: [.command, .shift])
         }
 
-        CommandMenu("Tools") {
-            Button("Test Regex") {
+        CommandMenu(LocalizedString.menuTools) {
+            Button(LocalizedString.menuTestRegex) {
                 // TODO: Implement test regex
             }
             .keyboardShortcut("t", modifiers: .command)
 
-            Button("Export Code") {
+            Button(LocalizedString.menuExportCode) {
                 // TODO: Implement export code
             }
             .keyboardShortcut("e", modifiers: [.command, .shift])

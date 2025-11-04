@@ -26,37 +26,37 @@ struct SidebarView: View {
 
     var body: some View {
         List(selection: $appState.selectedFeature) {
-            Section("Main") {
+            Section(LocalizedString.sidebarMain) {
                 NavigationLink(value: AppState.Feature.regexTester) {
-                    Label("Regex Tester", systemImage: "magnifyingglass")
+                    Label(LocalizedString.sidebarRegexTester, systemImage: "magnifyingglass")
                 }
 
                 NavigationLink(value: AppState.Feature.patternBuilder) {
-                    Label("Pattern Builder", systemImage: "slider.horizontal.3")
+                    Label(LocalizedString.sidebarPatternBuilder, systemImage: "slider.horizontal.3")
                 }
 
                 NavigationLink(value: AppState.Feature.patternLibrary) {
-                    Label("Pattern Library", systemImage: "book")
+                    Label(LocalizedString.sidebarPatternLibrary, systemImage: "book")
                 }
             }
 
-            Section("Tools") {
+            Section(LocalizedString.sidebarTools) {
                 NavigationLink(value: AppState.Feature.codeExport) {
-                    Label("Code Export", systemImage: "doc.text")
+                    Label(LocalizedString.sidebarCodeExport, systemImage: "doc.text")
                 }
 
                 NavigationLink(value: AppState.Feature.performance) {
-                    Label("Performance", systemImage: "speedometer")
+                    Label(LocalizedString.sidebarPerformance, systemImage: "speedometer")
                 }
             }
 
-            Section("Learn") {
+            Section(LocalizedString.sidebarLearn) {
                 NavigationLink(value: AppState.Feature.tutorials) {
-                    Label("Tutorials", systemImage: "graduationcap")
+                    Label(LocalizedString.sidebarTutorials, systemImage: "graduationcap")
                 }
             }
         }
-        .navigationTitle("PatternSorcerer")
+        .navigationTitle(LocalizedString.sidebarTitle)
     }
 }
 
@@ -88,7 +88,7 @@ struct MainContentView: View {
 // MARK: - Placeholder Views
 struct PatternBuilderView: View {
     var body: some View {
-        Text("Pattern Builder")
+        Text(LocalizedString.placeholderPatternBuilder)
             .font(.largeTitle)
             .foregroundColor(.secondary)
     }
@@ -96,7 +96,7 @@ struct PatternBuilderView: View {
 
 struct PatternLibraryView: View {
     var body: some View {
-        Text("Pattern Library")
+        Text(LocalizedString.placeholderPatternLibrary)
             .font(.largeTitle)
             .foregroundColor(.secondary)
     }
@@ -104,7 +104,7 @@ struct PatternLibraryView: View {
 
 struct CodeExportView: View {
     var body: some View {
-        Text("Code Export")
+        Text(LocalizedString.placeholderCodeExport)
             .font(.largeTitle)
             .foregroundColor(.secondary)
     }
@@ -112,7 +112,7 @@ struct CodeExportView: View {
 
 struct TutorialView: View {
     var body: some View {
-        Text("Tutorials")
+        Text(LocalizedString.placeholderTutorials)
             .font(.largeTitle)
             .foregroundColor(.secondary)
     }
@@ -120,7 +120,7 @@ struct TutorialView: View {
 
 struct PerformanceView: View {
     var body: some View {
-        Text("Performance Analytics")
+        Text(LocalizedString.placeholderPerformance)
             .font(.largeTitle)
             .foregroundColor(.secondary)
     }

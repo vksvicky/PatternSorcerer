@@ -20,12 +20,12 @@ struct SettingsView: View {
         TabView {
             GeneralSettingsView(themeManager: themeManager)
                 .tabItem {
-                    Label("General", systemImage: "gearshape")
+                    Label(LocalizedString.settingsGeneral, systemImage: "gearshape")
                 }
 
             AppearanceSettingsView(themeManager: themeManager)
                 .tabItem {
-                    Label("Appearance", systemImage: "paintbrush")
+                    Label(LocalizedString.settingsAppearance, systemImage: "paintbrush")
                 }
 
             EditorSettingsView(
@@ -34,12 +34,12 @@ struct SettingsView: View {
                 fontSize: $fontSize
             )
             .tabItem {
-                Label("Editor", systemImage: "textformat")
+                Label(LocalizedString.settingsEditor, systemImage: "textformat")
             }
 
             AdvancedSettingsView(enableNotifications: $enableNotifications)
                 .tabItem {
-                    Label("Advanced", systemImage: "slider.horizontal.3")
+                    Label(LocalizedString.settingsAdvanced, systemImage: "slider.horizontal.3")
                 }
         }
         .frame(width: 600, height: 400)
@@ -52,21 +52,21 @@ struct GeneralSettingsView: View {
 
     var body: some View {
         Form {
-            Section("Startup") {
-                Toggle("Open last pattern on launch", isOn: .constant(false))
-                Toggle("Check for updates automatically", isOn: .constant(true))
+            Section(LocalizedString.settingsStartup) {
+                Toggle(LocalizedString.settingsOpenLastPattern, isOn: .constant(false))
+                Toggle(LocalizedString.settingsCheckUpdates, isOn: .constant(true))
             }
 
-            Section("Patterns") {
-                Picker("Default Pattern Category", selection: .constant(PatternCategory.general)) {
+            Section(LocalizedString.settingsPatterns) {
+                Picker(LocalizedString.settingsDefaultCategory, selection: .constant(PatternCategory.general)) {
                     ForEach(PatternCategory.allCases, id: \.self) { category in
                         Text(category.rawValue).tag(category)
                     }
                 }
             }
 
-            Section("Notifications") {
-                Toggle("Enable notifications", isOn: .constant(false))
+            Section(LocalizedString.settingsNotifications) {
+                Toggle(LocalizedString.settingsEnableNotifications, isOn: .constant(false))
             }
         }
         .padding()
@@ -79,14 +79,14 @@ struct AppearanceSettingsView: View {
 
     var body: some View {
         Form {
-            Section("Theme") {
-                Picker("App Theme", selection: $themeManager.currentTheme) {
+            Section(LocalizedString.settingsTheme) {
+                Picker(LocalizedString.settingsAppTheme, selection: $themeManager.currentTheme) {
                     ForEach(AppTheme.allCases) { theme in
                         HStack {
                             Circle()
                                 .fill(theme.accentColor)
                                 .frame(width: 16, height: 16)
-                            Text(theme.rawValue)
+                            Text(LocalizedString.themeName(theme.rawValue))
                         }
                         .tag(theme)
                     }
@@ -97,16 +97,16 @@ struct AppearanceSettingsView: View {
                 }
             }
 
-            Section("Colors") {
-                ColorPicker("Accent Color", selection: $themeManager.accentColor)
+            Section(LocalizedString.settingsColors) {
+                ColorPicker(LocalizedString.settingsAccentColor, selection: $themeManager.accentColor)
             }
 
-            Section("Preview") {
+            Section(LocalizedString.settingsPreview) {
                 HStack {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Theme Preview")
+                        Text(LocalizedString.settingsThemePreview)
                             .font(.headline)
-                        Text("This is how your app will look")
+                        Text(LocalizedString.settingsThisIsHow)
                             .foregroundColor(.secondary)
                     }
                     Spacer()
@@ -128,25 +128,25 @@ struct EditorSettingsView: View {
 
     var body: some View {
         Form {
-            Section("Validation") {
-                Toggle("Auto-validate patterns", isOn: $autoValidate)
-                Toggle("Show validation errors inline", isOn: .constant(true))
+            Section(LocalizedString.settingsValidation) {
+                Toggle(LocalizedString.settingsAutoValidate, isOn: $autoValidate)
+                Toggle(LocalizedString.settingsShowErrorsInline, isOn: .constant(true))
             }
 
-            Section("Display") {
-                Toggle("Show line numbers", isOn: $showLineNumbers)
+            Section(LocalizedString.settingsDisplay) {
+                Toggle(LocalizedString.settingsShowLineNumbers, isOn: $showLineNumbers)
 
                 VStack(alignment: .leading) {
-                    Text("Font Size: \(Int(fontSize))")
+                    Text(LocalizedString.settingsFontSize(Int(fontSize)))
                     Slider(value: $fontSize, in: 10...20, step: 1)
                 }
             }
 
-            Section("Behavior") {
-                Picker("Tab Size", selection: .constant(4)) {
-                    Text("2 spaces").tag(2)
-                    Text("4 spaces").tag(4)
-                    Text("Tab").tag(-1)
+            Section(LocalizedString.settingsBehavior) {
+                Picker(LocalizedString.settingsTabSize, selection: .constant(4)) {
+                    Text(LocalizedString.settingsTabSize2).tag(2)
+                    Text(LocalizedString.settingsTabSize4).tag(4)
+                    Text(LocalizedString.settingsTabSizeTab).tag(-1)
                 }
             }
         }
@@ -160,28 +160,28 @@ struct AdvancedSettingsView: View {
 
     var body: some View {
         Form {
-            Section("Performance") {
-                Toggle("Enable performance analytics", isOn: .constant(false))
-                Toggle("Cache compiled patterns", isOn: .constant(true))
+            Section(LocalizedString.settingsPerformance) {
+                Toggle(LocalizedString.settingsEnableAnalytics, isOn: .constant(false))
+                Toggle(LocalizedString.settingsCachePatterns, isOn: .constant(true))
             }
 
-            Section("Data") {
-                Button("Export All Patterns") {
+            Section(LocalizedString.settingsData) {
+                Button(LocalizedString.settingsExportPatterns) {
                     // TODO: Implement export
                 }
 
-                Button("Import Patterns") {
+                Button(LocalizedString.settingsImportPatterns) {
                     // TODO: Implement import
                 }
 
-                Button("Clear Cache") {
+                Button(LocalizedString.settingsClearCache) {
                     // TODO: Implement clear cache
                 }
             }
 
-            Section("Debug") {
-                Toggle("Enable debug logging", isOn: .constant(false))
-                Button("Show Logs") {
+            Section(LocalizedString.settingsDebug) {
+                Toggle(LocalizedString.settingsEnableLogging, isOn: .constant(false))
+                Button(LocalizedString.settingsShowLogs) {
                     // TODO: Show log viewer
                 }
             }
