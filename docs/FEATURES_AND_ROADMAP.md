@@ -11,7 +11,7 @@ See also:
 
 ## Recent Completions ✅
 
-**Last Updated**: November 2025
+**Last Updated**: December 2024
 
 ### Completed Features
 - ✅ **Phase 1: Foundation** - Complete MVP with basic regex testing
@@ -33,6 +33,15 @@ See also:
 - ✅ **Pattern Library** - Browse, search, filter patterns with character class reference and quantifier cheat sheet
 - ✅ **Pattern Syntax Highlighting** - Color-coded syntax highlighting for regex patterns
 - ✅ **Multi-flavor Regex Support** - Support for 5 flavors (ECMAScript, PCRE, Python, .NET, Java) with flavor-specific info and differences
+
+### UI/UX Improvements (December 2024) ✅
+- ✅ **Consistent Layout System** - Resizable sidebar split with proper width constraints
+- ✅ **Standardized Tab Views** - All result tabs (Matches, Explanation, Complexity, Backtracking) use consistent layout structure
+- ✅ **Visual Indicators** - Clear section containers with titles and descriptions for Pattern and Test Text areas
+- ✅ **Empty State Consistency** - Unified empty state view across all tabs
+- ✅ **Minimum Window Dimensions** - Enforced minimum window size (1200x700) to prevent layout collapse
+- ✅ **Sidebar Width Management** - Proper sidebar sizing (300-450px) to prevent text truncation
+- ✅ **Layout Constraints** - Fixed HSplitView constraints to ensure both columns (Pattern/Test Text and Results) are always visible
 
 ### Technical Achievements
 - **Architecture**: MVVM with protocol-oriented design
@@ -242,40 +251,55 @@ See also:
 
 ---
 
-### Phase 3: Visual Features (Weeks 9-12)
+### Phase 3: Visual Features (Weeks 9-12) 🎯 **NEXT**
 **Goal**: Visual pattern builder and advanced visualization
 
-- [ ] **Regex Debugger / Stepper** ⭐ NEW (inspired by regex101, RegexBuddy)
-  - Step-through execution of regex
-  - Show backtracking in real-time
-  - Highlight current position in pattern
-  - Show current match position in text
-  - State transitions visualization
-  - Backtracking path visualization
-- [ ] Visual pattern builder UI
-  - Drag-and-drop interface
-  - Pattern components palette
-  - Visual quantifier selector
-  - Live preview
-- [ ] Regex tree view
-  - Parse pattern into tree structure
-  - Visual tree representation
-  - Interactive navigation
-- [ ] **State Machine Diagram** ⭐ ENHANCED (from awesome-regex analysis)
-  - Generate NFA/DFA state diagrams
-  - Interactive state exploration
-  - Visual state transitions
-  - Export diagrams
-- [ ] Match flow visualization
-  - Animate match finding process
-  - Step-by-step match animation
-- [ ] **Syntax Highlighter** ⭐ ENHANCED
-  - Real-time pattern highlighting
-  - Color-code all components
-  - Highlight capture groups
-  - Visual anchors and quantifiers
+**Status**: Ready to begin - UI foundation is complete
+
+**Priority Order**:
+1. [ ] **Regex Debugger / Stepper** ⭐ HIGH PRIORITY (inspired by regex101, RegexBuddy)
+   - Step-through execution of regex
+   - Show backtracking in real-time
+   - Highlight current position in pattern
+   - Show current match position in text
+   - State transitions visualization
+   - Backtracking path visualization
+   - **Why First**: Most requested feature from awesome-regex analysis, provides immediate value
+2. [ ] **Visual Pattern Builder UI** ⭐ HIGH PRIORITY
+   - Drag-and-drop interface
+   - Pattern components palette
+   - Visual quantifier selector
+   - Live preview
+   - **Why Second**: Makes regex accessible to beginners, major differentiator
+3. [ ] **Regex Tree View** ⭐ MEDIUM PRIORITY
+   - Parse pattern into tree structure
+   - Visual tree representation
+   - Interactive navigation
+   - **Why Third**: Helps understand pattern structure, educational value
+4. [ ] **State Machine Diagram** ⭐ ENHANCED (from awesome-regex analysis)
+   - Generate NFA/DFA state diagrams
+   - Interactive state exploration
+   - Visual state transitions
+   - Export diagrams
+   - **Why Fourth**: Advanced visualization, great for learning
+5. [ ] **Match Flow Visualization** ⭐ MEDIUM PRIORITY
+   - Animate match finding process
+   - Step-by-step match animation
+   - **Why Fifth**: Educational, complements debugger
+6. [ ] **Syntax Highlighter** ⭐ ENHANCED (Partially complete)
+   - Real-time pattern highlighting ✅ (basic implementation exists)
+   - Color-code all components
+   - Highlight capture groups
+   - Visual anchors and quantifiers
+   - **Why Last**: Enhance existing feature
 
 **Deliverable**: Visual tools for pattern building and understanding with debugger
+
+**Estimated Timeline**: 4 weeks
+- Week 1: Regex Debugger/Stepper (core functionality)
+- Week 2: Visual Pattern Builder (basic drag-and-drop)
+- Week 3: Regex Tree View + State Machine Diagram
+- Week 4: Match Flow Visualization + Syntax Highlighter enhancements
 
 ---
 
