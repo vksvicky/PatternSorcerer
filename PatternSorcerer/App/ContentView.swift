@@ -227,68 +227,6 @@ struct PerformanceView: View {
     }
 }
 
-// MARK: - Resizable Sidebar Split (inlined for target membership)
-
-struct ResizableSidebarSplit<Sidebar: View, Content: View>: View {
-    let minSidebarWidth: CGFloat
-    let maxSidebarWidth: CGFloat
-    let initialSidebarWidth: CGFloat
-    let sidebar: () -> Sidebar
-    let content: () -> Content
-
-    @State private var sidebarWidthInternal: CGFloat
-
-    init(
-        minSidebarWidth: CGFloat = 240,
-        maxSidebarWidth: CGFloat = 520,
-        initialSidebarWidth: CGFloat = 300,
-        @ViewBuilder sidebar: @escaping () -> Sidebar,
-        @ViewBuilder content: @escaping () -> Content
-    ) {
-        self.minSidebarWidth = minSidebarWidth
-        self.maxSidebarWidth = maxSidebarWidth
-        self.initialSidebarWidth = initialSidebarWidth
-        self.sidebar = sidebar
-        self.content = content
-        _sidebarWidthInternal = State(initialValue: initialSidebarWidth)
-    }
-
-    var body: some View {
-        HStack(spacing: 0) {
-            sidebar()
-                .frame(width: sidebarWidthInternal)
-                .frame(maxHeight: .infinity)
-
-            divider
-
-            content()
-                .frame(minWidth: 400)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-        .frame(minWidth: minSidebarWidth + 800, maxWidth: .infinity, minHeight: 700, maxHeight: .infinity)
-    }
-
-    private var divider: some View {
-        Rectangle()
-            .fill(Color(nsColor: .separatorColor))
-            .frame(width: 1)
-            .overlay(
-                Rectangle()
-                    .fill(Color.clear)
-                    .frame(width: 8)
-                    .contentShape(Rectangle())
-                    .gesture(dragGesture)
-            )
-    }
-
-    private var dragGesture: some Gesture {
-        DragGesture(minimumDistance: 0)
-            .onChanged { value in
-                let proposed = sidebarWidthInternal + value.translation.width
-                sidebarWidthInternal = max(minSidebarWidth, min(maxSidebarWidth, proposed))
-            }
-    }
-}
 
 #Preview {
     ContentView()

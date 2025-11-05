@@ -74,3 +74,4 @@ struct ResizableSidebarSplit<Sidebar: View, Content: View>: View {
                 sidebarWidthInternal = max(minSidebarWidth, min(maxSidebarWidth, proposed))
             }
     }
+}
