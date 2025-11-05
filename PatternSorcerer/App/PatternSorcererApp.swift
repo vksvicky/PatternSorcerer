@@ -141,6 +141,7 @@ class AppState: ObservableObject {
 
     enum Feature {
         case regexTester
+        case regexDebugger
         case patternBuilder
         case patternLibrary
         case codeExport

@@ -4,7 +4,7 @@
 //
 //  Unit tests for RegexDebuggerService
 //
-//  Created on 2024-12-XX
+//  Created on 2025-12-XX
 //
 
 @testable import PatternSorcerer
@@ -34,10 +34,10 @@ final class RegexDebuggerServiceTests: XCTestCase {
         let text = "hello world"
         mockRegexEngine.matchResult = [
             MatchResult(
-                matchNumber: 1,
-                matchedText: "hello",
                 range: NSRange(location: 0, length: 5),
-                captureGroups: []
+                matchedText: "hello",
+                captureGroups: [],
+                matchNumber: 1
             )
         ]
 
@@ -81,10 +81,10 @@ final class RegexDebuggerServiceTests: XCTestCase {
         let text = "hello world"
         mockRegexEngine.matchResult = [
             MatchResult(
-                matchNumber: 1,
-                matchedText: "hello",
                 range: NSRange(location: 0, length: 5),
-                captureGroups: []
+                matchedText: "hello",
+                captureGroups: [],
+                matchNumber: 1
             )
         ]
         _ = try sut.startDebugging(pattern: pattern, text: text)
@@ -103,10 +103,10 @@ final class RegexDebuggerServiceTests: XCTestCase {
         let text = "hello world"
         mockRegexEngine.matchResult = [
             MatchResult(
-                matchNumber: 1,
-                matchedText: "hello",
                 range: NSRange(location: 0, length: 5),
-                captureGroups: []
+                matchedText: "hello",
+                captureGroups: [],
+                matchNumber: 1
             )
         ]
         _ = try sut.startDebugging(pattern: pattern, text: text)
@@ -124,10 +124,10 @@ final class RegexDebuggerServiceTests: XCTestCase {
         let text = "hello world"
         mockRegexEngine.matchResult = [
             MatchResult(
-                matchNumber: 1,
-                matchedText: "hello",
                 range: NSRange(location: 0, length: 5),
-                captureGroups: []
+                matchedText: "hello",
+                captureGroups: [],
+                matchNumber: 1
             )
         ]
         _ = try sut.startDebugging(pattern: pattern, text: text)
@@ -145,10 +145,10 @@ final class RegexDebuggerServiceTests: XCTestCase {
         let text = "hello world"
         mockRegexEngine.matchResult = [
             MatchResult(
-                matchNumber: 1,
-                matchedText: "hello",
                 range: NSRange(location: 0, length: 5),
-                captureGroups: []
+                matchedText: "hello",
+                captureGroups: [],
+                matchNumber: 1
             )
         ]
         _ = try sut.startDebugging(pattern: pattern, text: text)
@@ -169,10 +169,10 @@ final class RegexDebuggerServiceTests: XCTestCase {
         // Note: This would require actual backtracking detection in implementation
         mockRegexEngine.matchResult = [
             MatchResult(
-                matchNumber: 1,
-                matchedText: "abcx",
                 range: NSRange(location: 0, length: 4),
-                captureGroups: []
+                matchedText: "abcx",
+                captureGroups: [],
+                matchNumber: 1
             )
         ]
         _ = try sut.startDebugging(pattern: pattern, text: text)
@@ -193,10 +193,10 @@ final class RegexDebuggerServiceTests: XCTestCase {
         let text = "hello world"
         mockRegexEngine.matchResult = [
             MatchResult(
-                matchNumber: 1,
-                matchedText: "hello",
                 range: NSRange(location: 0, length: 5),
-                captureGroups: []
+                matchedText: "hello",
+                captureGroups: [],
+                matchNumber: 1
             )
         ]
         _ = try sut.startDebugging(pattern: pattern, text: text)

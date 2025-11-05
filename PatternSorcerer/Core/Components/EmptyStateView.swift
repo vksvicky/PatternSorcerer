@@ -4,7 +4,7 @@
 //
 //  Reusable empty state view component
 //
-//  Created on 2024-12-XX
+//  Created on 2025-12-XX
 //
 
 import SwiftUI

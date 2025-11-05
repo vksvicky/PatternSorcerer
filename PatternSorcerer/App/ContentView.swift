@@ -73,6 +73,13 @@ struct SidebarView: View {
                         appState.selectedFeature = .regexTester
                     }
                     item(
+                        icon: "arrow.stepforward",
+                        text: "Regex Debugger",
+                        isSelected: appState.selectedFeature == .regexDebugger
+                    ) {
+                        appState.selectedFeature = .regexDebugger
+                    }
+                    item(
                         icon: "slider.horizontal.3",
                         text: LocalizedString.sidebarPatternBuilder,
                         isSelected: appState.selectedFeature == .patternBuilder
@@ -178,6 +185,8 @@ struct MainContentView: View {
             switch appState.selectedFeature {
             case .regexTester:
                 RegexTesterView()
+            case .regexDebugger:
+                RegexDebuggerView()
             case .patternBuilder:
                 PatternBuilderView()
             case .patternLibrary:

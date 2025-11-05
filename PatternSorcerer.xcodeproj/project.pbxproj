@@ -65,6 +65,7 @@
 		7FE6D39C8931F8EFD77FF8A2 /* RegexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0576D10DF15DCCD38F16FA5F /* RegexError.swift */; };
 		83BA0D6580F5B3634754D209 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB91A852843BF4C7D202056 /* SettingsViewModel.swift */; };
 		83F2836E78265D9E52592C75 /* PatternLibraryBDDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B32B09E55E6DB9112D21A /* PatternLibraryBDDTests.swift */; };
+		89B803A3A64751F715C66D9B /* RegexDebuggerBDDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C587D79A2F4BC47B01607CB /* RegexDebuggerBDDTests.swift */; };
 		8B7190E8692B2DAF0298F109 /* SplitToolBDDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC570BFE5C03119832813F8 /* SplitToolBDDTests.swift */; };
 		8C34A1FD6A79B95B52BD4A0A /* PatternLibraryServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130C22D9777751FE0664BB8A /* PatternLibraryServiceProtocol.swift */; };
 		8F9C298BF7C2B57DB0506DB0 /* TestCasesDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F917ABAB082C4EB5B660F /* TestCasesDocument.swift */; };
@@ -77,6 +78,7 @@
 		97D2EAF2F12ECA7F4FF62B48 /* CodeExportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D2E15DC68D600F32A64A06 /* CodeExportViewModel.swift */; };
 		99527FA883E6C01A826ECDA8 /* ReplaceOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F0453E59A3BDDDB329BBC3 /* ReplaceOptions.swift */; };
 		9AD91684E091C4F66CC674B5 /* PatternExplanationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580BDBDA185F98866DF0A1D /* PatternExplanationGenerator.swift */; };
+		9C4EE5F925A2259C6AF1CC02 /* RegexDebuggerServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AF4CC0A57AE8E791762AEB /* RegexDebuggerServiceTests.swift */; };
 		9D77748C2F93364A48C80C4C /* RegexTesterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E8911BEAE5C90065D37859 /* RegexTesterViewModelTests.swift */; };
 		9E23E9197898FA22F21BBB8E /* MatchHighlighterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B39C16465EA92F0AC1773 /* MatchHighlighterTests.swift */; };
 		A08F10A979BA1D4B89E50310 /* MockPatternLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C850159FCAB2ADAC3088B2FB /* MockPatternLibraryService.swift */; };
@@ -107,10 +109,16 @@
 		E29C7F352EBBF42E00FFA2E1 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C7F312EBBF42E00FFA2E1 /* EmptyStateView.swift */; };
 		E29C7F372EBBF42E00FFA2E1 /* SectionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C7F342EBBF42E00FFA2E1 /* SectionContainer.swift */; };
 		E29C7F382EBBF42E00FFA2E1 /* FixedLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C7F322EBBF42E00FFA2E1 /* FixedLayoutView.swift */; };
+		E29C7F422EBBF8DA00FFA2E1 /* RegexDebuggerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C7F3C2EBBF8DA00FFA2E1 /* RegexDebuggerServiceProtocol.swift */; };
+		E29C7F432EBBF8DA00FFA2E1 /* RegexDebuggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C7F3B2EBBF8DA00FFA2E1 /* RegexDebuggerService.swift */; };
+		E29C7F442EBBF8DA00FFA2E1 /* RegexDebuggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C7F402EBBF8DA00FFA2E1 /* RegexDebuggerView.swift */; };
+		E29C7F452EBBF8DA00FFA2E1 /* RegexDebugStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C7F392EBBF8DA00FFA2E1 /* RegexDebugStep.swift */; };
+		E29C7F462EBBF8DA00FFA2E1 /* RegexDebuggerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29C7F3E2EBBF8DA00FFA2E1 /* RegexDebuggerViewModel.swift */; };
 		E2B7054819D5C20DEFDDA327 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC965B66F6D57DD0BC0CE62B /* SettingsView.swift */; };
 		E2C8871094D6A7754F1F6E73 /* HighlightedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4BB57D7FBBB8D840109AD1 /* HighlightedTextView.swift */; };
 		E3F0B1E74DF8C641AA9157F3 /* TestSuiteServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747D1F6752D6055E6C33B6A3 /* TestSuiteServiceTests.swift */; };
 		EC978465FCB2BF8B1EEC75EE /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962033486CBEF8B72548C684 /* PersistenceController.swift */; };
+		ECA04D1EF33EA9E83CB01743 /* MockRegexDebuggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F698FEA6AD684573420F53 /* MockRegexDebuggerService.swift */; };
 		ED9D38CE92327FD4F48CB6B1 /* AppNavigationBDDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D82F6B28BC5CD02AF69FAE /* AppNavigationBDDTests.swift */; };
 		F29024D9004703A2641A6240 /* MockRegexEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4276794D6FD6D0EC64CDA111 /* MockRegexEngine.swift */; };
 		F7108DAE1A0FAE690A344245 /* MatchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49032A5BD5271DD5EA59AC /* MatchResult.swift */; };
@@ -133,6 +141,7 @@
 		0576D10DF15DCCD38F16FA5F /* RegexError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexError.swift; sourceTree = "<group>"; };
 		0580BDBDA185F98866DF0A1D /* PatternExplanationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternExplanationGenerator.swift; sourceTree = "<group>"; };
 		09937B695715E541B4DD86C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		09AF4CC0A57AE8E791762AEB /* RegexDebuggerServiceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegexDebuggerServiceTests.swift; sourceTree = "<group>"; };
 		0B0DF300225D424E49744C8B /* TestSuiteManagerViewComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSuiteManagerViewComponents.swift; sourceTree = "<group>"; };
 		0C4B9E299034DD7860AD75F5 /* PatternExportImportServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternExportImportServiceTests.swift; sourceTree = "<group>"; };
 		130C22D9777751FE0664BB8A /* PatternLibraryServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternLibraryServiceProtocol.swift; sourceTree = "<group>"; };
@@ -147,6 +156,7 @@
 		31AC382EF67F7AE73340A6D3 /* LineNumberTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineNumberTextView.swift; sourceTree = "<group>"; };
 		32ABCC22EA144F1740C341D2 /* ExtractToolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractToolViewModel.swift; sourceTree = "<group>"; };
 		369DE7013B90375C213CE372 /* ExtractToolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractToolView.swift; sourceTree = "<group>"; };
+		39F698FEA6AD684573420F53 /* MockRegexDebuggerService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockRegexDebuggerService.swift; sourceTree = "<group>"; };
 		3A99C17F0B01A3C1B10D0C2D /* RegexFlavor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFlavor.swift; sourceTree = "<group>"; };
 		3BCA64862ADB0BE0C675F2C9 /* ReplaceToolBDDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceToolBDDTests.swift; sourceTree = "<group>"; };
 		3C1C0E99AB2F1D5BC9934D61 /* PatternExportImportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternExportImportService.swift; sourceTree = "<group>"; };
@@ -166,6 +176,7 @@
 		513A9B710DB2A82CBEDB74A2 /* TestSuiteManagerBDDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSuiteManagerBDDTests.swift; sourceTree = "<group>"; };
 		561D47D0377DFB803A0CBD96 /* ReplaceToolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceToolView.swift; sourceTree = "<group>"; };
 		5872ACBF576B707C9F2C7D03 /* RegexFlavorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFlavorService.swift; sourceTree = "<group>"; };
+		5C587D79A2F4BC47B01607CB /* RegexDebuggerBDDTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegexDebuggerBDDTests.swift; sourceTree = "<group>"; };
 		5D1EFFEA4F6C5B7CEE86E278 /* CodeExportServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeExportServiceTests.swift; sourceTree = "<group>"; };
 		608610C3287513957C6F20E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61D2E15DC68D600F32A64A06 /* CodeExportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeExportViewModel.swift; sourceTree = "<group>"; };
@@ -216,7 +227,7 @@
 		CCB7D51197B6354DFF97228E /* MatchHighlightingBDDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHighlightingBDDTests.swift; sourceTree = "<group>"; };
 		CFEBDBD02487565CDE514BA2 /* RegexFlavorBDDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFlavorBDDTests.swift; sourceTree = "<group>"; };
 		D1A05B21B923ADC9D737818C /* RegexFlavorServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFlavorServiceProtocol.swift; sourceTree = "<group>"; };
-		D64FD732093E416D6CFCF1EF /* ResizableSidebarSplit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResizableSidebarSplit.swift; path = ResizableSidebarSplit.swift; sourceTree = "<group>"; };
+		D64FD732093E416D6CFCF1EF /* ResizableSidebarSplit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResizableSidebarSplit.swift; sourceTree = "<group>"; };
 		D7650F4B2BA087E1FB6CBD20 /* SyntaxHighlightedPatternView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxHighlightedPatternView.swift; sourceTree = "<group>"; };
 		D8A98C511C5F3C33F9FD30FC /* PatternSyntaxHighlighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternSyntaxHighlighter.swift; sourceTree = "<group>"; };
 		D9097A25AB99E749BD5F0C6A /* Pattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pattern.swift; sourceTree = "<group>"; };
@@ -228,6 +239,11 @@
 		E29C7F312EBBF42E00FFA2E1 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		E29C7F322EBBF42E00FFA2E1 /* FixedLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedLayoutView.swift; sourceTree = "<group>"; };
 		E29C7F342EBBF42E00FFA2E1 /* SectionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionContainer.swift; sourceTree = "<group>"; };
+		E29C7F392EBBF8DA00FFA2E1 /* RegexDebugStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexDebugStep.swift; sourceTree = "<group>"; };
+		E29C7F3B2EBBF8DA00FFA2E1 /* RegexDebuggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexDebuggerService.swift; sourceTree = "<group>"; };
+		E29C7F3C2EBBF8DA00FFA2E1 /* RegexDebuggerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexDebuggerServiceProtocol.swift; sourceTree = "<group>"; };
+		E29C7F3E2EBBF8DA00FFA2E1 /* RegexDebuggerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexDebuggerViewModel.swift; sourceTree = "<group>"; };
+		E29C7F402EBBF8DA00FFA2E1 /* RegexDebuggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexDebuggerView.swift; sourceTree = "<group>"; };
 		E51B066D002285E55DB607D4 /* PatternSorcererApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternSorcererApp.swift; sourceTree = "<group>"; };
 		E76490203E1E01B3189296B0 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		EF4997FBA75BA2BEF19DF3A5 /* TestCaseDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCaseDetailsView.swift; sourceTree = "<group>"; };
@@ -269,6 +285,7 @@
 				4276794D6FD6D0EC64CDA111 /* MockRegexEngine.swift */,
 				430A12843C787DF5E4608AB2 /* MockRegexFlavorService.swift */,
 				9EDBAAE58B3E071A1CC45C73 /* MockTestSuiteService.swift */,
+				39F698FEA6AD684573420F53 /* MockRegexDebuggerService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -352,6 +369,7 @@
 				3BCA64862ADB0BE0C675F2C9 /* ReplaceToolBDDTests.swift */,
 				FDC570BFE5C03119832813F8 /* SplitToolBDDTests.swift */,
 				513A9B710DB2A82CBEDB74A2 /* TestSuiteManagerBDDTests.swift */,
+				5C587D79A2F4BC47B01607CB /* RegexDebuggerBDDTests.swift */,
 			);
 			path = BDDTests;
 			sourceTree = "<group>";
@@ -396,6 +414,7 @@
 				7036E33DAE3736940EC3ADEC /* RegexEngineTests.swift */,
 				92E8911BEAE5C90065D37859 /* RegexTesterViewModelTests.swift */,
 				747D1F6752D6055E6C33B6A3 /* TestSuiteServiceTests.swift */,
+				09AF4CC0A57AE8E791762AEB /* RegexDebuggerServiceTests.swift */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -513,6 +532,17 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		6BE4EB80DB893C68192980EC /* RegexDebugger */ = {
+			isa = PBXGroup;
+			children = (
+				E29C7F3A2EBBF8DA00FFA2E1 /* Models */,
+				E29C7F3D2EBBF8DA00FFA2E1 /* Services */,
+				E29C7F3F2EBBF8DA00FFA2E1 /* ViewModels */,
+				E29C7F412EBBF8DA00FFA2E1 /* Views */,
+			);
+			name = RegexDebugger;
+			sourceTree = "<group>";
+		};
 		807D88B783F06F7D3DCB09F6 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -582,6 +612,7 @@
 				06C4DCDDD0626C9EF9B81349 /* RegexTester */,
 				9D1ADD10BFC3254A760AD10C /* Settings */,
 				CB707381EF7B21FFEB818A65 /* TestSuite */,
+				6BE4EB80DB893C68192980EC /* RegexDebugger */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -641,7 +672,6 @@
 				E29C7F342EBBF42E00FFA2E1 /* SectionContainer.swift */,
 				D64FD732093E416D6CFCF1EF /* ResizableSidebarSplit.swift */,
 			);
-			name = Components;
 			path = Components;
 			sourceTree = "<group>";
 		};
@@ -738,6 +768,39 @@
 				198171E36820977AA9852D36 /* Theme.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E29C7F3A2EBBF8DA00FFA2E1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E29C7F392EBBF8DA00FFA2E1 /* RegexDebugStep.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E29C7F3D2EBBF8DA00FFA2E1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E29C7F3B2EBBF8DA00FFA2E1 /* RegexDebuggerService.swift */,
+				E29C7F3C2EBBF8DA00FFA2E1 /* RegexDebuggerServiceProtocol.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E29C7F3F2EBBF8DA00FFA2E1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E29C7F3E2EBBF8DA00FFA2E1 /* RegexDebuggerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E29C7F412EBBF8DA00FFA2E1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E29C7F402EBBF8DA00FFA2E1 /* RegexDebuggerView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E5EC4DF48B8E07A9615100B8 /* Services */ = {
@@ -907,6 +970,9 @@
 				8B7190E8692B2DAF0298F109 /* SplitToolBDDTests.swift in Sources */,
 				68F38B759F7AD6D2F2F71884 /* TestSuiteManagerBDDTests.swift in Sources */,
 				E3F0B1E74DF8C641AA9157F3 /* TestSuiteServiceTests.swift in Sources */,
+				89B803A3A64751F715C66D9B /* RegexDebuggerBDDTests.swift in Sources */,
+				9C4EE5F925A2259C6AF1CC02 /* RegexDebuggerServiceTests.swift in Sources */,
+				ECA04D1EF33EA9E83CB01743 /* MockRegexDebuggerService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,6 +1009,11 @@
 				7165E8D2D992E8FDDF4A2C5D /* PatternExportImportServiceProtocol.swift in Sources */,
 				77853C8D1B9E3332F779839B /* PatternLibraryService.swift in Sources */,
 				8C34A1FD6A79B95B52BD4A0A /* PatternLibraryServiceProtocol.swift in Sources */,
+				E29C7F422EBBF8DA00FFA2E1 /* RegexDebuggerServiceProtocol.swift in Sources */,
+				E29C7F432EBBF8DA00FFA2E1 /* RegexDebuggerService.swift in Sources */,
+				E29C7F442EBBF8DA00FFA2E1 /* RegexDebuggerView.swift in Sources */,
+				E29C7F452EBBF8DA00FFA2E1 /* RegexDebugStep.swift in Sources */,
+				E29C7F462EBBF8DA00FFA2E1 /* RegexDebuggerViewModel.swift in Sources */,
 				03FFABB5412FABE53E8E3CCB /* PatternLibraryView.swift in Sources */,
 				B148C0158AA95E009D2BF149 /* PatternLibraryViewModel.swift in Sources */,
 				7DC085C1F2153580AE256C45 /* PatternSorcererApp.swift in Sources */,
