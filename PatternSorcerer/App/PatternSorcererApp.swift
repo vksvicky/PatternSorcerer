@@ -22,7 +22,9 @@ struct PatternSorcererApp: App {
                 .preferredColorScheme(themeManager.currentTheme.colorScheme)
                 .accentColor(themeManager.accentColor)
                 .modelContainer(PersistenceController.shared.container)
+                .background(WindowMinSizeConfigurator(minWidth: 1200, minHeight: 700))
         }
+        .defaultSize(width: 1200, height: 800)
         .commands {
             // Replace new document with new pattern
             CommandGroup(replacing: .newItem) {
@@ -87,6 +89,49 @@ struct PatternSorcererApp: App {
         #endif
     }
 }
+
+// MARK: - Window Min Size Configurator
+#if os(macOS)
+struct WindowMinSizeConfigurator: NSViewRepresentable {
+    let minWidth: CGFloat
+    let minHeight: CGFloat
+
+    func makeNSView(context: Context) -> NSView {
+        let view = NSView()
+        view.setFrameSize(NSSize(width: 1, height: 1))
+        DispatchQueue.main.async {
+            if let window = view.window {
+                let minSize = NSSize(width: minWidth, height: minHeight)
+                window.minSize = minSize
+                // Also ensure current size is at least the minimum
+                if window.frame.width < minWidth || window.frame.height < minHeight {
+                    var frame = window.frame
+                    frame.size.width = max(frame.size.width, minWidth)
+                    frame.size.height = max(frame.size.height, minHeight)
+                    window.setFrame(frame, display: true)
+                }
+            }
+        }
+        return view
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {
+        DispatchQueue.main.async {
+            if let window = nsView.window {
+                let minSize = NSSize(width: minWidth, height: minHeight)
+                window.minSize = minSize
+                // Also ensure current size is at least the minimum
+                if window.frame.width < minWidth || window.frame.height < minHeight {
+                    var frame = window.frame
+                    frame.size.width = max(frame.size.width, minWidth)
+                    frame.size.height = max(frame.size.height, minHeight)
+                    window.setFrame(frame, display: true)
+                }
+            }
+        }
+    }
+}
+#endif
 
 // MARK: - App State
 class AppState: ObservableObject {

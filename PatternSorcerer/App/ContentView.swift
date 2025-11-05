@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+#if os(macOS)
+import AppKit
+#endif
 
 struct ContentView: View {
     @EnvironmentObject var appState: AppState
@@ -21,7 +24,23 @@ struct ContentView: View {
         } content: {
             MainContentView()
         }
-        .frame(minWidth: 1000, minHeight: 600)
+        .frame(minWidth: 1200, minHeight: 700)
+        .onAppear {
+            #if os(macOS)
+            DispatchQueue.main.async {
+                if let window = NSApplication.shared.keyWindow ?? NSApplication.shared.windows.first {
+                    let minSize = NSSize(width: 1200, height: 700)
+                    window.minSize = minSize
+                    if window.frame.width < minSize.width || window.frame.height < minSize.height {
+                        var frame = window.frame
+                        frame.size.width = max(frame.size.width, minSize.width)
+                        frame.size.height = max(frame.size.height, minSize.height)
+                        window.setFrame(frame, display: true)
+                    }
+                }
+            }
+            #endif
+        }
     }
 }
 
@@ -198,7 +217,7 @@ struct ResizableSidebarSplit<Sidebar: View, Content: View>: View {
                 .frame(minWidth: 400)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(minWidth: minSidebarWidth + 400, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
+        .frame(minWidth: minSidebarWidth + 800, maxWidth: .infinity, minHeight: 700, maxHeight: .infinity)
     }
 
     private var divider: some View {

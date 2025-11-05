@@ -41,8 +41,7 @@ struct RegexTesterView: View {
                     TestTextView(viewModel: viewModel)
                 }
             }
-            .frame(minWidth: 400, idealWidth: 500)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(minWidth: 400, maxWidth: .infinity, maxHeight: .infinity)
 
             // Right side: Results with Tabs
             VStack(spacing: 12) {
@@ -72,8 +71,7 @@ struct RegexTesterView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .frame(minWidth: 400, idealWidth: 500)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(minWidth: 400, maxWidth: .infinity, maxHeight: .infinity)
         }
         .frame(minWidth: 800, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
     }
