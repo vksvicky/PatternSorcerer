@@ -12,18 +12,16 @@ struct ContentView: View {
     @State private var columnVisibility = NavigationSplitViewVisibility.automatic
 
     var body: some View {
-        NavigationSplitView(columnVisibility: $columnVisibility) {
+        ResizableSidebarSplit(
+            minSidebarWidth: 240,
+            maxSidebarWidth: 280,
+            initialSidebarWidth: 240
+        ) {
             SidebarView()
-        } detail: {
+        } content: {
             MainContentView()
         }
         .frame(minWidth: 1000, minHeight: 600)
-        .onChange(of: appState.isSidebarVisible) { _, isVisible in
-            columnVisibility = isVisible ? .automatic : .detailOnly
-        }
-        .onAppear {
-            columnVisibility = appState.isSidebarVisible ? .automatic : .detailOnly
-        }
     }
 }
 
@@ -32,46 +30,75 @@ struct SidebarView: View {
     @EnvironmentObject var appState: AppState
 
     var body: some View {
-        List(selection: $appState.selectedFeature) {
-            Section(LocalizedString.sidebarMain) {
-                NavigationLink(value: AppState.Feature.regexTester) {
-                    Label(LocalizedString.sidebarRegexTester, systemImage: "magnifyingglass")
-                }
-
-                NavigationLink(value: AppState.Feature.patternBuilder) {
-                    Label(LocalizedString.sidebarPatternBuilder, systemImage: "slider.horizontal.3")
-                }
-
-                NavigationLink(value: AppState.Feature.patternLibrary) {
-                    Label(LocalizedString.sidebarPatternLibrary, systemImage: "book")
-                }
+        VStack(alignment: .leading, spacing: 0) {
+            // Header
+            HStack {
+                Text(LocalizedString.sidebarTitle)
+                    .font(.headline)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                Spacer()
             }
+            .background(Color(NSColor.controlBackgroundColor))
 
-            Section(LocalizedString.sidebarTools) {
-                NavigationLink(value: AppState.Feature.codeExport) {
-                    Label(LocalizedString.sidebarCodeExport, systemImage: "doc.text")
-                }
+            Divider()
 
-                NavigationLink(value: AppState.Feature.testSuite) {
-                    Label(LocalizedString.sidebarTestSuite, systemImage: "checkmark.circle.badge")
-                }
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 0) {
+                    sectionHeader(LocalizedString.sidebarMain)
+                    item(icon: "magnifyingglass", text: LocalizedString.sidebarRegexTester, isSelected: appState.selectedFeature == .regexTester) { appState.selectedFeature = .regexTester }
+                    item(icon: "slider.horizontal.3", text: LocalizedString.sidebarPatternBuilder, isSelected: appState.selectedFeature == .patternBuilder) { appState.selectedFeature = .patternBuilder }
+                    item(icon: "book", text: LocalizedString.sidebarPatternLibrary, isSelected: appState.selectedFeature == .patternLibrary) { appState.selectedFeature = .patternLibrary }
 
-                NavigationLink(value: AppState.Feature.professionalTools) {
-                    Label(LocalizedString.sidebarProfessionalTools, systemImage: "wrench.and.screwdriver")
-                }
+                    sectionHeader(LocalizedString.sidebarTools)
+                    item(icon: "doc.text", text: LocalizedString.sidebarCodeExport, isSelected: appState.selectedFeature == .codeExport) { appState.selectedFeature = .codeExport }
+                    item(icon: "checkmark.circle.badge", text: LocalizedString.sidebarTestSuite, isSelected: appState.selectedFeature == .testSuite) { appState.selectedFeature = .testSuite }
+                    item(icon: "wrench.and.screwdriver", text: LocalizedString.sidebarProfessionalTools, isSelected: appState.selectedFeature == .professionalTools) { appState.selectedFeature = .professionalTools }
+                    item(icon: "speedometer", text: LocalizedString.sidebarPerformance, isSelected: appState.selectedFeature == .performance) { appState.selectedFeature = .performance }
 
-                NavigationLink(value: AppState.Feature.performance) {
-                    Label(LocalizedString.sidebarPerformance, systemImage: "speedometer")
+                    sectionHeader(LocalizedString.sidebarLearn)
+                    item(icon: "graduationcap", text: LocalizedString.sidebarTutorials, isSelected: appState.selectedFeature == .tutorials) { appState.selectedFeature = .tutorials }
                 }
-            }
-
-            Section(LocalizedString.sidebarLearn) {
-                NavigationLink(value: AppState.Feature.tutorials) {
-                    Label(LocalizedString.sidebarTutorials, systemImage: "graduationcap")
-                }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
-        .navigationTitle(LocalizedString.sidebarTitle)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color(NSColor.controlBackgroundColor))
+    }
+
+    private func sectionHeader(_ title: String) -> some View {
+        Text(title)
+            .font(.system(size: 11, weight: .semibold))
+            .foregroundColor(.secondary)
+            .textCase(.uppercase)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+    }
+
+    private func item(icon: String, text: String, isSelected: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack(spacing: 8) {
+                Image(systemName: icon)
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(isSelected ? .accentColor : .primary)
+
+                Text(text)
+                    .foregroundColor(isSelected ? .accentColor : .primary)
+                    .fixedSize(horizontal: true, vertical: false)
+                    .layoutPriority(1)
+
+                Spacer(minLength: 0)
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .frame(height: 32)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                isSelected ? Color.accentColor.opacity(0.1) : Color.clear
+            )
+        }
+        .buttonStyle(.plain)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -130,6 +157,68 @@ struct PerformanceView: View {
         Text(LocalizedString.placeholderPerformance)
             .font(.largeTitle)
             .foregroundColor(.secondary)
+    }
+}
+
+// MARK: - Resizable Sidebar Split (inlined for target membership)
+
+struct ResizableSidebarSplit<Sidebar: View, Content: View>: View {
+    let minSidebarWidth: CGFloat
+    let maxSidebarWidth: CGFloat
+    let initialSidebarWidth: CGFloat
+    let sidebar: () -> Sidebar
+    let content: () -> Content
+
+    @State private var sidebarWidthInternal: CGFloat
+
+    init(
+        minSidebarWidth: CGFloat = 240,
+        maxSidebarWidth: CGFloat = 520,
+        initialSidebarWidth: CGFloat = 300,
+        @ViewBuilder sidebar: @escaping () -> Sidebar,
+        @ViewBuilder content: @escaping () -> Content
+    ) {
+        self.minSidebarWidth = minSidebarWidth
+        self.maxSidebarWidth = maxSidebarWidth
+        self.initialSidebarWidth = initialSidebarWidth
+        self.sidebar = sidebar
+        self.content = content
+        _sidebarWidthInternal = State(initialValue: initialSidebarWidth)
+    }
+
+    var body: some View {
+        HStack(spacing: 0) {
+            sidebar()
+                .frame(width: sidebarWidthInternal)
+
+            divider
+
+            content()
+                .frame(minWidth: 400)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private var divider: some View {
+        Rectangle()
+            .fill(Color(nsColor: .separatorColor))
+            .frame(width: 1)
+            .overlay(
+                Rectangle()
+                    .fill(Color.clear)
+                    .frame(width: 8)
+                    .contentShape(Rectangle())
+                    .gesture(dragGesture)
+            )
+    }
+
+    private var dragGesture: some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { value in
+                let proposed = sidebarWidthInternal + value.translation.width
+                sidebarWidthInternal = max(minSidebarWidth, min(maxSidebarWidth, proposed))
+            }
     }
 }
 
