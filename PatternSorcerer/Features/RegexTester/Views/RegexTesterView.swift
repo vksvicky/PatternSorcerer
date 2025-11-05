@@ -31,13 +31,19 @@ struct RegexTesterView: View {
         HSplitView {
             // Left side: Pattern and Test Text
             VStack(spacing: 12) {
-                SectionContainer(title: "Pattern") {
+                SectionContainer(
+                    title: "Pattern",
+                    description: "Enter your regular expression pattern here"
+                ) {
                     PatternInputView(viewModel: viewModel)
                 }
 
                 Divider()
 
-                SectionContainer(title: "Test Text") {
+                SectionContainer(
+                    title: "Test Text",
+                    description: "Enter the text you want to test against the pattern"
+                ) {
                     TestTextView(viewModel: viewModel)
                 }
             }
@@ -201,7 +207,7 @@ struct ResultsView: View {
     @ObservedObject var viewModel: RegexTesterViewModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Text(LocalizedString.regexTesterResults)
                     .font(.headline)
@@ -217,13 +223,10 @@ struct ResultsView: View {
             }
 
             if viewModel.matches.isEmpty {
-                VStack {
-                    Spacer()
-                    Text(LocalizedString.regexTesterNoMatches)
-                        .font(.title2)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                }
+                emptyStateView(
+                    icon: "magnifyingglass",
+                    message: LocalizedString.regexTesterNoMatches
+                )
             } else {
                 List(viewModel.matches) { match in
                     MatchRowView(match: match)
@@ -231,7 +234,7 @@ struct ResultsView: View {
                 .listStyle(.plain)
             }
         }
-        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
@@ -302,63 +305,59 @@ struct ExplanationView: View {
     @ObservedObject var viewModel: RegexTesterViewModel
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                if let explanation = viewModel.patternExplanation {
-                    // Summary
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Summary")
-                            .font(.headline)
-                        Text(explanation.summary)
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                    }
-                    .padding()
-                    .background(Color(NSColor.controlBackgroundColor))
-                    .cornerRadius(8)
-
-                    Divider()
-
-                    // Detailed explanation
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Pattern Breakdown")
-                            .font(.headline)
-
-                        ForEach(Array(explanation.parts.enumerated()), id: \.offset) { _, part in
-                            HStack(alignment: .top, spacing: 12) {
-                                Text(part.text)
-                                    .font(.system(.body, design: .monospaced))
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 4)
-                                    .background(Color.blue.opacity(0.1))
-                                    .cornerRadius(4)
-                                    .frame(minWidth: 60)
-
-                                Text(part.explanation)
-                                    .font(.body)
-                                    .foregroundColor(.secondary)
-
-                                Spacer()
-                            }
-                            .padding(.vertical, 4)
+        VStack(alignment: .leading, spacing: 12) {
+            if let explanation = viewModel.patternExplanation {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 16) {
+                        // Summary
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Summary")
+                                .font(.headline)
+                            Text(explanation.summary)
+                                .font(.body)
+                                .foregroundColor(.secondary)
                         }
-                    }
-                    .padding()
-                } else {
-                    VStack {
-                        Spacer()
-                        Image(systemName: "text.bubble")
-                            .font(.system(size: 48))
-                            .foregroundColor(.secondary)
-                        Text("Enter a valid pattern to see explanation")
-                            .font(.title3)
-                            .foregroundColor(.secondary)
-                        Spacer()
+                        .padding()
+                        .background(Color(NSColor.controlBackgroundColor))
+                        .cornerRadius(8)
+
+                        Divider()
+
+                        // Detailed explanation
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("Pattern Breakdown")
+                                .font(.headline)
+
+                            ForEach(Array(explanation.parts.enumerated()), id: \.offset) { _, part in
+                                HStack(alignment: .top, spacing: 12) {
+                                    Text(part.text)
+                                        .font(.system(.body, design: .monospaced))
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 4)
+                                        .background(Color.blue.opacity(0.1))
+                                        .cornerRadius(4)
+                                        .frame(minWidth: 60)
+
+                                    Text(part.explanation)
+                                        .font(.body)
+                                        .foregroundColor(.secondary)
+
+                                    Spacer()
+                                }
+                                .padding(.vertical, 4)
+                            }
+                        }
+                        .padding()
                     }
                 }
+            } else {
+                emptyStateView(
+                    icon: "text.bubble",
+                    message: "Enter a valid pattern to see explanation"
+                )
             }
-            .padding()
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
@@ -373,103 +372,99 @@ struct ComplexityView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                if let score = viewModel.complexityScore {
-                    // Complexity Score
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Complexity Score")
-                            .font(.headline)
-
-                        HStack {
-                            Text("\(score.score)/100")
-                                .font(.system(size: 32, weight: .bold))
-
-                            Spacer()
-
-                            Label(score.level.rawValue, systemImage: "gauge")
-                                .foregroundColor(score.level.color)
-                                .font(.title3)
-                        }
-
-                        // Progress bar
-                        GeometryReader { geometry in
-                            ZStack(alignment: .leading) {
-                                Rectangle()
-                                    .fill(Color.gray.opacity(0.2))
-                                    .frame(height: 8)
-                                    .cornerRadius(4)
-
-                                Rectangle()
-                                    .fill(score.level.color)
-                                    .frame(width: geometry.size.width * CGFloat(score.score) / 100, height: 8)
-                                    .cornerRadius(4)
-                            }
-                        }
-                        .frame(height: 8)
-                    }
-                    .padding()
-                    .background(Color(NSColor.controlBackgroundColor))
-                    .cornerRadius(8)
-
-                    // Complexity Factors
-                    if !score.factors.isEmpty {
+        VStack(alignment: .leading, spacing: 12) {
+            if let score = viewModel.complexityScore {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 16) {
+                        // Complexity Score
                         VStack(alignment: .leading, spacing: 12) {
-                            Text("Complexity Factors")
+                            Text("Complexity Score")
                                 .font(.headline)
 
-                            ForEach(score.factors, id: \.self) { factor in
-                                HStack {
-                                    Image(systemName: "exclamationmark.triangle.fill")
-                                        .foregroundColor(.orange)
-                                    Text(factor.description)
-                                        .font(.body)
-                                    Spacer()
-                                }
-                                .padding(.vertical, 4)
+                            HStack {
+                                Text("\(score.score)/100")
+                                    .font(.system(size: 32, weight: .bold))
+
+                                Spacer()
+
+                                Label(score.level.rawValue, systemImage: "gauge")
+                                    .foregroundColor(score.level.color)
+                                    .font(.title3)
                             }
+
+                            // Progress bar
+                            GeometryReader { geometry in
+                                ZStack(alignment: .leading) {
+                                    Rectangle()
+                                        .fill(Color.gray.opacity(0.2))
+                                        .frame(height: 8)
+                                        .cornerRadius(4)
+
+                                    Rectangle()
+                                        .fill(score.level.color)
+                                        .frame(width: geometry.size.width * CGFloat(score.score) / 100, height: 8)
+                                        .cornerRadius(4)
+                                }
+                            }
+                            .frame(height: 8)
                         }
                         .padding()
                         .background(Color(NSColor.controlBackgroundColor))
                         .cornerRadius(8)
-                    }
 
-                    // Optimization Suggestions
-                    if !suggestions.isEmpty {
-                        VStack(alignment: .leading, spacing: 12) {
-                            Text("Optimization Suggestions")
-                                .font(.headline)
+                        // Complexity Factors
+                        if !score.factors.isEmpty {
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Complexity Factors")
+                                    .font(.headline)
 
-                            ForEach(Array(suggestions.enumerated()), id: \.offset) { _, suggestion in
-                                HStack(alignment: .top, spacing: 8) {
-                                    Image(systemName: "lightbulb.fill")
-                                        .foregroundColor(.yellow)
-                                    Text(suggestion.description)
-                                        .font(.body)
-                                    Spacer()
+                                ForEach(score.factors, id: \.self) { factor in
+                                    HStack {
+                                        Image(systemName: "exclamationmark.triangle.fill")
+                                            .foregroundColor(.orange)
+                                        Text(factor.description)
+                                            .font(.body)
+                                        Spacer()
+                                    }
+                                    .padding(.vertical, 4)
                                 }
-                                .padding(.vertical, 4)
                             }
+                            .padding()
+                            .background(Color(NSColor.controlBackgroundColor))
+                            .cornerRadius(8)
                         }
-                        .padding()
-                        .background(Color(NSColor.controlBackgroundColor))
-                        .cornerRadius(8)
-                    }
-                } else {
-                    VStack {
-                        Spacer()
-                        Image(systemName: "chart.bar")
-                            .font(.system(size: 48))
-                            .foregroundColor(.secondary)
-                        Text("Enter a valid pattern to analyze complexity")
-                            .font(.title3)
-                            .foregroundColor(.secondary)
-                        Spacer()
+
+                        // Optimization Suggestions
+                        if !suggestions.isEmpty {
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Optimization Suggestions")
+                                    .font(.headline)
+
+                                ForEach(Array(suggestions.enumerated()), id: \.offset) { _, suggestion in
+                                    HStack(alignment: .top, spacing: 8) {
+                                        Image(systemName: "lightbulb.fill")
+                                            .foregroundColor(.yellow)
+                                        Text(suggestion.description)
+                                            .font(.body)
+                                        Spacer()
+                                    }
+                                    .padding(.vertical, 4)
+                                }
+                            }
+                            .padding()
+                            .background(Color(NSColor.controlBackgroundColor))
+                            .cornerRadius(8)
+                        }
                     }
                 }
+            } else {
+                emptyStateView(
+                    icon: "chart.bar",
+                    message: "Enter a valid pattern to analyze complexity"
+                )
             }
-            .padding()
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onChange(of: viewModel.pattern) { _, newPattern in
             // Update suggestions when pattern changes, deferred outside view update
             DispatchQueue.main.async {
@@ -488,105 +483,128 @@ struct BacktrackingView: View {
     @ObservedObject var viewModel: RegexTesterViewModel
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                if let analysis = viewModel.backtrackingAnalysis {
-                    // Risk Level
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Backtracking Risk")
-                            .font(.headline)
-
-                        HStack {
-                            Label(analysis.riskLevel.description, systemImage: "shield.fill")
-                                .foregroundColor(analysis.riskLevel.color)
-                                .font(.title3)
-
-                            Spacer()
-                        }
-                    }
-                    .padding()
-                    .background(Color(NSColor.controlBackgroundColor))
-                    .cornerRadius(8)
-
-                    // Warnings
-                    if !analysis.warnings.isEmpty {
+        VStack(alignment: .leading, spacing: 12) {
+            if let analysis = viewModel.backtrackingAnalysis {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 16) {
+                        // Risk Level
                         VStack(alignment: .leading, spacing: 12) {
-                            Text("Warnings")
+                            Text("Backtracking Risk")
                                 .font(.headline)
 
-                            ForEach(analysis.warnings, id: \.self) { warning in
-                                HStack(alignment: .top, spacing: 8) {
-                                    Image(systemName: "exclamationmark.triangle.fill")
-                                        .foregroundColor(.red)
-                                    Text(warning.description)
-                                        .font(.body)
-                                    Spacer()
-                                }
-                                .padding(.vertical, 4)
+                            HStack {
+                                Label(analysis.riskLevel.description, systemImage: "shield.fill")
+                                    .foregroundColor(analysis.riskLevel.color)
+                                    .font(.title3)
+
+                                Spacer()
                             }
                         }
                         .padding()
                         .background(Color(NSColor.controlBackgroundColor))
                         .cornerRadius(8)
-                    }
 
-                    // Suggestions
-                    if !analysis.suggestions.isEmpty {
-                        VStack(alignment: .leading, spacing: 12) {
-                            Text("Suggestions")
-                                .font(.headline)
+                        // Warnings
+                        if !analysis.warnings.isEmpty {
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Warnings")
+                                    .font(.headline)
 
-                            ForEach(Array(analysis.suggestions.enumerated()), id: \.offset) { _, suggestion in
-                                HStack(alignment: .top, spacing: 8) {
-                                    Image(systemName: "arrow.right.circle.fill")
-                                        .foregroundColor(.blue)
-                                    Text(suggestion)
-                                        .font(.body)
-                                    Spacer()
+                                ForEach(analysis.warnings, id: \.self) { warning in
+                                    HStack(alignment: .top, spacing: 8) {
+                                        Image(systemName: "exclamationmark.triangle.fill")
+                                            .foregroundColor(.red)
+                                        Text(warning.description)
+                                            .font(.body)
+                                        Spacer()
+                                    }
+                                    .padding(.vertical, 4)
                                 }
-                                .padding(.vertical, 4)
                             }
+                            .padding()
+                            .background(Color(NSColor.controlBackgroundColor))
+                            .cornerRadius(8)
                         }
-                        .padding()
-                        .background(Color(NSColor.controlBackgroundColor))
-                        .cornerRadius(8)
-                    }
-                } else {
-                    VStack {
-                        Spacer()
-                        Image(systemName: "shield.checkered")
-                            .font(.system(size: 48))
-                            .foregroundColor(.secondary)
-                        Text("Enter pattern and test text to analyze backtracking")
-                            .font(.title3)
-                            .foregroundColor(.secondary)
-                            .multilineTextAlignment(.center)
-                        Spacer()
+
+                        // Suggestions
+                        if !analysis.suggestions.isEmpty {
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Suggestions")
+                                    .font(.headline)
+
+                                ForEach(Array(analysis.suggestions.enumerated()), id: \.offset) { _, suggestion in
+                                    HStack(alignment: .top, spacing: 8) {
+                                        Image(systemName: "arrow.right.circle.fill")
+                                            .foregroundColor(.blue)
+                                        Text(suggestion)
+                                            .font(.body)
+                                        Spacer()
+                                    }
+                                    .padding(.vertical, 4)
+                                }
+                            }
+                            .padding()
+                            .background(Color(NSColor.controlBackgroundColor))
+                            .cornerRadius(8)
+                        }
                     }
                 }
+            } else {
+                emptyStateView(
+                    icon: "shield.checkered",
+                    message: "Enter pattern and test text to analyze backtracking"
+                )
             }
-            .padding()
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
+}
+
+// MARK: - Empty State View Helper
+private func emptyStateView(icon: String, message: String) -> some View {
+    VStack(spacing: 16) {
+        Spacer()
+        Image(systemName: icon)
+            .font(.system(size: 48))
+            .foregroundColor(.secondary)
+        Text(message)
+            .font(.title3)
+            .foregroundColor(.secondary)
+            .multilineTextAlignment(.center)
+        Spacer()
+    }
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
 }
 
 // MARK: - Section Container
 struct SectionContainer<Content: View>: View {
     let title: String
+    let description: String?
     let content: () -> Content
 
-    init(title: String, @ViewBuilder content: @escaping () -> Content) {
+    init(title: String, description: String? = nil, @ViewBuilder content: @escaping () -> Content) {
         self.title = title
+        self.description = description
         self.content = content
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .padding(.horizontal, 8)
-                .padding(.top, 6)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+
+                if let description = description {
+                    Text(description)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+            .padding(.horizontal, 12)
+            .padding(.top, 8)
+
+            Divider()
 
             content()
                 .padding(8)
@@ -594,6 +612,10 @@ struct SectionContainer<Content: View>: View {
         .background(
             RoundedRectangle(cornerRadius: 8)
                 .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color(NSColor.controlBackgroundColor).opacity(0.5))
+                )
         )
     }
 }

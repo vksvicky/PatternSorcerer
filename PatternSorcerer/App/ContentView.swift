@@ -65,18 +65,66 @@ struct SidebarView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 0) {
                     sectionHeader(LocalizedString.sidebarMain)
-                    item(icon: "magnifyingglass", text: LocalizedString.sidebarRegexTester, isSelected: appState.selectedFeature == .regexTester) { appState.selectedFeature = .regexTester }
-                    item(icon: "slider.horizontal.3", text: LocalizedString.sidebarPatternBuilder, isSelected: appState.selectedFeature == .patternBuilder) { appState.selectedFeature = .patternBuilder }
-                    item(icon: "book", text: LocalizedString.sidebarPatternLibrary, isSelected: appState.selectedFeature == .patternLibrary) { appState.selectedFeature = .patternLibrary }
+                    item(
+                        icon: "magnifyingglass",
+                        text: LocalizedString.sidebarRegexTester,
+                        isSelected: appState.selectedFeature == .regexTester
+                    ) {
+                        appState.selectedFeature = .regexTester
+                    }
+                    item(
+                        icon: "slider.horizontal.3",
+                        text: LocalizedString.sidebarPatternBuilder,
+                        isSelected: appState.selectedFeature == .patternBuilder
+                    ) {
+                        appState.selectedFeature = .patternBuilder
+                    }
+                    item(
+                        icon: "book",
+                        text: LocalizedString.sidebarPatternLibrary,
+                        isSelected: appState.selectedFeature == .patternLibrary
+                    ) {
+                        appState.selectedFeature = .patternLibrary
+                    }
 
                     sectionHeader(LocalizedString.sidebarTools)
-                    item(icon: "doc.text", text: LocalizedString.sidebarCodeExport, isSelected: appState.selectedFeature == .codeExport) { appState.selectedFeature = .codeExport }
-                    item(icon: "checkmark.circle.badge", text: LocalizedString.sidebarTestSuite, isSelected: appState.selectedFeature == .testSuite) { appState.selectedFeature = .testSuite }
-                    item(icon: "wrench.and.screwdriver", text: LocalizedString.sidebarProfessionalTools, isSelected: appState.selectedFeature == .professionalTools) { appState.selectedFeature = .professionalTools }
-                    item(icon: "speedometer", text: LocalizedString.sidebarPerformance, isSelected: appState.selectedFeature == .performance) { appState.selectedFeature = .performance }
+                    item(
+                        icon: "doc.text",
+                        text: LocalizedString.sidebarCodeExport,
+                        isSelected: appState.selectedFeature == .codeExport
+                    ) {
+                        appState.selectedFeature = .codeExport
+                    }
+                    item(
+                        icon: "checkmark.circle.badge",
+                        text: LocalizedString.sidebarTestSuite,
+                        isSelected: appState.selectedFeature == .testSuite
+                    ) {
+                        appState.selectedFeature = .testSuite
+                    }
+                    item(
+                        icon: "wrench.and.screwdriver",
+                        text: LocalizedString.sidebarProfessionalTools,
+                        isSelected: appState.selectedFeature == .professionalTools
+                    ) {
+                        appState.selectedFeature = .professionalTools
+                    }
+                    item(
+                        icon: "speedometer",
+                        text: LocalizedString.sidebarPerformance,
+                        isSelected: appState.selectedFeature == .performance
+                    ) {
+                        appState.selectedFeature = .performance
+                    }
 
                     sectionHeader(LocalizedString.sidebarLearn)
-                    item(icon: "graduationcap", text: LocalizedString.sidebarTutorials, isSelected: appState.selectedFeature == .tutorials) { appState.selectedFeature = .tutorials }
+                    item(
+                        icon: "graduationcap",
+                        text: LocalizedString.sidebarTutorials,
+                        isSelected: appState.selectedFeature == .tutorials
+                    ) {
+                        appState.selectedFeature = .tutorials
+                    }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
