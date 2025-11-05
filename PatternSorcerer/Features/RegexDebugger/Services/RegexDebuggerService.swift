@@ -142,4 +142,3 @@ final class RegexDebuggerService: RegexDebuggerServiceProtocol {
         return steps
     }
 }
-

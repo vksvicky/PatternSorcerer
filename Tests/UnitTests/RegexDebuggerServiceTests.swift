@@ -209,4 +209,3 @@ final class RegexDebuggerServiceTests: XCTestCase {
         XCTAssertNil(currentStep, "Current step should be nil after stopping")
     }
 }
-

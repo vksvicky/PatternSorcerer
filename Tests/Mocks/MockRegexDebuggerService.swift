@@ -57,4 +57,3 @@ class MockRegexDebuggerService: RegexDebuggerServiceProtocol {
         return stepResults.contains { $0.state == .backtracking }
     }
 }
-

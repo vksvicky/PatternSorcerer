@@ -39,4 +39,3 @@ protocol RegexDebuggerServiceProtocol {
     /// - Returns: True if any step involved backtracking
     func hasBacktracking() -> Bool
 }
-

@@ -46,4 +46,3 @@ enum DebugState: String, Equatable {
     case backtracking = "Backtracking"
     case error = "Error"
 }
-

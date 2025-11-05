@@ -110,4 +110,3 @@ class RegexDebuggerViewModel: ObservableObject {
         currentStep = allSteps[index]
     }
 }
-
