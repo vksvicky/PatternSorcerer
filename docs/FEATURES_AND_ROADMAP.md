@@ -34,6 +34,7 @@ See also:
 - ✅ **Pattern Syntax Highlighting** - Color-coded syntax highlighting for regex patterns
 - ✅ **Multi-flavor Regex Support** - Support for 5 flavors (ECMAScript, PCRE, Python, .NET, Java) with flavor-specific info and differences
 - ✅ **Regex Debugger / Stepper** - Step-through execution of regex with real-time backtracking visualization, state transitions, and position highlighting (Phase 3, completed with TDD/BDD)
+- ✅ **Visual Pattern Builder UI** - Drag-and-drop interface with component palette, pattern canvas, live preview, and test text matching (Phase 3, completed with TDD/BDD)
 
 ### UI/UX Improvements (December 2025) ✅
 - ✅ **Consistent Layout System** - Resizable sidebar split with proper width constraints
@@ -255,7 +256,7 @@ See also:
 ### Phase 3: Visual Features (Weeks 9-12) 🎯 **IN PROGRESS**
 **Goal**: Visual pattern builder and advanced visualization
 
-**Status**: Regex Debugger completed - UI foundation is complete
+**Status**: Regex Debugger and Visual Pattern Builder completed - 2 of 6 features done
 
 **Priority Order**:
 1. [x] **Regex Debugger / Stepper** ⭐ HIGH PRIORITY ✅ (inspired by regex101, RegexBuddy)
@@ -266,11 +267,12 @@ See also:
    - State transitions visualization ✅
    - Backtracking path visualization ✅
    - **Implementation**: Complete with TDD/BDD tests, mocking, and full UI
-2. [ ] **Visual Pattern Builder UI** ⭐ HIGH PRIORITY
-   - Drag-and-drop interface
-   - Pattern components palette
-   - Visual quantifier selector
-   - Live preview
+2. [x] **Visual Pattern Builder UI** ⭐ HIGH PRIORITY ✅
+   - Drag-and-drop interface ✅
+   - Pattern components palette ✅
+   - Visual quantifier selector ✅
+   - Live preview ✅
+   - **Implementation**: Complete with TDD/BDD tests, mocking, and full UI
    - **Why Second**: Makes regex accessible to beginners, major differentiator
 3. [ ] **Regex Tree View** ⭐ MEDIUM PRIORITY
    - Parse pattern into tree structure
@@ -307,10 +309,21 @@ See also:
   - Mock service for testing
   - Integrated into main app navigation
 
+- ✅ **Visual Pattern Builder UI** (November 2025)
+  - Component palette with character classes, quantifiers, anchors, groups
+  - Pattern canvas for visual component arrangement
+  - Live preview of generated pattern string
+  - Real-time pattern validation
+  - Test text input with preview matches
+  - Component management (add, remove, edit, reorder, clear)
+  - Complete test coverage (BDD + Unit tests)
+  - Mock service for testing
+  - Integrated into main app navigation
+
 **Estimated Timeline**: 4 weeks
 - ✅ Week 1: Regex Debugger/Stepper (core functionality) - **COMPLETED**
-- 🎯 Week 2: Visual Pattern Builder (basic drag-and-drop) - **NEXT**
-- Week 3: Regex Tree View + State Machine Diagram
+- ✅ Week 2: Visual Pattern Builder (basic drag-and-drop) - **COMPLETED**
+- 🎯 Week 3: Regex Tree View + State Machine Diagram - **NEXT**
 - Week 4: Match Flow Visualization + Syntax Highlighter enhancements
 
 ---
