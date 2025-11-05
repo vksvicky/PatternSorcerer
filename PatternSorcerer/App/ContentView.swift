@@ -13,9 +13,9 @@ struct ContentView: View {
 
     var body: some View {
         ResizableSidebarSplit(
-            minSidebarWidth: 240,
-            maxSidebarWidth: 280,
-            initialSidebarWidth: 240
+            minSidebarWidth: 300,
+            maxSidebarWidth: 450,
+            initialSidebarWidth: 320
         ) {
             SidebarView()
         } content: {
@@ -190,6 +190,7 @@ struct ResizableSidebarSplit<Sidebar: View, Content: View>: View {
         HStack(spacing: 0) {
             sidebar()
                 .frame(width: sidebarWidthInternal)
+                .frame(maxHeight: .infinity)
 
             divider
 
@@ -197,7 +198,7 @@ struct ResizableSidebarSplit<Sidebar: View, Content: View>: View {
                 .frame(minWidth: 400)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(minWidth: minSidebarWidth + 400, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
     }
 
     private var divider: some View {

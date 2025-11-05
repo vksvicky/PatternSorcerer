@@ -30,19 +30,22 @@ struct RegexTesterView: View {
     var body: some View {
         HSplitView {
             // Left side: Pattern and Test Text
-            VStack(spacing: 0) {
-                PatternInputView(viewModel: viewModel)
+            VStack(spacing: 12) {
+                SectionContainer(title: "Pattern") {
+                    PatternInputView(viewModel: viewModel)
+                }
 
                 Divider()
 
-                TestTextView(viewModel: viewModel)
+                SectionContainer(title: "Test Text") {
+                    TestTextView(viewModel: viewModel)
+                }
             }
-            .frame(minWidth: 400)
-
-            Divider()
+            .frame(minWidth: 400, idealWidth: 500)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             // Right side: Results with Tabs
-            VStack(spacing: 0) {
+            VStack(spacing: 12) {
                 // Tab selector
                 Picker("View", selection: $selectedTab) {
                     ForEach(ResultsTab.allCases, id: \.self) { tab in
@@ -55,7 +58,7 @@ struct RegexTesterView: View {
                 Divider()
 
                 // Tab content
-                Group {
+                SectionContainer(title: selectedTab.localizedTitle) {
                     switch selectedTab {
                     case .matches:
                         ResultsView(viewModel: viewModel)
@@ -69,9 +72,10 @@ struct RegexTesterView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .frame(minWidth: 400)
+            .frame(minWidth: 400, idealWidth: 500)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .padding()
+        .frame(minWidth: 800, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
     }
 }
 
@@ -565,6 +569,34 @@ struct BacktrackingView: View {
             }
             .padding()
         }
+    }
+}
+
+// MARK: - Section Container
+struct SectionContainer<Content: View>: View {
+    let title: String
+    let content: () -> Content
+
+    init(title: String, @ViewBuilder content: @escaping () -> Content) {
+        self.title = title
+        self.content = content
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .padding(.horizontal, 8)
+                .padding(.top, 6)
+
+            content()
+                .padding(8)
+        }
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+        )
     }
 }
 
